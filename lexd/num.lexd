@@ -1,0 +1,55 @@
+PATTERNS
+ShugniNums Numerical
+ShugniNumsTen Numerical
+ShugniNumsTen CliticAnd Numerical
+
+LEXICON ShugniNums
+yīw         # 1
+δuyůn       # 2 (ðuyůn - Parker;  δiyůn - словарь)
+δu          # 2 (ðu)
+aray        # 3
+ara         # 3
+cavor       # 4
+pīnӡ        # 5 (pīndz)
+xoɣ̌         # 6
+wūvd        # 7 
+wax̌t        # 8
+now         # 9
+
+LEXICON ShugniNumsTen
+δīs         # 10 (ðīs)
+
+LEXICON CliticAnd
+at
+
+LEXICON Numerical
+<num>:
+
+#LEXICON ShugniNumsTeens
+
+
+LEXICON BorrowedTadjikNums
+yak         # 1
+du          # 2
+se          # 3
+čor         # 4
+panǰ        # 5
+šaš         # 6
+aft         # 7
+ašt         # 8
+nū          # 9
+dā          # 10
+yozdā       # 11
+duwozdā     # 12
+sezdā       # 13
+            # 14
+půnzdā      # 15
+            # 16
+avdā        # 17
+            # 18
+            # 19
+bīst        # 20
+sad         # 100
+azor        # 1000
+milliůn     # 1mil
+milliyard   # 1bil
