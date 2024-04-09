@@ -3,24 +3,26 @@ ShugniNums Numerical
 ShugniNumsTen Numerical
 ShugniNumsTen CliticAnd Numerical
 
+BorrowedTadjikNums Numerical
+
 LEXICON ShugniNums
-yīw         # 1
-δuyůn       # 2 (ðuyůn - Parker;  δiyůn - словарь)
-δu          # 2 (ðu)
-aray        # 3
-ara         # 3
-cavor       # 4
-pīnӡ        # 5 (pīndz)
-xoɣ̌         # 6
-wūvd        # 7 
-wax̌t        # 8
-now         # 9
+йӣw         # 1
+δиӣу̊н       # 2 (ðuyůn - Parker;  δiyůn - словарь)
+δу          # 2
+араӣ        # 3
+ара         # 3
+цавор       # 4
+пӣнȥ        # 5 (pīndz)
+хоɣ̌         # 6
+wӯвд        # 7 
+wах̌т        # 8
+ноw         # 9
 
 LEXICON ShugniNumsTen
-δīs         # 10 (ðīs)
+δӣс         # 10 (ðīs)
 
 LEXICON CliticAnd
-at
+ат
 
 LEXICON Numerical
 <num>:
@@ -29,27 +31,30 @@ LEXICON Numerical
 
 
 LEXICON BorrowedTadjikNums
-yak         # 1
-du          # 2
-se          # 3
-čor         # 4
-panǰ        # 5
-šaš         # 6
-aft         # 7
-ašt         # 8
-nū          # 9
-dā          # 10
-yozdā       # 11
-duwozdā     # 12
-sezdā       # 13
-            # 14
-půnzdā      # 15
-            # 16
-avdā        # 17
-            # 18
+йак         # 1
+ду          # 2
+се          # 3
+чор         # 4
+панҷ        # 5
+шаш         # 6
+афт         # 7
+ҳафт        # 7
+ашт         # 8
+нӯ          # 9
+дā          # 10
+йоздā       # 11
+дуwоздā     # 12
+диwоздā     # 12
+сездā       # 13
+чордā       # 14
+пу̊нздā      # 15
+понздā      # 15
+шонȥдā      # 16
+авдā        # 17
+аждā        # 18
             # 19
-bīst        # 20
-sad         # 100
-azor        # 1000
-milliůn     # 1mil
-milliyard   # 1bil
+бӣст        # 20
+сад         # 100
+азор        # 1000
+милйу̊н      # 1mil
+милйāрд     # 1bil
