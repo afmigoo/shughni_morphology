@@ -1,18 +1,21 @@
 .DEFAULT_GOAL := all
 
 # global named targets
-all: cyr lat
+all: clear cyr lat test
 cyr: cyr.num.generator.hfst cyr.num.analyzer.hfst
 lat: lat.num.generator.hfst lat.num.analyzer.hfst
 clear:
-	rm *.hfst
-	rm translit/*.hfst
+	rm -f *.hfst
+	rm -f translit/*.hfst
+	rm -f test.*
 
 # transliterators
 translit/cyr2lat.hfst: translit/lat2cyr.hfst
 	hfst-invert $< -o $@
-translit/lat2cyr.hfst: translit/correspondence.hfst
+translit/lat2cyr.hfst: translit/translit.hfst
 	hfst-repeat -f 1 $< -o $@
+translit/translit.hfst: translit/fixes.hfst translit/correspondence.hfst
+	hfst-compose $^ -o $@
 translit/correspondence.hfst: translit/lat2cyr_correspondence
 	hfst-strings2fst -j $< -o $@
 translit/fixes.hfst: translit/lat2cyr_fixes
@@ -31,9 +34,12 @@ lat.num.analyzer.hfst: lat.num.generator.hfst
 	hfst-invert $< -o $@
 
 # create and run tests
-#test.pass.txt: tests.csv
-#	awk -F, '$$3 == "pass" {print $$1 ":" $$2}' $^ | sort -u > $@
-#check: and.noun.generator.hfst test.pass.txt
-#	bash compare.sh $^
-#clean: check
-#	rm test.*
+test: check.cyr check.lat
+check.cyr: cyr.num.generator.hfst test.cyr.txt
+	bash compare.sh $^
+check.lat: lat.num.generator.hfst test.lat.txt
+	bash compare.sh $^
+test.cyr.txt: tests/cyr.csv
+	awk -F, '$$3 == "pass" {print $$1 ":" $$2}' $^ | sort -u > $@
+test.lat.txt: tests/lat.csv
+	awk -F, '$$3 == "pass" {print $$1 ":" $$2}' $^ | sort -u > $@
