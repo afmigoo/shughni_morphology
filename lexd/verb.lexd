@@ -1,0 +1,13 @@
+PATTERNS
+VerbBase Pres
+
+LEXICON VerbBase
+бинêс               # терять
+
+LEXICON Pres
+<v><pres><1sg>:ум
+<v><pres><2sg>:и
+<v><pres><3sg>:т
+<v><pres><1pl>:āм
+<v><pres><2pl>:ет
+<v><pres><3pl>:ен

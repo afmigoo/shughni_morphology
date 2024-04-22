@@ -2,8 +2,14 @@
 
 # global named targets
 all: clear cyr lat test
-cyr: cyr.num.generator.hfst cyr.num.analyzer.hfst
-lat: lat.num.generator.hfst lat.num.analyzer.hfst
+cyr: cyr.num.generator.hfst 	\
+	 cyr.num.analyzer.hfst 		\
+	 cyr.verb.generator.hfst 	\
+	 cyr.verb.analyzer.hfst
+lat: lat.num.generator.hfst 	\
+	 lat.num.analyzer.hfst 		\
+	 lat.verb.generator.hfst 	\
+	 lat.verb.analyzer.hfst
 clear:
 	rm -f *.hfst
 	rm -f translit/*.hfst
@@ -12,25 +18,23 @@ clear:
 # transliterators
 translit/cyr2lat.hfst: translit/lat2cyr.hfst
 	hfst-invert $< -o $@
-translit/lat2cyr.hfst: translit/translit.hfst
-	hfst-repeat -f 1 $< -o $@
-translit/translit.hfst: translit/fixes.hfst translit/correspondence.hfst
-	hfst-compose $^ -o $@
+translit/lat2cyr.hfst: translit/fixes.hfst translit/correspondence.hfst
+	hfst-compose $^ | hfst-repeat -o $@
 translit/correspondence.hfst: translit/lat2cyr_correspondence
 	hfst-strings2fst -j $< -o $@
 translit/fixes.hfst: translit/lat2cyr_fixes
 	hfst-strings2fst -j $< -o $@
 
-# anylizer and generator
+# anylizers and generators
 ## cyr
-cyr.num.generator.hfst: num.lexd
+cyr.%.generator.hfst: lexd/%.lexd
 	lexd $< | hfst-txt2fst -o $@
-cyr.num.analyzer.hfst: cyr.num.generator.hfst
+cyr.%.analyzer.hfst: cyr.%.generator.hfst
 	hfst-invert $< -o $@
 ## lat
-lat.num.generator.hfst: cyr.num.generator.hfst translit/cyr2lat.hfst
+lat.%.generator.hfst: cyr.%.generator.hfst translit/cyr2lat.hfst
 	hfst-compose $^ -o $@
-lat.num.analyzer.hfst: lat.num.generator.hfst
+lat.%.analyzer.hfst: lat.%.generator.hfst
 	hfst-invert $< -o $@
 
 # create and run tests
