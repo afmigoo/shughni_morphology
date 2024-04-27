@@ -1,7 +1,19 @@
 PATTERNS
-Noun NounMark Plural
+Noun[sg] [<n>:] NounNumber[sg]
+Noun[pl_all] [<n>:] NounNumber[pl_all]
+Noun[pl_in-laws] [<n>:] NounNumber[pl_in-laws]
 
-LEXICON Noun
+LEXICON NounNumber
+<sg>:[sg]
+<pl>:{й}ен[pl_all]
+<pl>:орҷ[pl_in-laws]
+<pl>:у̊н[pl_cousins]
+<pl>:дзинен[pl_sisters]
+<pl>:аҷев[pl_times-of-day]
+<pl>:ҷев[pl_times-of-year]
+
+LEXICON Noun[sg,pl_all]
+питиш[pl_cousins]   # двоюродный брат
 нāн                 # мама
 дирахт              # дерево
 аwели               # дом
@@ -10,9 +22,5 @@ LEXICON Noun
 кӯ                  # гора
 бачамард            # молодой человек
 
-LEXICON Plural
-<pl>:{й}ен
 
-LEXICON NounMark
-<n>:
 
