@@ -32,10 +32,8 @@ shugni.lexd:
 # transliterators
 translit/cyr2lat.hfst: translit/lat2cyr.hfst
 	hfst-invert $< -o $@
-translit/lat2cyr.hfst: translit/fixes.hfst translit/correspondence.hfst
-	hfst-compose $^ | hfst-repeat -o $@
-translit/%.hfst: translit/lat2cyr_%
-	hfst-strings2fst -j $< -o $@
+translit/lat2cyr.hfst: translit/lat2cyr_correspondence
+	hfst-strings2fst -j $< | hfst-repeat -o $@
 
 # create and run tests
 test: check.num check.noun

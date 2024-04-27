@@ -1,0 +1,102 @@
+PATTERNS
+Noun[sg] [<n>:] NounNumber[sg]
+Noun[pl_all] [<n>:] NounNumber[pl_all]
+Noun[pl_in-laws] [<n>:] NounNumber[pl_in-laws]
+
+LEXICON NounNumber
+<sg>:[sg]
+<pl>:{й}ен[pl_all]
+<pl>:орҷ[pl_in-laws]
+<pl>:у̊н[pl_cousins]
+<pl>:дзинен[pl_sisters]
+<pl>:аҷев[pl_times-of-day]
+<pl>:ҷев[pl_times-of-year]
+
+LEXICON Noun[sg,pl_all]
+питиш[pl_cousins]   # двоюродный брат
+нāн                 # мама
+дирахт              # дерево
+аwели               # дом
+рӯпийā              # монета
+тангā               # монета (тадж) pl - тангайен или тангāйен?
+кӯ                  # гора
+бачамард            # молодой человек
+
+
+
+PATTERNS
+ShugniNums Numerical
+ShugniNumsTen Numerical
+ShugniNumsTen CliticAnd Numerical
+
+BorrowedTadjikNums Numerical
+
+LEXICON ShugniNums
+йӣw         # 1
+δиӣу̊н       # 2 (ðuyůn - Parker;  δiyůn - словарь)
+δу          # 2
+араӣ        # 3
+ара         # 3
+цавор       # 4
+пӣнȥ        # 5 (pīndz)
+хоɣ̌         # 6
+wӯвд        # 7 
+wах̌т        # 8
+ноw         # 9
+
+LEXICON ShugniNumsTen
+δӣс         # 10 (ðīs)
+
+LEXICON CliticAnd
+ат
+
+LEXICON Numerical
+<num>:
+
+#LEXICON ShugniNumsTeens
+
+
+LEXICON BorrowedTadjikNums
+йак         # 1
+ду          # 2
+се          # 3
+чор         # 4
+панҷ        # 5
+шаш         # 6
+афт         # 7
+ҳафт        # 7
+ашт         # 8
+нӯ          # 9
+дā          # 10
+йоздā       # 11
+дуwоздā     # 12
+диwоздā     # 12
+сездā       # 13
+чордā       # 14
+пу̊нздā      # 15
+понздā      # 15
+шонȥдā      # 16
+авдā        # 17
+аждā        # 18
+            # 19
+бӣст        # 20
+сад         # 100
+азор        # 1000
+милйу̊н      # 1mil
+милйāрд     # 1bil
+
+PATTERNS
+VerbBase Pres
+
+LEXICON VerbBase
+бинêс               # терять
+ти                  # уходить
+
+LEXICON Pres
+<v><pres><1sg>:{й}ум
+<v><pres><2sg>:{й}и
+<v><pres><3sg>:{й}т
+<v><pres><1pl>:{й}āм
+<v><pres><2pl>:{й}ет
+<v><pres><3pl>:{й}ен
+
