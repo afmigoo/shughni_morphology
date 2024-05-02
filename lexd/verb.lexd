@@ -6,10 +6,10 @@ LEXICON VerbBase
 ти                  # уходить
 
 LEXICON Pres
-<v><pres><1sg>:{й}ум
-<v><pres><2sg>:{й}и
-<v><pres><3sg>:{й}т
-<v><pres><1pl>:{й}āм
-<v><pres><2pl>:{й}ет
-<v><pres><3pl>:{й}ен
+<v><pres><1sg>:{Й}ум
+<v><pres><2sg>:{Й}и
+<v><pres><3sg>:{Й}т
+<v><pres><1pl>:{Й}āм
+<v><pres><2pl>:{Й}ет
+<v><pres><3pl>:{Й}ен
 

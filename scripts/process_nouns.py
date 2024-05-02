@@ -3,10 +3,11 @@ import csv
 
 file = Path(__file__).parent.joinpath('db_noun.csv')
 out_file = Path(__file__).parent.joinpath('out_noun.txt')
-comment_distance = 35
+comment_distance = 25
 
 def is_bad(word: str) -> bool:
-    return ' ' in word
+    return ' ' in word or \
+           word.startswith('-')
 
 # reading lines in a list of tuples
 # and filtering out bad ones
