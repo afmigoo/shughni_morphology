@@ -1,0 +1,36 @@
+PATTERNS
+PersonalPronounsFull PronAdpos?
+ReflectivePronouns
+
+PATTERN PersonalPronounsFull
+PersonalPronouns                  
+PersonalPronouns[hon] [<hon>:-йет]
+
+LEXICON PronAdpos
+<loc>:-{А}нд
+<lat>:-{А}рд
+
+LEXICON PersonalPronouns
+wаз<pron><1sg><nom>:wаз
+wуз<pron><1sg><nom>:wуз
+wз<pron><1sg><nom>:wз
+му<pron><1sg><obl>:му
+ту<pron><2sg><nom>:ту
+ту<pron><2sg><obl>:ту
+йу<pron><3sg><m><nom>:йу
+йā<pron><3sg><f><nom>:йā
+wи<pron><3sg><m><obl>:wи
+wам<pron><3sg><f><obl>:wам
+мāш<pron><1pl><nom>:мāш
+мāш<pron><1pl><obl>:мāш
+тама<pron><2pl><nom>:тама[hon]
+тама<pron><2pl><obl>:тама[hon]
+тамā<pron><2pl><nom>:тамā[hon]
+тамā<pron><2pl><obl>:тамā[hon]
+wāδ<pron><3pl><nom>:wāδ
+wев<pron><3pl><obl>:wев
+
+LEXICON ReflectivePronouns
+ху<pron><refl>:ху
+хубаθ<pron><self>:хубаθ
+

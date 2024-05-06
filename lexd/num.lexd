@@ -1,9 +1,8 @@
 PATTERNS
-ShugniNums Numerical
-ShugniNumsTen Numerical
-ShugniNumsTen CliticAnd Numerical
+ShugniNums [<num>:] OrdinalNum?
+ShugniNumsTen CliticAnd? [<num>:] OrdinalNum?
 
-BorrowedTadjikNums Numerical
+BorrowedTadjikNums [<num>:] OrdinalNum?
 
 LEXICON ShugniNums
 йӣw         # 1
@@ -22,13 +21,13 @@ LEXICON ShugniNumsTen
 δӣс         # 10 (ðīs)
 
 LEXICON CliticAnd
-ат
+-ат
 
-LEXICON Numerical
-<num>:
-
-#LEXICON ShugniNumsTeens
-
+LEXICON OrdinalNum
+<ord>:-ум
+<ord>:ум
+<ord>:-м
+<ord>:м
 
 LEXICON BorrowedTadjikNums
 йак         # 1

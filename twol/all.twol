@@ -1,6 +1,7 @@
 Alphabet
   а ā б в w г ғ ɣ̌ д δ е ê ж з ȥ и й ӣ ӣ к қ л м н о п р с т θ у ӯ у̊ ф х х̌ ҳ ц ч ш ҷ 
   %{Й%}:0 %{Й%}:й
+  %{А%}:0 %{А%}:а
   %- 
   ғ̌ 
 ;
@@ -12,8 +13,11 @@ Vowel =     а ā е ê и ӣ ӣ о у ӯ у̊ ;
 
 Rules
 
-"Plural suffix vowel insertion"
+"Вставка йота"
 %{Й%}:0 <=> Consonant _ ;
 
-"Plural suffix vowel insertion 2"
+"Вставка йота"
 %{Й%}:0 <=> Consonant %- _ ;
+
+"Локатив местоимений"
+%{А%}:0 <=> Vowel %- _ ;
