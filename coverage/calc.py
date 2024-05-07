@@ -26,40 +26,66 @@ def analyze(words: list[str], analyzer_file: Path) -> list[str | None]:
                          stderr=subprocess.STDOUT)
     res = analyzer.communicate(input=bytes(words, encoding='utf8'))[0].decode()
     analyzed = [x.split('\t')[1:] for x in res.split('\n\n') if x]
-    return [None if x[1] == 'inf' else x[0]
-            for x in analyzed]
+    return [x[0] for x in analyzed]
 
-# GLOBAL COUNTERS
-total = success = i = 0
-analyzer = None
-BATCH_SIZE = 5_000
-words = []
-def run():
-    if not len(words): return
-    global total, success, i
-    analyzed = analyze(words, analyzer)
-    words.clear()
-    total += len(analyzed)
-    success += sum(1 for x in analyzed if x)
-    i += 1
-
-for line in stdin:
-    if analyzer is None:
-        if writing_score(line, LAT) > writing_score(line, CYR):
-            analyzer = ANALYZER_LAT
+def fails_stats(analyzed: list[str], freq: dict) -> None:
+    def inc_freq(word: str):
+        if word in freq:
+            freq[word] += 1
         else:
-            analyzer = ANALYZER_CYR
-    # reached end of file
-    if line == '\n':
+            freq[word] = 1
+    
+    for word in analyzed:
+        if '+?' in word:
+            word = word.replace('+?', '')
+        else:
+            continue
+        if '-' in word: 
+            for morph in word.split('-'):
+                inc_freq(f"-{morph}")
+        else:
+            inc_freq(word)
+
+if __name__ == '__main__':
+    # GLOBAL COUNTERS
+    total = success = 0
+    analyzer = None # analyzer file to use (lat or cyr one)
+    fails_freq = {}
+    BATCH_SIZE = 5_000
+    words = [] # here batch is stored
+    def run():
+        if not len(words): return
+        global total, success, i
+        analyzed = analyze(words, analyzer)
+        fails_stats(analyzed, fails_freq)
+        words.clear() # clearing the batch
+        total += len(analyzed)
+        success += sum(1 for x in analyzed if not x.endswith('+?'))
+    
+    # STARTING READING STDIN
+    for line in stdin:
+        # determining writing (cyr or lat) if no analyser set
+        if analyzer is None:
+            if writing_score(line, LAT) > writing_score(line, CYR):
+                analyzer = ANALYZER_LAT
+            else:
+                analyzer = ANALYZER_CYR
+        # reached end of file, resetting analyser and processing leftover batch
+        if line == '\n':
+            run()
+            analyzer = None
+            continue
+        # adding to the batch
+        words.extend(line.strip().split())
+        # skipping if batch not large enough
+        if len(words) < BATCH_SIZE:
+            continue
         run()
-        analyzer = None
-        continue
-    words.extend(line.strip().split())
-    if len(words) < BATCH_SIZE:
-        continue
+
     run()
 
-run()
+    sorted_fails = sorted(fails_freq.items(), key=lambda x: x[1], reverse=True)
 
-print(f"Total:\t{total}\nPassed:\t{success}")
-print(f"{success / total:.5f}")
+    print(f"Total:\t{total}\nPassed:\t{success}")
+    print(f"{success / total:.5f}")
+    print(f"Top 20 fails: {sorted_fails[:20]}")
