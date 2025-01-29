@@ -1,5 +1,8 @@
 PATTERNS
-NounPrepos? NounNumberBase Diminutive? NounAdpos? PronClitics?
+NounPrepos? NounNumberBase NounAdpos? NounClitics?
+
+PATTERN NounBase
+Noun [<n>:] Diminutive?
 
 PATTERN NounNumberBase
 NounBase[sg]                         NounNum[sg]            
@@ -10,8 +13,8 @@ NounBase[pl_sisters]        [:-]?    NounNum[pl_sisters]
 NounBase[pl_timesOfDay]              NounNum[pl_timesOfDay] 
 NounBase[pl_timesOfYear]    [:-]?    NounNum[pl_timesOfYear]
 
-PATTERN NounBase
-Noun [<n>:]
+PATTERN NounClitics
+GlobalClitics
 
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum
@@ -25,28 +28,22 @@ LEXICON NounNum
 <pl>:ҷев[pl_timesOfYear]
 
 LEXICON NounPrepos
-<cont2>:mi-
+<cont2>:ми-
+<cont2>:ма-
 
 LEXICON NounAdpos
 <loc>:-{Й}анд
-<supe>:-тӣр
-<supe>:-тӣ
-<lat>:-{Й}ард
+<dat>:-{Й}ард
+<dat>:-рад
+<dat>:-ра
 <dir>:-аҷ
+<sup>:-тӣр
+#<sup>:-тӣ
+<sup>:-ти
 
 LEXICON Diminutive
 <dim>:-{Й}ик
 <dim>:-{Й}ак
-
-LEXICON PronClitics
-<1sg>:-ум
-<2sg>:-ат
-<2sg>:-т
-<3sg>:-и
-<1pl>:-āм
-<1pl>:-ам
-<2pl>:-ет
-<3pl>:-ен
 
 LEXICON Noun[sg,pl_all]
 wêδ                      # арык; канал; канава; канал, канава, арык, ручей
@@ -4252,8 +4249,6 @@ wӯғ̌ҷ                    # почка; почки; почки (в орган
 йиди                     # вариант союза диди (см.); что, как будто, якобы, будто бы, так что, вот, коли, ведь, же, дескать
 йидорā                   # контора, учреждение; управление, учреждение, правление, контора, канцелярия
 йиду̊-йида               # вот как, вот оно что; вот там, вот тут, вот-вот
-йик                      # вариант суффикса -ик 2 (см.) после исходных гласных
-йик-                     # именно вот, как раз
 йик-ā                    # прямая форма указательно-личного местоимения ж. дальн. ст., употребляется адъективно: в ослабленном указательном значении в роли определенного артикля
 йик-тāм                  # только тогда, именно тогда, как раз тогда
 йикк-ā                   # прямая форма указательно-личного местоимения ж. дальн. ст., употребляется адъективно: в ослабленном указательном значении в роли определенного артикля
@@ -5966,11 +5961,6 @@ wӯғ̌ҷ                    # почка; почки; почки (в орган
 мех̌ак                   # архар; горный баран, архар
 мех̌акбу̊ст              # шкура архара
 меш                      # овца
-ми-δуст                  # в руках
-ми-ну̊л                  # в клюве, клювом
-ми-нӯл                   # в клюве
-ми-рӯйā                  # эта сторона
-ми-ғу̊ғ̌                 # в охапку, охапкой
 миwаҷанд                 # баранина
 миwӣҷ                    # баран
 миwӣҷ-бу̊ст              # баранья шкура

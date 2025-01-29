@@ -1,8 +1,9 @@
 from pathlib import Path
 import csv
 
-file = Path(__file__).parent.joinpath('db_noun.csv')
-out_file = Path(__file__).parent.joinpath('out_noun.txt')
+data_dir = Path(__file__).parent.joinpath('data')
+file = data_dir.joinpath('verbs_pst.csv')
+out_file = data_dir.joinpath('verbs_pst.txt')
 comment_distance = 25
 
 def is_bad(word: str) -> bool:

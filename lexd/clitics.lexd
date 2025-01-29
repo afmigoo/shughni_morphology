@@ -1,0 +1,13 @@
+LEXICON PronClitics
+<1sg>:-ум
+<2sg>:-ат
+<2sg>:-т
+<3sg>:-и
+<1pl>:-āм
+<1pl>:-ам
+<2pl>:-ет
+<3pl>:-ен
+
+LEXICON GlobalClitics
+<fut>:-та
+
