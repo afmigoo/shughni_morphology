@@ -1,6 +1,9 @@
+from collections import Counter
+from pprint import pprint
+from pathlib import Path
+from typing import Tuple
 from sys import stdin
 import subprocess
-from pathlib import Path
 
 ANALYZER_CYR = Path(__file__).parent.parent.joinpath('shugni.anal.hfst')
 ANALYZER_LAT = Path(__file__).parent.parent.joinpath('shugni.anal.latin.hfst')
@@ -11,7 +14,7 @@ def writing_score(line: str, charset: str) -> float:
     abs_score = sum(1 for ch in line if ch in charset)
     return abs_score / len(line)
 
-def analyze(words: list[str], analyzer_file: Path) -> list[str | None]:
+def analyze(words: list[str]) -> list[str | None]:
     """Analyzes input words with hfst `ANALYZER`. Returns 
     a list of analyzed forms. Word is None if `ANALYZER` failed
     to analyze it.
@@ -19,7 +22,15 @@ def analyze(words: list[str], analyzer_file: Path) -> list[str | None]:
     Returns:
         list[str | None]: List of analyzed words(str) or failed words(None)
     """
+    if len(words) == 0:
+        return []
+    
     words = '\n'.join(words)
+    if writing_score(words, LAT) > writing_score(words, CYR):
+        analyzer_file = ANALYZER_LAT
+    else:
+        analyzer_file = ANALYZER_CYR
+    
     analyzer = subprocess.Popen(["hfst-lookup", "-q", analyzer_file],
                          stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE,
@@ -28,64 +39,64 @@ def analyze(words: list[str], analyzer_file: Path) -> list[str | None]:
     analyzed = [x.split('\t')[1:] for x in res.split('\n\n') if x]
     return [x[0] for x in analyzed]
 
-def fails_stats(analyzed: list[str], freq: dict) -> None:
-    def inc_freq(word: str):
-        if word in freq:
-            freq[word] += 1
-        else:
-            freq[word] = 1
+def fails_stats(analyzed: list[str]) -> Tuple[Counter, Counter]:
+    freq_word = Counter()
+    freq_morph = Counter()
     
     for word in analyzed:
-        if '+?' in word:
-            word = word.replace('+?', '')
-        else:
+        if not '+?' in word:
             continue
+        word = word.replace('+?', '')
+
         if '-' in word: 
             for morph in word.split('-'):
-                inc_freq(f"-{morph}")
+                freq_morph[morph] += 1
         else:
-            inc_freq(word)
+            freq_word[word] += 1
+    return freq_morph, freq_word
 
-if __name__ == '__main__':
-    # GLOBAL COUNTERS
-    total = success = 0
-    analyzer = None # analyzer file to use (lat or cyr one)
-    fails_freq = {}
+def main():
+    # GLOBALS
     BATCH_SIZE = 5_000
     words = [] # here batch is stored
-    def run():
+    analyzed = [] # here the result is stored
+    """ def run():
         if not len(words): return
-        global total, success, i
+        nonlocal total, success
         analyzed = analyze(words, analyzer)
         fails_stats(analyzed, fails_freq)
         words.clear() # clearing the batch
         total += len(analyzed)
-        success += sum(1 for x in analyzed if not x.endswith('+?'))
+        success += sum(1 for x in analyzed if not x.endswith('+?')) """
     
     # STARTING READING STDIN
     for line in stdin:
-        # determining writing (cyr or lat) if no analyser set
-        if analyzer is None:
-            if writing_score(line, LAT) > writing_score(line, CYR):
-                analyzer = ANALYZER_LAT
-            else:
-                analyzer = ANALYZER_CYR
         # reached end of file, resetting analyser and processing leftover batch
         if line == '\n':
-            run()
-            analyzer = None
+            analyzed.extend(analyze(words))
+            words.clear()
             continue
         # adding to the batch
         words.extend(line.strip().split())
         # skipping if batch not large enough
         if len(words) < BATCH_SIZE:
             continue
-        run()
+        analyzed.extend(analyze(words))
+        words.clear()
+    analyzed.extend(analyze(words))
+    words.clear()
 
-    run()
+    fail_morph, fail_word = fails_stats(analyzed)
+    success = sum(1 for w in analyzed if not w.endswith('+?'))
 
-    sorted_fails = sorted(fails_freq.items(), key=lambda x: x[1], reverse=True)
+    print(f"Total:\t{len(analyzed)}")
+    print(f"Passed:\t{success}")
+    print(f"Score:\t{success / len(analyzed):.5f}")
+    print(f"Top 10 fails (morphs):")
+    pprint(fail_morph.most_common(10))
+    print(f"Top 10 fails (words):")
+    pprint(fail_word.most_common(10))
 
-    print(f"Total:\t{total}\nPassed:\t{success}")
-    print(f"{success / total:.5f}")
-    print(f"Top 20 fails: {sorted_fails[:20]}")
+if __name__ == '__main__':
+    main()
+    #analyze("wuz-um as xu kōr bēzōr sut".split(' '), ANALYZER_LAT)
