@@ -23,9 +23,10 @@ LEXICON ShugniNumsTen
 LEXICON CliticAnd
 -ат
 
+# Про вставку йота см clitics.lexd
 LEXICON OrdinalNum
-<ord>:-ум
-<ord>:ум
+<ord>:-{Й}ум
+<ord>:{Й}ум
 <ord>:-м
 <ord>:м
 

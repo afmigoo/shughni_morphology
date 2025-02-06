@@ -1,18 +1,27 @@
+# Предположительно, вставка йота это глобальное фонологическое
+# правило, надо узнать, насколько оно строго и бывают ли, например,
+# возможные формы ави-йет и ави-ет одновременно (ави="находить")
 LEXICON PronClitics
-<1sg>:-ум
-<2sg>:-ат
+<1sg>:-{Й}ум
+<2sg>:-{Й}ат
 <2sg>:-т
-<3sg>:-и
-<1pl>:-āм
-<1pl>:-ам
-<2pl>:-ет
-<3pl>:-ен
+<3sg>:-{Й}и
+<1pl>:-{Й}āм
+<1pl>:-{Й}ам
+<2pl>:-{Й}ет
+<3pl>:-{Й}ен
 
-LEXICON GlobalClitics
+LEXICON FutureClitic
 <fut>:-та
 
+LEXICON AdditiveClitic
+<add>:-га
+
 PATTERNS
-NounPrepos? NounNumberBase NounAdpos? NounClitics?
+# with prepositions
+:NounPrepos NounNumberBase NounPrepos: NounAdpos? NounClitics
+# without prepositions
+NounNumberBase NounAdpos? NounClitics
 
 PATTERN NounBase
 Noun [<n>:] Diminutive?
@@ -27,7 +36,7 @@ NounBase[pl_timesOfDay]              NounNum[pl_timesOfDay]
 NounBase[pl_timesOfYear]    [:-]?    NounNum[pl_timesOfYear]
 
 PATTERN NounClitics
-GlobalClitics
+(FutureClitic|PronClitics)? AdditiveClitic?
 
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum
@@ -14733,8 +14742,9 @@ LEXICON ShugniNumsTen
 LEXICON CliticAnd
 -ат
 
+# Про вставку йота см clitics.lexd
 LEXICON OrdinalNum
-<ord>:-ум
+<ord>:-{Й}ум
 <ord>:ум
 <ord>:-м
 <ord>:м
@@ -14821,17 +14831,18 @@ LEXICON ReflectivePronouns
 хубаθ<pron><self>:хубаθ
 
 PATTERNS
-NPastVerbStem [<v>:] [:-]? PresSuffixes
-PastVerbStem [<v><pst>:]
+NPastVerbStem [<v><pres>:]  [:-]? PresSuffixes FutureClitic?
+PastVerbStem  [<v><pst>:]         PronClitics?
 
+# Про вставку йота см clitics.lexd
 LEXICON PresSuffixes
-<pres><1sg>:ум
-<pres><2sg>:и
-<pres><3sg>:т
-<pres><3sg>:д
-<pres><1pl>:āм
-<pres><2pl>:ет
-<pres><3pl>:ен
+<1sg>:{Й}ум
+<2sg>:{Й}и
+<3sg>:т
+<3sg>:д
+<1pl>:{Й}āм
+<2pl>:{Й}ет
+<3pl>:{Й}ен
 
 LEXICON NPastVerbStem
 wêб                      # вращаться, кружиться (о крайнем быке при молотьбе)

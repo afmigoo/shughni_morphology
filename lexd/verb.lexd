@@ -1,15 +1,16 @@
 PATTERNS
-NPastVerbStem [<v>:] [:-]? PresSuffixes
-PastVerbStem [<v><pst>:]
+NPastVerbStem [<v><pres>:]  [:-]? PresSuffixes FutureClitic?
+PastVerbStem  [<v><pst>:]         PronClitics?
 
+# Про вставку йота см clitics.lexd
 LEXICON PresSuffixes
-<pres><1sg>:ум
-<pres><2sg>:и
-<pres><3sg>:т
-<pres><3sg>:д
-<pres><1pl>:āм
-<pres><2pl>:ет
-<pres><3pl>:ен
+<1sg>:{Й}ум
+<2sg>:{Й}и
+<3sg>:т
+<3sg>:д
+<1pl>:{Й}āм
+<2pl>:{Й}ет
+<3pl>:{Й}ен
 
 LEXICON NPastVerbStem
 wêб                      # вращаться, кружиться (о крайнем быке при молотьбе)

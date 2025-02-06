@@ -1,5 +1,11 @@
+# noun postfixes:
+# dat/loc,   int,   psc/fut, add
+# adpos      todo   nounclitics
 PATTERNS
-NounPrepos? NounNumberBase NounAdpos? NounClitics?
+# with prepositions
+:NounPrepos NounNumberBase NounPrepos: NounAdpos? NounClitics
+# without prepositions
+NounNumberBase NounAdpos? NounClitics
 
 PATTERN NounBase
 Noun [<n>:] Diminutive?
@@ -14,7 +20,7 @@ NounBase[pl_timesOfDay]              NounNum[pl_timesOfDay]
 NounBase[pl_timesOfYear]    [:-]?    NounNum[pl_timesOfYear]
 
 PATTERN NounClitics
-GlobalClitics
+(FutureClitic|PronClitics)? AdditiveClitic?
 
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum

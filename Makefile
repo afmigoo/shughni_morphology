@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := cyr
 
 # global named targets
-all: clear cyr lat test
+all: clear cyr lat
 cyr: shugni.gen.hfst shugni.anal.hfst
 lat: shugni.gen.latin.hfst shugni.anal.latin.hfst
 clear: clear_tests
