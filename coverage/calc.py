@@ -8,6 +8,11 @@ import subprocess
 ANALYZER_CYR = Path(__file__).parent.parent.joinpath('shugni.anal.hfst')
 ANALYZER_LAT = Path(__file__).parent.parent.joinpath('shugni.anal.latin.hfst')
 
+if not ANALYZER_CYR.exists():
+    raise FileNotFoundError(f'Cyr analyzer not found: {ANALYZER_CYR}')
+if not ANALYZER_LAT.exists():
+    raise FileNotFoundError(f'Lat analyzer not found: {ANALYZER_LAT}')
+
 LAT = "aābvwgɣɣɣ̌dδeêžzӡiyīīkqlmnoprstθϑuūůfxx̌hcčšǰǰ"
 CYR = "аāбвwгғғ̌ɣ̌дδеêжзȥийӣӣкқлмнопрстθθуӯу̊фхх̌ҳцчшҷҷ"
 def writing_score(line: str, charset: str) -> float:
