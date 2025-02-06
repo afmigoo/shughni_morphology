@@ -17,6 +17,9 @@ LEXICON FutureClitic
 LEXICON AdditiveClitic
 <add>:-га
 
+# noun postfixes:
+# dat/loc,   int,   psc/fut, add
+# adpos      todo   nounclitics
 PATTERNS
 # with prepositions
 :NounPrepos NounNumberBase NounPrepos: NounAdpos? NounClitics
@@ -14745,7 +14748,7 @@ LEXICON CliticAnd
 # Про вставку йота см clitics.lexd
 LEXICON OrdinalNum
 <ord>:-{Й}ум
-<ord>:ум
+<ord>:{Й}ум
 <ord>:-м
 <ord>:м
 
