@@ -27,7 +27,7 @@ twol/all.twol.hfst: twol/all.twol
 	hfst-twolc $< -o $@
 # final lexd
 shugni.lexd:
-	cat lexd/*.lexd > $@
+	cat lexd/lexicons/*.lexd lexd/*.lexd > $@
 
 # transliterators
 translit/cyr2lat.hfst: translit/lat2cyr.hfst

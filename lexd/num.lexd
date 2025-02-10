@@ -1,3 +1,7 @@
+################
+### NUMERALS ###
+################
+
 PATTERNS
 ShugniNums [<num>:] OrdinalNum?
 ShugniNumsTen CliticAnd? [<num>:] OrdinalNum?
