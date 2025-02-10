@@ -21,10 +21,7 @@ LEXICON AdditiveClitic
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-# with prepositions
-:NounPrepos NounNumberBase NounPrepos: NounAdpos? NounClitics
-# without prepositions
-NounNumberBase NounAdpos? NounClitics
+NounPrepos? NounNumberBase NounAdpos? NounClitics
 
 PATTERN NounBase
 Noun [<n>:] Diminutive?
@@ -14798,8 +14795,8 @@ LEXICON Preposition
 то
 
 PATTERNS
-PersonalPronounsFull PronAdpos?
-ReflectivePronouns
+PersonalPronounsFull PronAdpos? FutureClitic?
+ReflectivePronouns FutureClitic?
 
 PATTERN PersonalPronounsFull
 PersonalPronouns                  
