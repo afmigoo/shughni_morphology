@@ -2,10 +2,7 @@
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-# with prepositions
-:NounPrepos NounNumberBase NounPrepos: NounAdpos? NounClitics
-# without prepositions
-NounNumberBase NounAdpos? NounClitics
+NounPrepos? NounNumberBase NounAdpos? NounClitics
 
 PATTERN NounBase
 Noun [<n>:] Diminutive?

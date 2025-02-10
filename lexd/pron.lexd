@@ -1,6 +1,6 @@
 PATTERNS
-PersonalPronounsFull PronAdpos?
-ReflectivePronouns
+PersonalPronounsFull PronAdpos? FutureClitic?
+ReflectivePronouns FutureClitic?
 
 PATTERN PersonalPronounsFull
 PersonalPronouns                  
