@@ -3,15 +3,20 @@
 #############
 
 PATTERNS
+# Present
 NPastVerbStem [<v><pres>:]  [:-]? PresSuffixes FutureClitic?
+# Past
 PastVerbStem  [<v><pst>:]         PronClitics?
+# Perfect
+# TODO
+# Imperative
+# TODO ImperVerbStem
 
 # Про вставку йота см clitics.lexd
 LEXICON PresSuffixes
 <1sg>:{Й}ум
 <2sg>:{Й}и
-<3sg>:т
-<3sg>:д
+<3sg>:{ДТ}
 <1pl>:{Й}āм
 <2pl>:{Й}ет
 <3pl>:{Й}ен
