@@ -4,15 +4,18 @@
 
 PATTERNS
 # Present
-NPastVerbStem [<v><pres>:]  [:-]? PresSuffixes FutureClitic?
+VerbNegation? NPastVerbStem         [<v><prs>:] PresSuffixes GlobClitics?
 # Past
-PastVerbStem  [<v><pst>:]         PronClitics?
+VerbNegation? PastVerbStem[f]       [<v><pst>:] VerbGender[f] GlobClitics?
+VerbNegation? PastVerbStem[m]       [<v><pst>:] VerbGender[m] GlobClitics?
+VerbNegation? PastVerbStem[-m,-f]   [<v><pst>:] GlobClitics?
 # Perfect
-# TODO
+VerbNegation? PerfVerbStem          [<v><prf>:] VerbGender GlobClitics?
 # Imperative
-# TODO ImperVerbStem
+VerbNegation? ImperVerbStem         [<v><imp>:] GlobClitics?
 
 # Про вставку йота см clitics.lexd
+# Parker 8.2.1
 LEXICON PresSuffixes
 <1sg>:{Й}ум
 <2sg>:{Й}и
@@ -20,4 +23,16 @@ LEXICON PresSuffixes
 <1pl>:{Й}āм
 <2pl>:{Й}ет
 <3pl>:{Й}ен
+
+PATTERN VerbNegation
+VERBNEG [:-]?
+
+# Parker 8.2.2
+LEXICON VERBNEG 
+<neg>:на
+<neg>:мā
+
+LEXICON VerbGender
+<f>:[f]
+<m>:[m]
 

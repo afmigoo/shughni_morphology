@@ -20,7 +20,7 @@ def fix(word: str) -> str:
         word = word.replace(bad, good)
     return word
 
-def process(file, out_file) -> None:
+def process(file: Path, out_file) -> None:
     # reading lines in a list of tuples
     # and filtering out non-words
     lines = []
@@ -42,6 +42,15 @@ def process(file, out_file) -> None:
             lines[cur_main] = (lines[cur_main][0], f"{lines[cur_main][1]}; {lines[i][1]}")
             deleted.add(i)
     lines = [lines[i] for i in range(len(lines)) if not i in deleted]
+    # adding gender tag if present
+    allowed_tags = ['f', 'm']
+    tag = ''
+    for t in allowed_tags:
+        if file.stem.endswith(f'_{t}'):
+            tag = t
+    if tag != '':
+        for i in range(len(lines)):
+            lines[i] = (f'{lines[i][0]}[{tag}]', lines[i][1])
     # writing words
     with open(out_file, 'w', encoding='utf-8') as fo:
         for w, com in lines:
