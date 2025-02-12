@@ -2,22 +2,36 @@
 ### CLITICS ###
 ###############
 
-# Предположительно, вставка йота это глобальное фонологическое
-# правило, надо узнать, насколько оно строго и бывают ли, например,
-# возможные формы ави-йет и ави-ет одновременно (ави="находить")
-LEXICON PronClitics
-<psc1sg>:-{Й}ум
-<psc2sg>:-{Й}ат
-<psc2sg>:-т
-<psc3sg>:-{Й}и
-<psc1pl>:-{Й}āм
-<psc1pl>:-{Й}ам
-<psc2pl>:-{Й}ет
-<psc3pl>:-{Й}ен
+# Patterns
+PATTERN GlobClitics
+PronClitics
+FutureClitic
+AdditiveClitic
 
-LEXICON FutureClitic
-<fut>:-та
+# позволять всем клитикам выражаться с и без дефиса
+PATTERN PronClitics
+[:-]? PCS
 
-LEXICON AdditiveClitic
-<add>:-га
+PATTERN FutureClitic
+[:-]? FUT
+
+PATTERN AdditiveClitic
+[:-]? ADD
+
+# Lexicons
+LEXICON PCS
+<1sg>:{Й}ум
+<2sg>:{Й}ат
+<2sg>:т
+<3sg>:{Й}и
+<1pl>:{Й}āм
+<1pl>:{Й}ам
+<2pl>:{Й}ет
+<3pl>:{Й}ен
+
+LEXICON FUT
+<fut>:та
+
+LEXICON ADD
+<add>:га
 
