@@ -3,8 +3,8 @@
 ################
 
 PATTERNS
-ShugniNums                  [<num>:]   ([:-]? OrdinalNum)?
-ShugniNumsTen CliticAnd?    [<num>:]   ([:-]? OrdinalNum)?
+ShugniNums                  [<num>:]   ([>:>] [:-]? OrdinalNum)?
+ShugniNumsTen CliticAnd?    [<num>:]   ([>:>] [:-]? OrdinalNum)?
 
 BorrowedTadjikNums [<num>:] OrdinalNum?
 
@@ -29,9 +29,7 @@ LEXICON CliticAnd
 
 # Про вставку йота см clitics.lexd
 LEXICON OrdinalNum
-<ord>:-{Й}ум
 <ord>:{Й}ум
-<ord>:-м
 <ord>:м
 
 LEXICON BorrowedTadjikNums
