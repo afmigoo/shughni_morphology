@@ -3,18 +3,22 @@
 #############
 
 PATTERNS
-# Present
-VerbNegation? NPastVerbStem         [<v><prs>:] PresSuffixes GlobClitics?
-# Past
-VerbNegation? PastVerbStem[f]       [<v><pst>:] VerbGender[f] GlobClitics?
-VerbNegation? PastVerbStem[m]       [<v><pst>:] VerbGender[m] GlobClitics?
-VerbNegation? PastVerbStem[-m,-f]   [<v><pst>:] GlobClitics?
-# Perfect
-VerbNegation? PerfVerbStem          [<v><prf>:] VerbGender GlobClitics?
-# Imperative
-VerbNegation? ImperVerbStem         [<v><imp>:] GlobClitics?
+(VerbNegation [>:>])? VerbBases ([>:>] GlobClitics)?
 
-# Про вставку йота см clitics.lexd
+PATTERN VerbBases
+# Present
+NPastVerbStem       [<v><prs>:] ([>:>] PresSuffixes)?
+# Past
+PastVerbStem[f]     [<v><pst><f>:]
+PastVerbStem[m]     [<v><pst><m>:]
+PastVerbStem[-m,-f] [<v><pst>:]
+# Perfect
+PerfVerbStem[f]     [<v><prf><f>:]
+PerfVerbStem[m]     [<v><prf><m>:]
+PerfVerbStem[-m,-f] [<v><prf>:]
+# Imperative
+ImperVerbStem       [<v><imp>:]
+
 # Parker 8.2.1
 LEXICON PresSuffixes
 <1sg>:{Й}ум
@@ -31,8 +35,4 @@ VERBNEG [:-]?
 LEXICON VERBNEG 
 <neg>:на
 <neg>:мā
-
-LEXICON VerbGender
-<f>:[f]
-<m>:[m]
 

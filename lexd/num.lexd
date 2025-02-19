@@ -3,8 +3,8 @@
 ################
 
 PATTERNS
-ShugniNums [<num>:] OrdinalNum?
-ShugniNumsTen CliticAnd? [<num>:] OrdinalNum?
+ShugniNums                  [<num>:]   ([:-]? OrdinalNum)?
+ShugniNumsTen CliticAnd?    [<num>:]   ([:-]? OrdinalNum)?
 
 BorrowedTadjikNums [<num>:] OrdinalNum?
 

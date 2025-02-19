@@ -3,16 +3,16 @@
 ################
 
 PATTERNS
-PersonalPronounsFull PronAdpos? FutureClitic?
-ReflectivePronouns FutureClitic?
+PersonalPronounsFull ([:-]? PronAdpos)? FutureClitic?
+ReflectivePronouns                      FutureClitic?
 
 PATTERN PersonalPronounsFull
 PersonalPronouns                  
 PersonalPronouns[hon] [<hon>:-йет]
 
 LEXICON PronAdpos
-<loc>:-{А}нд
-<lat>:-{А}рд
+<loc>:{А}нд
+<lat>:{А}рд
 
 LEXICON PersonalPronouns
 wаз<pron><1sg><nom>:wаз

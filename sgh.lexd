@@ -14668,6 +14668,7 @@ LEXICON ImperVerbStem
 тий                      # дуть (о ветре); идти (о времени); идти, течь, струиться (о потоке и т. п.); идти; ходить, ездить; отправляться, уезжать, улетать; иметь течь, течь; исходить, распространяться; ходить (о часах)
 хāр                      # вспомогательный глагол, входит в состав ряда сложноименных глаголов; есть, кушать, съедать; питаться; наслаждаться, кайфовать; расходовать, разбрасывать, тратить; упрекать, наказывать
 вā                       # Parker 8.1.2; приносить
+ва                       # Parker 8.1.2; приносить
 ви                       # Parker 8.3.2; быть
 
 LEXICON InfVerbStem
@@ -19021,26 +19022,23 @@ LEXICON ADD
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-NounPrepos? NounNumberBase NounAdpos? NounClitics
+(NounPrepos [>:>])? NounNumberBase ([>:>] [:-]? NounAdpos)? ([>:>] FutureClitic|PronClitics)? ([>:>] AdditiveClitic)?
 
 PATTERN NounBase
-Noun [<n>:] Diminutive?
+Noun [<n>:] ([>:>] Diminutive)?
 
 PATTERN NounNumberBase
-NounBase[sg]                         NounNum[sg]            
-NounBase[pl_all]            [:-]?    NounNum[pl_all]        
-NounBase[pl_in-laws]        [:-]?    NounNum[pl_in-laws]    
-NounBase[pl_cousins]        [:-]?    NounNum[pl_cousins]    
-NounBase[pl_sisters]        [:-]?    NounNum[pl_sisters]    
-NounBase[pl_timesOfDay]              NounNum[pl_timesOfDay] 
-NounBase[pl_timesOfYear]    [:-]?    NounNum[pl_timesOfYear]
-
-PATTERN NounClitics
-(FutureClitic|PronClitics)? AdditiveClitic?
+NounBase[sg]                                 NounNum[sg]            
+NounBase[pl_all]            [>:>]    [:-]?    NounNum[pl_all]        
+NounBase[pl_in-laws]        [>:>]    [:-]?    NounNum[pl_in-laws]    
+NounBase[pl_cousins]        [>:>]    [:-]?    NounNum[pl_cousins]    
+NounBase[pl_sisters]        [>:>]    [:-]?    NounNum[pl_sisters]    
+NounBase[pl_timesOfDay]     [>:>]             NounNum[pl_timesOfDay] 
+NounBase[pl_timesOfYear]    [>:>]    [:-]?    NounNum[pl_timesOfYear]
 
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum
-<sg>:[sg]
+:[sg]
 <pl>:{Й}ен[pl_all]
 <pl>:орҷ[pl_in-laws]
 <pl>:у̊н[pl_cousins]
@@ -19050,30 +19048,30 @@ LEXICON NounNum
 <pl>:ҷев[pl_timesOfYear]
 
 LEXICON NounPrepos
-<cont2>:ми-
-<cont2>:ма-
+<cont2>:ми
+<cont2>:ма
 
 LEXICON NounAdpos
-<loc>:-{Й}анд
-<dat>:-{Й}ард
-<dat>:-рад
-<dat>:-ра
-<dir>:-аҷ
-<sup>:-тӣр
-#<sup>:-тӣ
-<sup>:-ти
+<loc>:{Й}анд
+<dat>:{Й}ард
+<dat>:рад
+<dat>:ра
+<dir>:аҷ
+<sup>:тӣр
+#<sup>:тӣ
+<sup>:ти
 
 LEXICON Diminutive
-<dim>:-{Й}ик
-<dim>:-{Й}ак
+<dim>:{Й}ик
+<dim>:{Й}ак
 
 ################
 ### NUMERALS ###
 ################
 
 PATTERNS
-ShugniNums [<num>:] OrdinalNum?
-ShugniNumsTen CliticAnd? [<num>:] OrdinalNum?
+ShugniNums                  [<num>:]   ([:-]? OrdinalNum)?
+ShugniNumsTen CliticAnd?    [<num>:]   ([:-]? OrdinalNum)?
 
 BorrowedTadjikNums [<num>:] OrdinalNum?
 
@@ -19157,16 +19155,16 @@ LEXICON Preposition
 ################
 
 PATTERNS
-PersonalPronounsFull PronAdpos? FutureClitic?
-ReflectivePronouns FutureClitic?
+PersonalPronounsFull ([:-]? PronAdpos)? FutureClitic?
+ReflectivePronouns                      FutureClitic?
 
 PATTERN PersonalPronounsFull
 PersonalPronouns                  
 PersonalPronouns[hon] [<hon>:-йет]
 
 LEXICON PronAdpos
-<loc>:-{А}нд
-<lat>:-{А}рд
+<loc>:{А}нд
+<lat>:{А}рд
 
 LEXICON PersonalPronouns
 wаз<pron><1sg><nom>:wаз
@@ -19197,18 +19195,22 @@ LEXICON ReflectivePronouns
 #############
 
 PATTERNS
-# Present
-VerbNegation? NPastVerbStem         [<v><prs>:] PresSuffixes GlobClitics?
-# Past
-VerbNegation? PastVerbStem[f]       [<v><pst>:] VerbGender[f] GlobClitics?
-VerbNegation? PastVerbStem[m]       [<v><pst>:] VerbGender[m] GlobClitics?
-VerbNegation? PastVerbStem[-m,-f]   [<v><pst>:] GlobClitics?
-# Perfect
-VerbNegation? PerfVerbStem          [<v><prf>:] VerbGender GlobClitics?
-# Imperative
-VerbNegation? ImperVerbStem         [<v><imp>:] GlobClitics?
+(VerbNegation [>:>])? VerbBases ([>:>] GlobClitics)?
 
-# Про вставку йота см clitics.lexd
+PATTERN VerbBases
+# Present
+NPastVerbStem       [<v><prs>:] ([>:>] PresSuffixes)?
+# Past
+PastVerbStem[f]     [<v><pst><f>:]
+PastVerbStem[m]     [<v><pst><m>:]
+PastVerbStem[-m,-f] [<v><pst>:]
+# Perfect
+PerfVerbStem[f]     [<v><prf><f>:]
+PerfVerbStem[m]     [<v><prf><m>:]
+PerfVerbStem[-m,-f] [<v><prf>:]
+# Imperative
+ImperVerbStem       [<v><imp>:]
+
 # Parker 8.2.1
 LEXICON PresSuffixes
 <1sg>:{Й}ум
@@ -19225,8 +19227,4 @@ VERBNEG [:-]?
 LEXICON VERBNEG 
 <neg>:на
 <neg>:мā
-
-LEXICON VerbGender
-<f>:[f]
-<m>:[m]
 

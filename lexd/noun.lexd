@@ -6,26 +6,23 @@
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-NounPrepos? NounNumberBase NounAdpos? NounClitics
+(NounPrepos [>:>])? NounNumberBase ([>:>] [:-]? NounAdpos)? ([>:>] FutureClitic|PronClitics)? ([>:>] AdditiveClitic)?
 
 PATTERN NounBase
-Noun [<n>:] Diminutive?
+Noun [<n>:] ([>:>] Diminutive)?
 
 PATTERN NounNumberBase
-NounBase[sg]                         NounNum[sg]            
-NounBase[pl_all]            [:-]?    NounNum[pl_all]        
-NounBase[pl_in-laws]        [:-]?    NounNum[pl_in-laws]    
-NounBase[pl_cousins]        [:-]?    NounNum[pl_cousins]    
-NounBase[pl_sisters]        [:-]?    NounNum[pl_sisters]    
-NounBase[pl_timesOfDay]              NounNum[pl_timesOfDay] 
-NounBase[pl_timesOfYear]    [:-]?    NounNum[pl_timesOfYear]
-
-PATTERN NounClitics
-(FutureClitic|PronClitics)? AdditiveClitic?
+NounBase[sg]                                 NounNum[sg]            
+NounBase[pl_all]            [>:>]    [:-]?    NounNum[pl_all]        
+NounBase[pl_in-laws]        [>:>]    [:-]?    NounNum[pl_in-laws]    
+NounBase[pl_cousins]        [>:>]    [:-]?    NounNum[pl_cousins]    
+NounBase[pl_sisters]        [>:>]    [:-]?    NounNum[pl_sisters]    
+NounBase[pl_timesOfDay]     [>:>]             NounNum[pl_timesOfDay] 
+NounBase[pl_timesOfYear]    [>:>]    [:-]?    NounNum[pl_timesOfYear]
 
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum
-<sg>:[sg]
+:[sg]
 <pl>:{Й}ен[pl_all]
 <pl>:орҷ[pl_in-laws]
 <pl>:у̊н[pl_cousins]
@@ -35,20 +32,20 @@ LEXICON NounNum
 <pl>:ҷев[pl_timesOfYear]
 
 LEXICON NounPrepos
-<cont2>:ми-
-<cont2>:ма-
+<cont2>:ми
+<cont2>:ма
 
 LEXICON NounAdpos
-<loc>:-{Й}анд
-<dat>:-{Й}ард
-<dat>:-рад
-<dat>:-ра
-<dir>:-аҷ
-<sup>:-тӣр
-#<sup>:-тӣ
-<sup>:-ти
+<loc>:{Й}анд
+<dat>:{Й}ард
+<dat>:рад
+<dat>:ра
+<dir>:аҷ
+<sup>:тӣр
+#<sup>:тӣ
+<sup>:ти
 
 LEXICON Diminutive
-<dim>:-{Й}ик
-<dim>:-{Й}ак
+<dim>:{Й}ик
+<dim>:{Й}ак
 

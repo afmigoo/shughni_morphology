@@ -4,5 +4,6 @@
 *.hfst
 test.*
 
+tmp
 venv
 .vscode
