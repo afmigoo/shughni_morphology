@@ -2,31 +2,31 @@
 
 # global named targets
 all: clear cyr lat
-cyr: shugni.gen.hfst shugni.analyze.hfst
-lat: shugni.gen.latin.hfst shugni.analyze.latin.hfst
+cyr: shughni.gen.hfst shughni.analyze.hfst
+lat: shughni.gen.latin.hfst shughni.analyze.latin.hfst
 clear: clear_tests
 	rm -f *.hfst
 	rm -f translit/*.hfst
 	rm -f twol/*.hfst
-	rm -f shugni.lexd
+	rm -f shughni.lexd
 
 # anylizers and generators
 ## cyr
-shugni.gen.hfst: shugni.lexd twol/all.twol.hfst
+shughni.gen.hfst: shughni.lexd twol/all.twol.hfst
 	lexd $< | hfst-txt2fst | hfst-compose-intersect twol/all.twol.hfst -o $@
-shugni.analyze.hfst: shugni.gen.hfst
+shughni.analyze.hfst: shughni.gen.hfst
 	hfst-invert $< -o $@
 ## lat
-shugni.gen.latin.hfst: shugni.gen.hfst translit/cyr2lat.hfst
+shughni.gen.latin.hfst: shughni.gen.hfst translit/cyr2lat.hfst
 	hfst-compose $^ -o $@
-shugni.analyze.latin.hfst: shugni.gen.latin.hfst
+shughni.analyze.latin.hfst: shughni.gen.latin.hfst
 	hfst-invert $< -o $@
 
 # twol
-twol/all.twol.hfst: twol/all.twol
+twol/%.twol.hfst: twol/%.twol
 	hfst-twolc $< -o $@
 # final lexd
-shugni.lexd:
+shughni.lexd:
 	cat lexd/lexicons/*.lexd lexd/*.lexd > $@
 
 # transliterators
@@ -39,7 +39,7 @@ translit/lat2cyr.hfst: translit/lat2cyr_correspondence
 test: check.num check.noun
 clear_tests:
 	rm -f test.*
-check.%: shugni.gen.hfst test.%.txt
+check.%: shughni.gen.hfst test.%.txt
 	bash compare.sh $^
 test.%.txt: tests/%.csv
 	awk -F, '$$3 == "pass" {print $$1 ":" $$2}' $^ | sort -u > $@
