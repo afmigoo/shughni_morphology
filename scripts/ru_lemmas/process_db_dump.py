@@ -6,7 +6,7 @@ import csv
 import re
 
 input_dump = Path(__file__).parent.joinpath('dump.csv')
-output_dir = Path(__file__).parent.parent.parent.joinpath('lexd/ru_lemmas')
+output_dir = Path(__file__).parent.parent.parent.joinpath('translate/lexd')
 main_lexd_dir = Path(__file__).parent.parent.parent.joinpath('lexd')
 
 cyr2lat_translit = Path(__file__).parent.parent.parent.joinpath('translit/cyr2lat.hfst')
