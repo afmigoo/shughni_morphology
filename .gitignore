@@ -4,6 +4,7 @@
 *.hfst
 test.*
 
+converter
 tmp
 venv
 .vscode
