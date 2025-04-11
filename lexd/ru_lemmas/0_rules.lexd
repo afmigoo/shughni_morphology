@@ -1,0 +1,41 @@
+PATTERNS
+RuLemmasV RuLemmasTags*
+RuLemmasN RuLemmasTags*
+RuLemmasAdj RuLemmasTags*
+RuLemmasPron RuLemmasTags*
+
+LEXICON RuLemmasTags
+>:>
+<1pl>:<1pl>
+<1sg>:<1sg>
+<2pl>:<2pl>
+<2sg>:<2sg>
+<3pl>:<3pl>
+<3sg>:<3sg>
+<add>:<add>
+<cont2>:<cont2>
+<dat>:<dat>
+<dim>:<dim>
+<dir>:<dir>
+<f>:<f>
+<fut>:<fut>
+<hon>:<hon>
+<imp>:<imp>
+<lat>:<lat>
+<loc>:<loc>
+<m>:<m>
+<neg>:<neg>
+<nom>:<nom>
+<num>:<num>
+<obl>:<obl>
+<ord>:<ord>
+<pl>:<pl>
+<prep>:<prep>
+<prf>:<prf>
+<prs>:<prs>
+<pst>:<pst>
+<refl>:<refl>
+<self>:<self>
+<sup>:<sup>
+
+
