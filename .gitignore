@@ -2,6 +2,7 @@
 *.sqbpro
 *.pdf
 *.hfst
+*.pyc
 test.*
 
 converter
