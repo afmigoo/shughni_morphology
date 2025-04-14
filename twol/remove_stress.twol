@@ -1,0 +1,11 @@
+Alphabet
+  а ā б в w г ғ ғ̌ ɣ̌ д δ е ê ж з z ž ȥ и й ӣ ӣ к қ л м н о п р с т θ у ӯ у̊ ф х х̌ ҳ ц ч ш ҷ 
+  a b v g ɣ d ð e ӡ i y ī ī k q l m n o p r s t ϑ u ū ů f x x̌ h c č š ǰ ǰ
+  %- %> %< %́
+  %́:0
+;
+
+Rules
+
+"stress removal"
+%́:0 <=> _ ;

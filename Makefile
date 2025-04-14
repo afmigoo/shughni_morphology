@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := cyr
+.DEFAULT_GOAL := analyze_stem_word_cyr.hfst
 
 ALL_HFST := gen_stem_morph_cyr.hfst gen_stem_word_cyr.hfst
 ALL_HFST += gen_rulem_morph_cyr.hfst gen_rulem_word_cyr.hfst
@@ -12,11 +12,8 @@ ALL_HFST += analyze_rulem_morph_lat.hfst analyze_rulem_word_lat.hfst
 ########################
 # global named targets #
 ########################
-all: clear $(ALL_HFST)
-cyr_all: cyr_morph cyr_word
-lat_all: lat_morph lat_word
-
-clear: clear_tests
+all: clear $(ALL_HFST) test
+clear:
 	rm -f *.hfst
 	rm -f translit/*.hfst
 	rm -f translate/*.hfst translate/*.lexd
@@ -85,18 +82,17 @@ translate/rulem2sgh.hfst: translate/sgh2rulem.hfst
 ###################
 # Transliteration #
 ###################
+translit/cyr2lat_unstressed.hfst: translit/remove_stresses.hfst translit/cyr2lat.hfst
+	hfst-compose $^ -o $@
+translit/lat2cyr_unstressed.hfst: translit/remove_stresses.hfst translit/lat2cyr.hfst
+	hfst-compose $^ -o $@
 translit/cyr2lat.hfst: translit/lat2cyr.hfst
-	mkdir -p translit
 	hfst-invert $< -o $@
-translit/lat2cyr.hfst: translit/lat2cyr_correspondence
-	mkdir -p translit
-	hfst-strings2fst -j $< | hfst-repeat -o $@
+translit/lat2cyr.hfst: translit/lat2cyr.lexd
+	lexd $< | hfst-txt2fst -o $@
+translit/remove_stresses.hfst: translit/remove_stresses.lexd
+	lexd $< | hfst-txt2fst -o $@
 
-# create and run tests
-test: check.num check.noun check.verb
-clear_tests:
-	rm -f test.*
-check.%: sgh_gen_morph_cyr.hfst test.%.txt
-	bash compare.sh $^
-test.%.txt: tests/%.csv
-	awk -F, '$$3 == "pass" {print $$1 ":" $$2}' $^ | sort -u > $@
+# run tests
+test: 
+	python3 scripts/testing/runtests.py --multiply-cases
