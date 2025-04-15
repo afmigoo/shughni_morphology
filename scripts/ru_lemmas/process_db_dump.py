@@ -55,7 +55,11 @@ def generate_rules():
     with open(output_dir.joinpath('0_rules.lexd'), 'w', encoding='utf-8') as f:
         f.write(f'PATTERNS\n')
         for pos in pos_tags.values():
-            f.write(f"{get_lexicon_name(pos)} {get_lexicon_name('Tags')}*\n")
+            f.write("{pos_lex} {pos_tag} {tags_lex}*\n".format(
+                pos_lex=get_lexicon_name(pos),
+                pos_tag=f'[{pos}:{pos}]',
+                tags_lex=get_lexicon_name('Tags')
+            ))
         f.write('\n')
         f.write(f"LEXICON {get_lexicon_name('Tags')}\n")
         f.write('>:>\n')
@@ -106,8 +110,8 @@ def meaning_to_lemma(meaning: str) -> str:
     lemma = re.sub(r' +', '_', lemma.strip())
     return lemma
 
-def lexd_str(stem: str, tag: str, lemma: str) -> str:
-    return f'{stem.lower()}{tag}:{lemma.lower()}{tag}\n'
+def lexd_str(stem: str, lemma: str) -> str:
+    return f'{stem.lower()}:{lemma.lower()}\n'
 
 def generate_lexicons():
     print('Generating lexicons...')
@@ -152,10 +156,10 @@ def generate_lexicons():
             f.write(f'LEXICON {get_lexicon_name(pos_tags[ru_tag])}\n')
             for line in data:
                 # cyrillic stem version
-                f.write(lexd_str(line[0], line[1], line[2]))
+                f.write(lexd_str(line[0], line[2]))
                 # latin stem version
                 if INCLUDE_LATIN and not '+?' in line[0]: # not recognized
-                    f.write(lexd_str(line[3], line[1], line[2]))
+                    f.write(lexd_str(line[3], line[2]))
             f.write('\n\n')
 
     print('Skipped tags:', *skipped_tags)

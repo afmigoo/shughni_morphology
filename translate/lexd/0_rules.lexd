@@ -1,8 +1,8 @@
 PATTERNS
-RuLemmasV RuLemmasTags*
-RuLemmasN RuLemmasTags*
-RuLemmasAdj RuLemmasTags*
-RuLemmasPron RuLemmasTags*
+RuLemmasV [<v>:<v>] RuLemmasTags*
+RuLemmasN [<n>:<n>] RuLemmasTags*
+RuLemmasAdj [<adj>:<adj>] RuLemmasTags*
+RuLemmasPron [<pron>:<pron>] RuLemmasTags*
 
 LEXICON RuLemmasTags
 >:>
