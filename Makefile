@@ -9,10 +9,11 @@ ALL_HFST += gen_rulem_morph_lat.hfst gen_rulem_word_lat.hfst
 ALL_HFST += analyze_stem_morph_lat.hfst analyze_stem_word_lat.hfst
 ALL_HFST += analyze_rulem_morph_lat.hfst analyze_rulem_word_lat.hfst
 
-########################
-# global named targets #
-########################
-all: clear $(ALL_HFST) test
+################
+# Main targets #
+################
+all: $(ALL_HFST) test
+all_hfst: $(ALL_HFST)
 clear:
 	rm -f *.hfst
 	rm -f translit/*.hfst
@@ -93,6 +94,21 @@ translit/lat2cyr.hfst: translit/lat2cyr.lexd
 translit/remove_stresses.hfst: translit/remove_stresses.lexd
 	lexd $< | hfst-txt2fst -o $@
 
-# run tests
+###########
+# Testing #
+###########
 test: 
 	python3 scripts/testing/runtests.py --multiply-cases
+
+############
+# accuracy #
+############
+EAF_FILES := $(wildcard scripts/accuracy/elans/*.eaf)
+CSV_FILES := $(patsubst scripts/accuracy/elans/%.eaf,scripts/accuracy/csv/%.csv,$(EAF_FILES))
+
+accuracy_data: $(CSV_FILES)
+accuracy_data_clear: 
+	rm scripts/accuracy/csv/*.csv
+
+scripts/accuracy/csv/%.csv: scripts/accuracy/elans/%.eaf
+	scripts/accuracy/elan2csv.py $< $@
