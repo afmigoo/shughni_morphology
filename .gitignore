@@ -2,6 +2,7 @@
 *.sqbpro
 *.pdf
 *.hfst
+*.hfstol
 *.pyc
 test.*
 

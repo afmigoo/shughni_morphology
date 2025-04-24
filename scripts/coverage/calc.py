@@ -5,8 +5,8 @@ from typing import Tuple
 from sys import stdin
 import subprocess
 
-ANALYZER_CYR = Path(__file__).parent.parent.parent.joinpath('analyze_stem_word_cyr.hfst')
-ANALYZER_LAT = Path(__file__).parent.parent.parent.joinpath('analyze_stem_word_lat.hfst')
+ANALYZER_CYR = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_cyr.hfst')
+ANALYZER_LAT = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_lat.hfst')
 
 if not ANALYZER_CYR.exists():
     raise FileNotFoundError(f'Cyr analyzer not found: {ANALYZER_CYR}')
