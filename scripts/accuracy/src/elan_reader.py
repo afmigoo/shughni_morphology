@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Dict, Union, Tuple
+import re
 
 @dataclass
 class TierItem:
@@ -19,6 +20,9 @@ class TierItem:
     def __str__(self):
         inheritance = f'{self.id}>{[x.id for x in self.children]}'
         return f'{self.content} {inheritance} {self.tier}'
+    
+    def __repr__(self):
+        return f'{self.content}'
 
 @dataclass
 class TaggedWord:
@@ -34,6 +38,9 @@ class TaggedWord:
 
     def __str__(self):
         return f'{self.tagged()}:{self.wordform}'
+    
+    def __repr__(self):
+        return str(self)
 
 def get_tiers(elan_file: Path) -> Dict[str, List[TierItem]]:
     """Read elan file and return TierItem lists
@@ -76,8 +83,56 @@ def get_all_children(item: TierItem, children: list = None) -> List[TierItem]:
         get_all_children(child, children)
     return children
 
+def get_morphs(word: TierItem) -> List[List[TierItem]]:
+    morphs: List[List[TierItem]] = []
+    for m in word.children:
+        morphs.append([m, *get_all_children(m)])
+    return morphs
+
 def is_upper(s: str) -> bool:
     return s.upper() == s
+
+def clean_segment(s: str) -> str:
+    s = s.lower()
+    return re.sub(r'=|,|^\.|\.$|^-|-$', '', s)
+
+def resolve_pos(morphs: List[List[TierItem]]) -> str:
+    # some words have multiple POS... I will think that the first one is the one
+    for parts in morphs:
+        for m in parts:
+            if 'pos' in m.tier:
+                return m.content.lower()
+
+def resolve_stem(morphs: List[List[TierItem]]) -> str:
+    # stem is the one that has tagged POS
+    for parts in morphs:
+        m_stem = None
+        m_pos = None
+        for m in parts:
+            if 'pos' in m.tier:
+                m_pos = m.content.lower()
+            elif 'morph' in m.tier and 'txt' in m.tier:
+                m_stem = m.content.lower()
+        if m_pos and m_stem:
+            return clean_segment(m_stem)
+    # if POS is tagged on word level, then stem is the first morph
+    return clean_segment(morphs[0][0].content)
+
+def resolve_tags(morphs: List[List[TierItem]], stem: str) -> List[str]:
+    # all other morphs but stem
+    tags: List[str] = []
+    for parts in morphs:
+        new_tags = []
+        is_stem = False
+        for m in parts:
+            if clean_segment(m.content) == stem:
+                is_stem = True
+                break
+            if 'gls' in m.tier or 'glos' in m.tier:
+                new_tags.extend(t.lower() for t in m.content.split('.') if t)
+        if not is_stem:
+            tags.extend(new_tags)
+    return tags
 
 def get_word_pairs(elan_file: Path) -> List[TaggedWord]:
     """Reads elan file and returns tagged words
@@ -91,23 +146,16 @@ def get_word_pairs(elan_file: Path) -> List[TaggedWord]:
     words: List[TaggedWord] = []
     all_tiers = get_tiers(elan_file)
     for word in all_tiers['A_word-txt-sgh']:
-        wordform = word.content
-        pos = stem = '?'
-        tags = []
-        for ch in get_all_children(word):
-            # first morph text child is a stem
-            if stem == '?' and 'morph' in ch.tier and 'txt' in ch.tier:
-                stem = ch.content
-            if pos == '?' and 'pos' in ch.tier:
-                pos = ch.content
-            if 'morph' in ch.tier and 'gls' in ch.tier:
-                if '.' in ch.content:
-                    new_tags = [x for x in ch.content.split('.')]
-                else:
-                    new_tags = [ch.content]
-                tags.extend([x.lower() for x in new_tags if is_upper(x)])
-        words.append(TaggedWord(
-            wordform=wordform.lower(), stem=stem.lower(),
-            pos=pos, tags=tags, source_file=elan_file
-        ))
+        if len(word.children) == 0:
+            continue
+        wordform = clean_segment(word.content)
+        morphs = get_morphs(word)
+        stem = resolve_stem(morphs)
+        pos = resolve_pos(morphs)
+        if stem and pos:
+            words.append(TaggedWord(
+                wordform=wordform, 
+                stem=stem, pos=pos,
+                tags=resolve_tags(morphs, stem), source_file=elan_file
+            ))
     return words

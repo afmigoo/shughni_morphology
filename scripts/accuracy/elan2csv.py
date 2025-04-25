@@ -10,13 +10,12 @@ from src.elan_reader import get_word_pairs
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-logger = logging.getLogger(__name__)
-
 parser = argparse.ArgumentParser()
 parser.add_argument('elan_file', help='input elan file to parse')
 parser.add_argument('csv_file', help='output csv file')
 
 def rmpunct(s: str) -> str:
+    s = s.removeprefix('.').removesuffix('.')
     return re.sub(r'"|,', '', s)
 
 def main():
@@ -29,5 +28,9 @@ def main():
             if all((w.pos != '?', w.wordform != '?', w.stem != '?')):
                 writer.writerow((rmpunct(w.wordform), w.tagged()))
 
+def test():
+    words = get_word_pairs('/home/kesha/dev/hse/shughni/shugni_morphology/scripts/accuracy/elans/Luke_parallel_10_fixed.eaf')
+
 if __name__ == '__main__':
     main()
+    #test()
