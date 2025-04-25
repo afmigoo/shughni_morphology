@@ -100,27 +100,38 @@ translit/lat2cyr.hfst: translit/lat2cyr.lexd
 translit/remove_stresses.hfst: translit/remove_stresses.lexd
 	lexd $< | hfst-txt2fst -o $@
 
+####################
+# Optimized format #
+####################
+%.hfstol: %.hfst
+	hfst-fst2fst --optimized-lookup-unweighted $< -o $@
+
 ###########
 # Testing #
 ###########
 test: 
 	python3 scripts/testing/runtests.py --multiply-cases
 
-############
-# accuracy #
-############
-EAF_FILES := $(wildcard scripts/accuracy/elans/*.eaf)
-CSV_FILES := $(patsubst scripts/accuracy/elans/%.eaf,scripts/accuracy/csv/%.csv,$(EAF_FILES))
+###########
+# Metrics #
+###########
+metrics: coverage accuracy
 
+# Accuracy
+ACCURACY_DIR := scripts/accuracy
+EAF_FILES := $(wildcard $(ACCURACY_DIR)/elans/*.eaf)
+CSV_FILES := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,scripts/accuracy/csv/%.csv,$(EAF_FILES))
+
+accuracy: accuracy_data
+	$(ACCURACY_DIR)/eval.py --pretty-output
 accuracy_data: $(CSV_FILES)
 accuracy_data_clear: 
-	rm scripts/accuracy/csv/*.csv
+	rm $(ACCURACY_DIR)/csv/*.csv
+$(ACCURACY_DIR)/csv/%.csv: $(ACCURACY_DIR)/elans/%.eaf
+	$(ACCURACY_DIR)/elan2csv.py $< $@
 
-scripts/accuracy/csv/%.csv: scripts/accuracy/elans/%.eaf
-	scripts/accuracy/elan2csv.py $< $@
+# Coverage
+COVERAGE_DIR := scripts/coverage
+coverage:
+	cat $(COVERAGE_DIR)/corpus/* | $(COVERAGE_DIR)/eval.py
 
-####################
-# Optimized format #
-####################
-%.hfstol: %.hfst
-	hfst-fst2fst --optimized-lookup-unweighted $< -o $@

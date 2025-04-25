@@ -1,19 +1,30 @@
+#!/usr/bin/env python3
 from typing import List, Dict, Tuple
 from pathlib import Path
 import csv
 import re
+import argparse
 import logging
+from tabulate import tabulate
+
+from src.hfst import call_hfst_lookup, parse_apertium, ParsedItem
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from src.hfst import call_hfst_lookup, parse_apertium, ParsedItem
+parser = argparse.ArgumentParser()
+parser.add_argument("-p", "--pretty-output", action='store_true',
+                    help="Print only total score with no file statistics.")
 
 csv_dir = Path(__file__).parent.joinpath('csv')
 results = Path(__file__).parent.joinpath('results.csv')
-results.unlink()
+results.unlink(missing_ok=True)
 HFST_ANALYZER = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_lat.hfstol')
-HFST_CYR2LAT = Path(__file__).parent.parent.parent.joinpath('translit/cyr2lat.hfst')
+HFST_CYR2LAT = Path(__file__).parent.parent.parent.joinpath('translit/cyr2lat.hfstol')
+
+tag_aliases = {
+    '<lat>': '<dat>'
+}
 
 def read_csv(file: Path) -> Tuple[List[str], List[str]]:
     wordforms = []
@@ -68,6 +79,11 @@ def is_identical(tagged1: str, tagged2: str) -> bool:
     stem2 = get_stem(tagged2)
     return stem1 == stem2 and tags1 == tags2
 
+def modernize_tags(tagged: List[str]):
+    for i in range(len(tagged)):
+        for old, new in tag_aliases.items():
+            tagged[i] = tagged[i].replace(old, new)
+
 def log_details(wordform: str, reference: str, real_output: str, result: str):
     with open(results, 'a', encoding='utf-8') as out_f:
         writer = csv.writer(out_f)
@@ -96,23 +112,35 @@ def compare(reference: List[str], predicted: List[ParsedItem]) -> Tuple[int, int
     return total, recognized, correct
 
 def main():
+    args = parser.parse_args()
     csvs = [f for f in csv_dir.iterdir() if f.is_file() and f.name.endswith('.csv')]
+    if args.pretty_output:
+        print('ELAN corpus')
     
     glob_total = glob_rec = glob_correct = 0
     for file in csvs:
         wordforms, reference = read_csv(file)
         if len(wordforms) == 0:
             continue
+        modernize_tags(reference)
         predicted = parse_apertium(call_hfst_lookup(HFST_ANALYZER, wordforms))
         remove_morph_borders(predicted)
         make_latin(predicted)
         total, rec, correct = compare(reference, predicted)
-        logger.info(f'{correct/rec:.3f} accuracy; {rec/total:.3f} coverage; {total} total : {file.name}')
+        if not args.pretty_output:
+            logger.info(f'{correct/rec:.4f} accuracy; {rec/total:.4f} coverage; {total} total : {file.name}')
         glob_total += total
         glob_rec += rec
         glob_correct += correct
-        
-    logger.info(f'TOTAL : {glob_correct/glob_rec:.3f} accuracy; {glob_rec/glob_total:.3f} coverage; {glob_total} total tokens')
+
+    if args.pretty_output:
+        print(tabulate([['metric', 'value', 'absolute'],
+                        ['coverage', f'{glob_rec/glob_total:.4f}', f'{glob_rec}/{glob_total}'],
+                        ['accuracy', f'{glob_correct/glob_rec:.4f}', f'{glob_correct}/{glob_rec}']],
+                        tablefmt="rounded_outline", headers='firstrow'))
+        print()
+    else:
+        logger.info(f'TOTAL : {glob_correct/glob_rec:.4f} accuracy; {glob_rec/glob_total:.4f} coverage; {glob_total} total tokens')
 
 if __name__ == '__main__':
     main()

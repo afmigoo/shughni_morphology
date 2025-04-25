@@ -22,7 +22,7 @@ class ParsedItem:
         return f'{self.input_str} -> {self.variants()}'
 
     def __repr__(self):
-        return str(self)
+        return f'[ParsedItem {str(self)}]'
 
 def call_command(args: List[str], input: str) -> Tuple[str, str, int]:
     """Call custom bash command and pass input to stdin
@@ -43,7 +43,7 @@ def call_command(args: List[str], input: str) -> Tuple[str, str, int]:
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT)
-    stdout, stderr = proc.communicate(input=bytes(input, encoding='utf8'))
+    stdout, stderr = proc.communicate(input=bytes(input, encoding='utf-8'))
     stdout = stdout.decode() if stdout else ''
     stderr = stderr.decode() if stderr else ''
     return stdout, stderr, proc.returncode

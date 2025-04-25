@@ -1,12 +1,14 @@
+#!/usr/bin/env python3
 from collections import Counter
 from pprint import pprint
 from pathlib import Path
 from typing import Tuple
 from sys import stdin
 import subprocess
+from tabulate import tabulate
 
-ANALYZER_CYR = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_cyr.hfst')
-ANALYZER_LAT = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_lat.hfst')
+ANALYZER_CYR = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_cyr.hfstol')
+ANALYZER_LAT = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_lat.hfstol')
 
 if not ANALYZER_CYR.exists():
     raise FileNotFoundError(f'Cyr analyzer not found: {ANALYZER_CYR}')
@@ -94,13 +96,15 @@ def main():
     fail_morph, fail_word = fails_stats(analyzed)
     success = sum(1 for w in analyzed if not w.endswith('+?'))
 
-    print(f"Total:\t{len(analyzed)}")
-    print(f"Passed:\t{success}")
-    print(f"Score:\t{success / len(analyzed):.5f}")
-    print(f"Top 10 fails (morphs):")
-    pprint(fail_morph.most_common(10))
-    print(f"Top 10 fails (words):")
-    pprint(fail_word.most_common(10))
+    print('Coverage corpus')
+    print(tabulate([['metric', 'value', 'absolute'],
+                    ['coverage', f'{success / len(analyzed):.4f}', f'{success}/{len(analyzed)}']],
+                    tablefmt="rounded_outline", headers='firstrow'))
+    print(f"Top 5 unrecognized (morphs):")
+    pprint(fail_morph.most_common(5))
+    print(f"Top 5 unrecognized (words):")
+    pprint(fail_word.most_common(5))
+    print()
 
 if __name__ == '__main__':
     main()
