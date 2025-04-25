@@ -1,6 +1,6 @@
 from typing import List, Dict, Tuple, Union
 from pathlib import Path
-from .hfst import call_hfst
+from .hfst import call_hfst_lookup, parse_xerox
 import csv
 import logging
 
@@ -69,7 +69,7 @@ def eval_tests(files: List[Path],
             logger.error(f'FST doesn\'t exist: {fst_file}. Skipping {len(cases)} test cases')
             continue
         logger.info(f'Testing {fst}...')
-        fst_output = call_hfst(fst_file, [c.input_str for c in cases])
+        fst_output = parse_xerox(call_hfst_lookup(fst_file, [c.input_str for c in cases]))
         for c in cases:
             if not c.input_str in fst_output:
                 logger.error(f'FST didn\'t return anything for {c.input_str}')

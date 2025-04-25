@@ -7,6 +7,9 @@
 *.pfsx
 test.*
 
+sgh.lexd
+translate/sgh_rulem.lexd
+
 converter
 tmp
 venv
