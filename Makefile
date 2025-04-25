@@ -11,13 +11,15 @@ ALL_HFST += sgh_analyze_rulem_morph_lat.hfst sgh_analyze_rulem_word_lat.hfst
 
 ALL_HFSTOL := $(patsubst %.hfst,%.hfstol,$(ALL_HFST))
 
+TRANSLIT_OPTIMIZED := translit/cyr2lat.hfstol translit/lat2cyr.hfstol
+
 ################
 # Main targets #
 ################
 all: all_hfst all_hfstol test
 all_hfst: $(ALL_HFST)
 	rm -f sgh_base_rulem.hfst sgh_base_stem.hfst sgh_rulemma.lexd
-all_hfstol: all_hfst $(ALL_HFSTOL)
+all_hfstol: all_hfst $(ALL_HFSTOL) $(TRANSLIT_OPTIMIZED)
 clean:
 	rm -f *.hfst *.hfstol
 	rm -f translit/*.hfst

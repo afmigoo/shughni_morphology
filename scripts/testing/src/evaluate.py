@@ -64,7 +64,7 @@ def eval_tests(files: List[Path],
 
     # calling fsts
     for fst, cases in fsts.items():
-        fst_file = hfst_root.joinpath(f'{fst}.hfst')
+        fst_file = hfst_root.joinpath(f'{fst}.hfstol')
         if not fst_file.is_file():
             logger.error(f'FST doesn\'t exist: {fst_file}. Skipping {len(cases)} test cases')
             continue
