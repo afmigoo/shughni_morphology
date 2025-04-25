@@ -4,6 +4,7 @@
 *.hfst
 *.hfstol
 *.pyc
+*.pfsx
 test.*
 
 converter

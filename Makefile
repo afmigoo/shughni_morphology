@@ -14,10 +14,11 @@ ALL_HFSTOL := $(patsubst %.hfst,%.hfstol,$(ALL_HFST))
 ################
 # Main targets #
 ################
-all: $(ALL_HFST) test
+all: all_hfst all_hfstol test
 all_hfst: $(ALL_HFST)
-all_hfstol: $(ALL_HFSTOL)
-clear:
+	rm -f sgh_base_rulem.hfst sgh_base_stem.hfst sgh_rulemma.lexd
+all_hfstol: all_hfst $(ALL_HFSTOL)
+clean:
 	rm -f *.hfst *.hfstol
 	rm -f translit/*.hfst
 	rm -f translate/*.hfst translate/*.lexd
