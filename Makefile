@@ -1,4 +1,5 @@
 .DEFAULT_GOAL := analyze_stem_word_cyr.hfst
+SHELL=/bin/bash -o pipefail
 
 ALL_HFST := sgh_gen_stem_morph_cyr.hfst sgh_gen_stem_word_cyr.hfst
 ALL_HFST += sgh_gen_rulem_morph_cyr.hfst sgh_gen_rulem_word_cyr.hfst
