@@ -6,18 +6,22 @@ PATTERNS
 (VerbNegation [>:>])? VerbBases ([>:>] GlobClitics)?
 
 PATTERN VerbBases
-# Present
+### Present
 NPastVerbStem       [<v><prs>:] ([>:>] PresSuffixes)?
-# Past
+### Past
 PastVerbStem[f]     [<v><pst><f>:]
 PastVerbStem[m]     [<v><pst><m>:]
 PastVerbStem[-m,-f] [<v><pst>:]
-# Perfect
+# the past stem is identical to the infinitive (Parker 2023, p. 109)
+InfVerbStem         [<v><pst>:]
+### Perfect
 PerfVerbStem[f]     [<v><prf><f>:]
 PerfVerbStem[m]     [<v><prf><m>:]
 PerfVerbStem[-m,-f] [<v><prf>:]
-# Imperative
+### Imperative
 ImperVerbStem       [<v><imp>:]
+### Infinitive
+InfVerbStem         [<v><inf>:] PurpSuff?
 
 # Parker 8.2.1
 LEXICON PresSuffixes
@@ -27,6 +31,9 @@ LEXICON PresSuffixes
 <1pl>:{Й}āм
 <2pl>:{Й}ет
 <3pl>:{Й}ен
+
+LEXICON PurpSuff
+<purp>:оw
 
 PATTERN VerbNegation
 VERBNEG [:-]?
