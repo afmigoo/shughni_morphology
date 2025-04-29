@@ -23,6 +23,7 @@ pos_tags = {
     'прил.': '<adj>',
     'мест.': '<pron>',
 }
+
 cyr_stem_fixes = {
     #'ғ̌': 'ғ',
     '/': '',
@@ -47,24 +48,26 @@ def generate_rules():
         with open(lexd, 'r', encoding='utf-8') as f:
             for l in f:
                 all_tags.update(re.findall(r'<[^<>]*>', l))
-    # remove all pos tags, they are present alr near stems
-    for pos in pos_tags.values():
-        if pos in all_tags:
-            all_tags.remove(pos)
     
     with open(output_dir.joinpath('0_rules.lexd'), 'w', encoding='utf-8') as f:
         f.write(f'PATTERNS\n')
+        f.write('{tags_lex_1}* {base} {tags_lex_2}*\n\n'.format(
+            tags_lex_1=get_lexicon_name('Tags'),
+            tags_lex_2=get_lexicon_name('Tags_copy'),
+            base=get_lexicon_name('Base')
+        ))
+        f.write(f"PATTERN {get_lexicon_name('Base')}\n")
         for pos in pos_tags.values():
-            f.write("{pos_lex} {pos_tag} {tags_lex}*\n".format(
+            f.write("{pos_lex} {pos_tag}\n".format(
                 pos_lex=get_lexicon_name(pos),
-                pos_tag=f'[{pos}:{pos}]',
-                tags_lex=get_lexicon_name('Tags')
+                pos_tag=f'[{pos}:{pos}]'
             ))
         f.write('\n')
         f.write(f"LEXICON {get_lexicon_name('Tags')}\n")
         f.write('>:>\n')
         for tag in sorted(all_tags):
             f.write(f'{tag}:{tag}\n')
+        f.write(f"ALIAS {get_lexicon_name('Tags')} {get_lexicon_name('Tags_copy')}\n")
         f.write('\n\n')
 
 def cyr2lat(cyr_stems: List[str]) -> List[str]:
@@ -134,6 +137,10 @@ def generate_lexicons():
             for a, b in cyr_stem_fixes.items():
                 cyr_stem = cyr_stem.replace(a, b)
 
+            lemma = meaning_to_lemma(meaning)
+            if not lemma:
+                print(f'Lemma is empty for {cyr_stem}: {meaning}')
+                continue
             pos_lists[ru_tag].append((
                 cyr_stem, pos_tags[ru_tag], meaning_to_lemma(meaning),
             ))

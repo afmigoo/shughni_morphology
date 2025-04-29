@@ -6,5 +6,5 @@ Alphabet
 
 Rules
 
-"Bar removal to avoid '>-' situations"
+"Bar removal to avoid '>-'/'->' situations"
 %-:0 <=> _ ;

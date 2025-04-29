@@ -1,8 +1,11 @@
 PATTERNS
-RuLemmasV [<v>:<v>] RuLemmasTags*
-RuLemmasN [<n>:<n>] RuLemmasTags*
-RuLemmasAdj [<adj>:<adj>] RuLemmasTags*
-RuLemmasPron [<pron>:<pron>] RuLemmasTags*
+RuLemmasTags* RuLemmasBase RuLemmasTags_copy*
+
+PATTERN RuLemmasBase
+RuLemmasV [<v>:<v>]
+RuLemmasN [<n>:<n>]
+RuLemmasAdj [<adj>:<adj>]
+RuLemmasPron [<pron>:<pron>]
 
 LEXICON RuLemmasTags
 >:>
@@ -13,16 +16,21 @@ LEXICON RuLemmasTags
 <3pl>:<3pl>
 <3sg>:<3sg>
 <add>:<add>
+<adj>:<adj>
+<aug>:<aug>
 <cont2>:<cont2>
 <dat>:<dat>
 <dim>:<dim>
 <dir>:<dir>
 <f>:<f>
+<full>:<full>
 <fut>:<fut>
 <hon>:<hon>
 <imp>:<imp>
+<inf>:<inf>
 <loc>:<loc>
 <m>:<m>
+<n>:<n>
 <neg>:<neg>
 <nom>:<nom>
 <num>:<num>
@@ -31,10 +39,17 @@ LEXICON RuLemmasTags
 <pl>:<pl>
 <prep>:<prep>
 <prf>:<prf>
+<pron>:<pron>
 <prs>:<prs>
 <pst>:<pst>
+<purp>:<purp>
 <refl>:<refl>
 <self>:<self>
 <sup>:<sup>
+<v>:<v>
+<with>:<with>
+<with_little>:<with_little>
+<without>:<without>
+ALIAS RuLemmasTags RuLemmasTags_copy
 
 
