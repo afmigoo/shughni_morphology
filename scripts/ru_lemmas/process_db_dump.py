@@ -19,6 +19,7 @@ if INCLUDE_LATIN and not cyr2lat_translit.is_file:
 
 pos_tags = {
     'прил.': '<adj>',
+    'союз': '<conj>',
     'сущ.': '<n>',
     'числ.': '<num>',
     'предл.': '<prep>',

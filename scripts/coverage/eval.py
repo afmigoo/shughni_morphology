@@ -2,13 +2,17 @@
 from collections import Counter
 from pprint import pprint
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, List, Iterable
 from sys import stdin
 import subprocess
 from tabulate import tabulate
 
+from src.hfst import parse_only_results, call_hfst_lookup
+
 ANALYZER_CYR = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_cyr.hfstol')
 ANALYZER_LAT = Path(__file__).parent.parent.parent.joinpath('sgh_analyze_stem_word_lat.hfstol')
+results = Path(__file__).parent.joinpath('failed.txt')
+results.unlink(missing_ok=True)
 
 if not ANALYZER_CYR.exists():
     raise FileNotFoundError(f'Cyr analyzer not found: {ANALYZER_CYR}')
@@ -46,55 +50,42 @@ def analyze(words: list[str]) -> list[str | None]:
     analyzed = [x.split('\t')[1:] for x in res.split('\n\n') if x]
     return [x[0] for x in analyzed]
 
-def fails_stats(analyzed: list[str]) -> Tuple[Counter, Counter]:
+def fails_stats(analyzed: List[List[str]]) -> Tuple[Counter, Counter]:
     freq_word = Counter()
     freq_morph = Counter()
     
-    for word in analyzed:
-        if not '+?' in word:
+    for results in analyzed:
+        if not '+?' in results[0]:
             continue
-        word = word.replace('+?', '')
+        word = results[0].replace('+?', '')
 
         if '-' in word: 
             for morph in word.split('-'):
                 freq_morph[morph] += 1
-        else:
-            freq_word[word] += 1
+        freq_word[word] += 1
     return freq_morph, freq_word
 
+def dump_failed(failed: Iterable[str]):
+    with open(results, 'a', encoding='utf-8') as out_f:
+        out_f.writelines(line + '\n' for line in failed)
+
 def main():
-    # GLOBALS
-    BATCH_SIZE = 5_000
-    words = [] # here batch is stored
-    analyzed = [] # here the result is stored
-    """ def run():
-        if not len(words): return
-        nonlocal total, success
-        analyzed = analyze(words, analyzer)
-        fails_stats(analyzed, fails_freq)
-        words.clear() # clearing the batch
-        total += len(analyzed)
-        success += sum(1 for x in analyzed if not x.endswith('+?')) """
-    
-    # STARTING READING STDIN
+    lat_words: List[str] = []
+    cyr_words: List[str] = []
     for line in stdin:
-        # reached end of file, resetting analyser and processing leftover batch
-        if line == '\n':
-            analyzed.extend(analyze(words))
-            words.clear()
-            continue
-        # adding to the batch
-        words.extend(line.strip().split())
-        # skipping if batch not large enough
-        if len(words) < BATCH_SIZE:
-            continue
-        analyzed.extend(analyze(words))
-        words.clear()
-    analyzed.extend(analyze(words))
-    words.clear()
+        if writing_score(line, LAT) > writing_score(line, CYR):
+            lat_words.extend(line.strip().split())
+        else:
+            cyr_words.extend(line.strip().split())
+    analyzed: List[List[str]] = []
+    analyzed.extend(parse_only_results(call_hfst_lookup(ANALYZER_LAT, lat_words)))
+    analyzed.extend(parse_only_results(call_hfst_lookup(ANALYZER_CYR, cyr_words)))
+    assert len(lat_words) + len(cyr_words) == len(analyzed)
+    del lat_words, cyr_words
 
     fail_morph, fail_word = fails_stats(analyzed)
-    success = sum(1 for w in analyzed if not w.endswith('+?'))
+    success = sum(1 for results in analyzed if not results[0].endswith('+?'))
+    dump_failed(results[0] for results in analyzed if results[0].endswith('+?'))
 
     print('Coverage corpus')
     print(tabulate([['metric', 'value', 'absolute'],

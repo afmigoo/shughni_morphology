@@ -3,6 +3,7 @@ RuLemmasTags* (RuLemmasBase RuLemmasTags_copy*)+
 
 PATTERN RuLemmasBase
 RuLemmasAdj [<adj>:<adj>]
+RuLemmasConj [<conj>:<conj>]
 RuLemmasN [<n>:<n>]
 RuLemmasNum [<num>:<num>]
 RuLemmasPrep [<prep>:<prep>]
@@ -19,17 +20,26 @@ LEXICON RuLemmasTags
 <3sg>:<3sg>
 <add>:<add>
 <adj>:<adj>
+<advs>:<advs>
 <aug>:<aug>
+<compl>:<compl>
+<conj>:<conj>
 <cont2>:<cont2>
+<coord1>:<coord1>
+<coord2>:<coord2>
+<coord3>:<coord3>
 <dat>:<dat>
 <dim>:<dim>
 <dir>:<dir>
+<disj>:<disj>
 <f>:<f>
 <full>:<full>
 <fut>:<fut>
 <hon>:<hon>
+<if>:<if>
 <imp>:<imp>
 <inf>:<inf>
+<let>:<let>
 <loc>:<loc>
 <m>:<m>
 <n>:<n>
@@ -46,10 +56,14 @@ LEXICON RuLemmasTags
 <pst>:<pst>
 <ptcp>:<ptcp>
 <purp>:<purp>
+<quot>:<quot>
 <refl>:<refl>
 <self>:<self>
+<subd>:<subd>
 <sup>:<sup>
 <v>:<v>
+<when>:<when>
+<wish>:<wish>
 <with>:<with>
 <with_little>:<with_little>
 <without>:<without>

@@ -22,11 +22,13 @@ def main():
     args = parser.parse_args()
 
     morph_files = [
+        tests_root.joinpath('adj.csv'),
+        tests_root.joinpath('conj.csv'),
         tests_root.joinpath('lat.csv'),
         tests_root.joinpath('noun.csv'),
         tests_root.joinpath('num.csv'),
+        tests_root.joinpath('pron.csv'),
         tests_root.joinpath('verb.csv'),
-        tests_root.joinpath('adj.csv'),
     ]
     translit_files = [
         tests_root.joinpath('translit.csv')

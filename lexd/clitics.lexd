@@ -4,19 +4,21 @@
 
 # Patterns
 PATTERN GlobClitics
+(PronClitics AdditiveClitic)|(FutureClitic AdditiveClitic)
 PronClitics
 FutureClitic
 AdditiveClitic
+ConjClitics
 
 # позволять всем клитикам выражаться с и без дефиса
 PATTERN PronClitics
-_hyphen_ PCS
+_morph_hyphen_ PCS
 
 PATTERN FutureClitic
-_hyphen_ FUT
+_morph_hyphen_ FUT
 
 PATTERN AdditiveClitic
-_hyphen_ ADD
+_morph_hyphen_ ADD
 
 # Lexicons
 LEXICON PCS

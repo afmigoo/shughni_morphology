@@ -6,7 +6,7 @@
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-(NounPrepos _hyphen_morph_)? NounNumberBase (_morph_hyphen_ NounAdpos)? (_morph_ FutureClitic|PronClitics)? (_morph_ AdditiveClitic)?
+(NounPrepos _hyphen_morph_)? NounNumberBase (_morph_hyphen_ NounAdpos)? (FutureClitic|PronClitics)? AdditiveClitic?
 
 PATTERN NounBase
 Noun [<n>:] (_morph_ Diminutive)?

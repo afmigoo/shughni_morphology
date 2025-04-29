@@ -1,0 +1,40 @@
+####################
+### CONJUNCTIONS ###
+####################
+
+PATTERNS
+DocConjunctionsWords
+
+PATTERN ConjClitics
+_morph_hyphen_ DocConjunctionsClitics
+
+# глоссы из внутреннего документа экспедиций ВШЭ в город Хорог
+LEXICON DocConjunctionsClitics
+<advs>:атā      # Карамшоев + Док
+<advs>:тā       # Карамшоев + Док
+<coord1>:ху     # Карамшоев + Док
+<coord2>:ат     # Карамшоев + Док
+<coord2>:ад     # Карамшоев + Док
+<coord3>:у      # Карамшоев + Док
+<compl>:иди     # Карамшоев
+
+LEXICON DocConjunctionsWords
+ца<conj><subd>:ца           # Карамшоев + Док
+йо<conj><disj>:йо           # Карамшоев + Док
+диди<conj><compl>:диди      # Карамшоев + Док
+йиди<conj><compl>:йиди      # Карамшоев + Док
+ага<conj><if>:ага           # Карамшоев + Док
+ага<conj><if>:агар          # Карамшоев
+лāк<conj><let>:лāк          # Карамшоев + Док
+ди<conj><when>:ди           # Карамшоев + Док
+то<conj><when>:то           # Карамшоев + Док
+ног<conj><wish>:ног         # Док, по Карамшоеву это частица, по Зарубину - наречие
+нāла<conj><quot>:нāла       # Parker p. 441
+# clitics as words
+атā<conj><advs>:атā         # Карамшоев
+атā<conj><advs>:тā          # Карамшоев
+ху<conj><coord1>:ху         # Карамшоев
+ат<conj><coord2>:ат         # Карамшоев
+иди<conj><compl>:иди        # Карамшоев
+
+

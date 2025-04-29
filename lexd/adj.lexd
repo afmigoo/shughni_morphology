@@ -1,6 +1,6 @@
 PATTERNS
-(AdjPrefix _hyphen_morph_)? AdjBase         (_morph_hyphen_ GlobClitics)?
-(AdjPrefix _hyphen_morph_)? ParticipleBase  (_morph_hyphen_ GlobClitics)?
+(AdjPrefix _hyphen_morph_)? AdjBase         GlobClitics?
+(AdjPrefix _hyphen_morph_)? ParticipleBase  GlobClitics?
 
 PATTERN AdjBase
 Adjective [<adj>:] (_morph_hyphen_ AdjSuffix)?

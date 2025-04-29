@@ -3,7 +3,7 @@
 #############
 
 PATTERNS
-(VerbNegation _morph_)? VerbBases (_morph_ GlobClitics)?
+(VerbNegation _morph_)? VerbBases GlobClitics?
 
 PATTERN VerbBases
 NPastVerbBase

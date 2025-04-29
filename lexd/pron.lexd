@@ -3,18 +3,32 @@
 ################
 
 PATTERNS
-PersonalPronounsFull (_morph_hyphen_ PronAdpos)?    (_morph_ FutureClitic)?
-ReflectivePronouns                                  (_morph_ FutureClitic)?
-
-PATTERN PersonalPronounsFull
-PersonalPronouns                  
-PersonalPronouns[hon] [<hon>:-йет]
+PersonalPronounsNomObl                                  GlobClitics?
+PersonalPronounsNomObl[hon] _morph_hyphen_  Honorable   GlobClitics?
+PersonalPronounsLocDat      _morph_hyphen_  PronAdpos   GlobClitics?
+ReflectivePronouns         (_morph_hyphen_  PronAdpos)? GlobClitics?
 
 LEXICON PronAdpos
 <loc>:{А}нд
 <dat>:{А}рд
 
-LEXICON PersonalPronouns
+LEXICON PersonalPronounsLocDat
+wаз<pron><1sg>:wаз
+wуз<pron><1sg>:wуз
+уз<pron><1sg>:уз
+му<pron><1sg>:му
+ту<pron><2sg>:ту
+йу<pron><3sg>:йу
+йā<pron><3sg>:йā
+wи<pron><3sg>:wи
+wам<pron><3sg>:wам
+мāш<pron><1pl>:мāш
+тама<pron><2pl>:тама
+тамā<pron><2pl>:тамā
+wāδ<pron><3pl>:wāδ
+wев<pron><3pl>:wев
+
+LEXICON PersonalPronounsNomObl
 wаз<pron><1sg><nom>:wаз
 wуз<pron><1sg><nom>:wуз
 уз<pron><1sg><nom>:уз
@@ -38,3 +52,5 @@ LEXICON ReflectivePronouns
 ху<pron><refl>:ху
 хубаθ<pron><self>:хубаθ
 
+LEXICON Honorable
+<hon>:-йет
