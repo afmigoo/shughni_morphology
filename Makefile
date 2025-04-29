@@ -23,8 +23,8 @@ all_hfst: $(ALL_HFST)
 all_hfstol: all_hfst $(ALL_HFSTOL) $(TRANSLIT_OPTIMIZED)
 clean:
 	rm -f *.hfst *.hfstol
-	rm -f translit/*.hfst
-	rm -f translate/*.hfst translate/*.lexd
+	rm -f translit/*.hfst translit/*.hfstol
+	rm -f translate/*.hfst translate/*.hfstol translate/*.lexd
 	rm -f twol/*.hfst
 	rm -f sgh.lexd
 
