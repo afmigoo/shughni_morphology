@@ -1,11 +1,11 @@
 PATTERNS
-(AdjPrefix [:-]? [>:>])? AdjBase ([>:>] GlobClitics)?
+(AdjPrefix _hyphen_morph_)? AdjBase (_morph_hyphen_ GlobClitics)?
 
 PATTERN AdjBase
-Adjective [<adj>:] ([>:>] [:-]? AdjSuffix)?
+Adjective [<adj>:] (_morph_hyphen_ AdjSuffix)?
 ### Derivation from Nouns
-Noun [<n>:] [>:>] [:-]? NounAdjectivatorsSuffix
-NounAdjectivatorsPrefix [:-]? [>:>] Noun [<n>:]
+Noun [<n>:] _morph_hyphen_ NounAdjectivatorsSuffix
+NounAdjectivatorsPrefix _hyphen_morph_ Noun [<n>:]
 
 LEXICON AdjSuffix
 <dim>:рāнг

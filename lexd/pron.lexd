@@ -3,8 +3,8 @@
 ################
 
 PATTERNS
-PersonalPronounsFull ([:-]? PronAdpos)? FutureClitic?
-ReflectivePronouns                      FutureClitic?
+PersonalPronounsFull (_morph_hyphen_ PronAdpos)?    (_morph_ FutureClitic)?
+ReflectivePronouns                                  (_morph_ FutureClitic)?
 
 PATTERN PersonalPronounsFull
 PersonalPronouns                  

@@ -3,11 +3,11 @@
 #############
 
 PATTERNS
-(VerbNegation [>:>])? VerbBases ([>:>] GlobClitics)?
+(VerbNegation _morph_)? VerbBases (_morph_ GlobClitics)?
 
 PATTERN VerbBases
 ### Present
-NPastVerbStem       [<v><prs>:] ([>:>] PresSuffixes)?
+NPastVerbStem       [<v><prs>:] (_morph_hyphen_ PresSuffixes)?
 ### Past
 PastVerbStem[f]     [<v><pst><f>:]
 PastVerbStem[m]     [<v><pst><m>:]
@@ -21,7 +21,7 @@ PerfVerbStem[-m,-f] [<v><prf>:]
 ### Imperative
 ImperVerbStem       [<v><imp>:]
 ### Infinitive
-InfVerbStem         [<v><inf>:] PurpSuff?
+InfVerbStem         [<v><inf>:] (_morph_hyphen_ PurpSuff)?
 
 # Parker 8.2.1
 LEXICON PresSuffixes
@@ -36,7 +36,7 @@ LEXICON PurpSuff
 <purp>:оw
 
 PATTERN VerbNegation
-VERBNEG [:-]?
+VERBNEG _hyphen_
 
 # Parker 8.2.2
 LEXICON VERBNEG 

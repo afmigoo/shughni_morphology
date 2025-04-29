@@ -10,13 +10,13 @@ AdditiveClitic
 
 # позволять всем клитикам выражаться с и без дефиса
 PATTERN PronClitics
-[:-]? PCS
+_hyphen_ PCS
 
 PATTERN FutureClitic
-[:-]? FUT
+_hyphen_ FUT
 
 PATTERN AdditiveClitic
-[:-]? ADD
+_hyphen_ ADD
 
 # Lexicons
 LEXICON PCS

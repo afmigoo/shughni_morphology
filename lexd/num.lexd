@@ -3,10 +3,9 @@
 ################
 
 PATTERNS
-ShugniNums                  [<num>:]   ([>:>] [:-]? OrdinalNum)?
-ShugniNumsTen CliticAnd?    [<num>:]   ([>:>] [:-]? OrdinalNum)?
-
-BorrowedTadjikNums [<num>:] OrdinalNum?
+ShugniNums                  [<num>:]   (_morph_hyphen_ OrdinalNum)?
+ShugniNumsTen CliticAnd?    [<num>:]   (_morph_hyphen_ OrdinalNum)?
+BorrowedTadjikNums          [<num>:]   (_morph_hyphen_ OrdinalNum)?
 
 LEXICON ShugniNums
 йӣw         # 1

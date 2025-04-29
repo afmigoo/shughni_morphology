@@ -1,0 +1,16 @@
+#############################
+# Global separators pattern #
+#############################
+
+PATTERN _morph_
+[>:>]
+
+PATTERN _hyphen_
+[:-]?
+
+PATTERN _morph_hyphen_
+_morph_ _hyphen_
+
+PATTERN _hyphen_morph_
+_hyphen_ _morph_
+
