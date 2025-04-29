@@ -6,22 +6,33 @@ PATTERNS
 (VerbNegation _morph_)? VerbBases (_morph_ GlobClitics)?
 
 PATTERN VerbBases
-### Present
+NPastVerbBase
+PastVerbBase
+ImperVerbBase
+PerfVerbBase
+InfVerbBase
+
+PATTERN NPastVerbBase
 NPastVerbStem       [<v><prs>:] (_morph_hyphen_ PresSuffixes)?
-### Past
+
+PATTERN PastVerbBase
 PastVerbStem[f]     [<v><pst><f>:]
 PastVerbStem[m]     [<v><pst><m>:]
 PastVerbStem[-m,-f] [<v><pst>:]
 # the past stem is identical to the infinitive (Parker 2023, p. 109)
 InfVerbStem         [<v><pst>:]
-### Perfect
+
+PATTERN ImperVerbBase
+ImperVerbStem       [<v><imp>:]
+
+PATTERN PerfVerbBase
 PerfVerbStem[f]     [<v><prf><f>:]
 PerfVerbStem[m]     [<v><prf><m>:]
 PerfVerbStem[-m,-f] [<v><prf>:]
-### Imperative
-ImperVerbStem       [<v><imp>:]
-### Infinitive
+
+PATTERN InfVerbBase
 InfVerbStem         [<v><inf>:] (_morph_hyphen_ PurpSuff)?
+
 
 # Parker 8.2.1
 LEXICON PresSuffixes

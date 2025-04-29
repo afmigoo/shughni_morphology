@@ -18,10 +18,12 @@ if INCLUDE_LATIN and not cyr2lat_translit.is_file:
     raise FileNotFoundError(f'Transliterator not found: {cyr2lat_translit}')
 
 pos_tags = {
-    'гл.': '<v>',
-    'сущ.': '<n>',
     'прил.': '<adj>',
+    'сущ.': '<n>',
+    'числ.': '<num>',
+    'предл.': '<prep>',
     'мест.': '<pron>',
+    'гл.': '<v>',
 }
 
 cyr_stem_fixes = {
@@ -51,7 +53,7 @@ def generate_rules():
     
     with open(output_dir.joinpath('0_rules.lexd'), 'w', encoding='utf-8') as f:
         f.write(f'PATTERNS\n')
-        f.write('{tags_lex_1}* {base} {tags_lex_2}*\n\n'.format(
+        f.write('{tags_lex_1}* ({base} {tags_lex_2}*)+\n\n'.format(
             tags_lex_1=get_lexicon_name('Tags'),
             tags_lex_2=get_lexicon_name('Tags_copy'),
             base=get_lexicon_name('Base')

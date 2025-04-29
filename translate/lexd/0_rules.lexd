@@ -1,11 +1,13 @@
 PATTERNS
-RuLemmasTags* RuLemmasBase RuLemmasTags_copy*
+RuLemmasTags* (RuLemmasBase RuLemmasTags_copy*)+
 
 PATTERN RuLemmasBase
-RuLemmasV [<v>:<v>]
-RuLemmasN [<n>:<n>]
 RuLemmasAdj [<adj>:<adj>]
+RuLemmasN [<n>:<n>]
+RuLemmasNum [<num>:<num>]
+RuLemmasPrep [<prep>:<prep>]
 RuLemmasPron [<pron>:<pron>]
+RuLemmasV [<v>:<v>]
 
 LEXICON RuLemmasTags
 >:>
@@ -42,6 +44,7 @@ LEXICON RuLemmasTags
 <pron>:<pron>
 <prs>:<prs>
 <pst>:<pst>
+<ptcp>:<ptcp>
 <purp>:<purp>
 <refl>:<refl>
 <self>:<self>

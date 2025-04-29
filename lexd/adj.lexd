@@ -1,11 +1,18 @@
 PATTERNS
-(AdjPrefix _hyphen_morph_)? AdjBase (_morph_hyphen_ GlobClitics)?
+(AdjPrefix _hyphen_morph_)? AdjBase         (_morph_hyphen_ GlobClitics)?
+(AdjPrefix _hyphen_morph_)? ParticipleBase  (_morph_hyphen_ GlobClitics)?
 
 PATTERN AdjBase
 Adjective [<adj>:] (_morph_hyphen_ AdjSuffix)?
-### Derivation from Nouns
+### Derivation from Nouns ###
 Noun [<n>:] _morph_hyphen_ NounAdjectivatorsSuffix
 NounAdjectivatorsPrefix _hyphen_morph_ Noun [<n>:]
+### Compound adjectives ###
+Adjective [<adj>:] _morph_hyphen_ Noun [<n>:]
+
+PATTERN ParticipleBase
+### Derivation from Verbs ###
+PerfVerbBase _hyphen_morph_ [<ptcp>:ин]
 
 LEXICON AdjSuffix
 <dim>:рāнг
