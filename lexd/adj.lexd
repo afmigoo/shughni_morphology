@@ -1,0 +1,29 @@
+PATTERNS
+(AdjPrefix [:-]? [>:>])? AdjBase ([>:>] GlobClitics)?
+
+PATTERN AdjBase
+Adjective [<adj>:] ([>:>] [:-]? AdjSuffix)?
+### Derivation from Nouns
+Noun [<n>:] [>:>] [:-]? NounAdjectivatorsSuffix
+NounAdjectivatorsPrefix [:-]? [>:>] Noun [<n>:]
+
+LEXICON AdjSuffix
+<dim>:рāнг
+<dim>:акаθ
+<aug>:изор
+
+LEXICON AdjPrefix
+<neg>:но
+
+LEXICON NounAdjectivatorsSuffix
+<adj>:{Й}ин     # ~ 'made of' (Parker 2023, p. 168)
+<adj>:гāр       # ~ 'prone to' (Parker 2023, p. 168)
+<adj>:ранг      # ~ '-like' (Parker 2023, p. 168); ~ '-оватый' (Зарубин 1960); 
+<adj>:ӣнҷ       # ~ 'adv of time' (Parker 2023, p. 168)
+
+LEXICON NounAdjectivatorsPrefix
+<with><adj>:ба          # with
+<without><adj>:бе       # without
+<full><adj>:сер         # full
+<with_little><adj>:кам  # with little
+
