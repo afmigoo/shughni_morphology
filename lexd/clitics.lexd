@@ -4,11 +4,8 @@
 
 # Patterns
 PATTERN GlobClitics
-(PronClitics AdditiveClitic)|(FutureClitic AdditiveClitic)
-PronClitics
-FutureClitic
-AdditiveClitic
-ConjClitics
+IntensiveClitic? (PronClitics|FutureClitic)? AdditiveClitic?
+(PronClitics|FutureClitic|AdditiveClitic|DiminutiveClitic|IntensiveClitic|ConjClitics)+
 
 # позволять всем клитикам выражаться с и без дефиса
 PATTERN PronClitics
@@ -19,6 +16,12 @@ _morph_hyphen_ FUT
 
 PATTERN AdditiveClitic
 _morph_hyphen_ ADD
+
+PATTERN DiminutiveClitic
+_morph_hyphen_ DIM
+
+PATTERN IntensiveClitic
+_morph_hyphen_ INT
 
 # Lexicons
 LEXICON PCS
@@ -36,4 +39,11 @@ LEXICON FUT
 
 LEXICON ADD
 <add>:га
+
+LEXICON DIM
+<dim>:{Й}ик
+<dim>:{Й}ак
+
+LEXICON INT
+<int>:аθ
 

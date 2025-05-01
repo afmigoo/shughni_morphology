@@ -17,29 +17,44 @@ INCLUDE_LATIN = False
 if INCLUDE_LATIN and not cyr2lat_translit.is_file:
     raise FileNotFoundError(f'Transliterator not found: {cyr2lat_translit}')
 
-pos_tags = {
-    'прил.': '<adj>',
-    'союз': '<conj>',
-    'сущ.': '<n>',
-    'числ.': '<num>',
-    'предл.': '<prep>',
-    'мест.': '<pron>',
-    'гл.': '<v>',
+pos_alias = {
+    'прил.': 'adj',
+    'союз': 'conj',
+    'сущ.': 'n',
+    'числ.': 'num',
+    'предл.': 'prep',
+    'мест.': 'pro',
+    'гл.': 'v',
+}
+
+extra_variants = {
+    'pro': ['pers', 'dem']
 }
 
 cyr_stem_fixes = {
     #'ғ̌': 'ғ',
     '/': '',
     'х̆': 'х̌',
+    'ӯ̊': 'ӯ', # invalid set of diacritics
+    'ҳ̌': 'ҳ',
+    'ц̌': 'ч',
+    '́': '' # remove stress
 }
 
-def get_tag_name(tag: str) -> str:
-    """ '<tagname>' -> 'tagname' """
+def tag(tag: str) -> str:
+    """ 'tagname' -> '<tagname>' """
     return re.sub(r'<|>', '', tag)
 
 def get_lexicon_name(tag: str) -> str:
-    """ '<tagname>' -> 'RuLemmasTagname' """
-    return f'RuLemmas{get_tag_name(tag).capitalize()}'
+    """ 'tagname' -> 'RuLemmasTagname' """
+    return f'RuLemmas{tag.capitalize()}'
+
+def get_lexd_formatted_tags(tag: str) -> str:
+    """ 'tagname' -> [<tagname>:<tagname>] """
+    if not tag in extra_variants:
+        return f'[<{tag}>:<{tag}>]'
+    all_tags = [tag] + extra_variants[tag]
+    return '|'.join(f'[<{t}>:<{t}>]' for t in all_tags)
 
 def generate_rules():
     print('Generating rules...')
@@ -60,10 +75,10 @@ def generate_rules():
             base=get_lexicon_name('Base')
         ))
         f.write(f"PATTERN {get_lexicon_name('Base')}\n")
-        for pos in pos_tags.values():
+        for pos in pos_alias.values():
             f.write("{pos_lex} {pos_tag}\n".format(
                 pos_lex=get_lexicon_name(pos),
-                pos_tag=f'[{pos}:{pos}]'
+                pos_tag=get_lexd_formatted_tags(pos)
             ))
         f.write('\n')
         f.write(f"LEXICON {get_lexicon_name('Tags')}\n")
@@ -122,7 +137,7 @@ def lexd_str(stem: str, lemma: str) -> str:
 def generate_lexicons():
     print('Generating lexicons...')
     pos_lists: Dict[str, list] = {}
-    for ru_tag, fst_tag in pos_tags.items():
+    for ru_tag, pos_tag in pos_alias.items():
         pos_lists[ru_tag] = list()
 
     with open(input_dump, 'r', encoding='utf-8') as f:
@@ -132,7 +147,7 @@ def generate_lexicons():
         skipped_tags = set()
         # loading dump
         for cyr_stem, ru_tag, meaning in tqdm(reader, desc='Reading dump'):
-            if not ru_tag in pos_tags:
+            if not ru_tag in pos_alias:
                 skipped_tags.add(ru_tag)
                 continue
             if re.findall(r' |\.|\(|\)|=|\?', cyr_stem) or cyr_stem.startswith('-'):
@@ -144,8 +159,10 @@ def generate_lexicons():
             if not lemma:
                 print(f'Lemma is empty for {cyr_stem}: {meaning}')
                 continue
+            if cyr_stem.startswith('-') or cyr_stem.endswith('-'):
+                continue
             pos_lists[ru_tag].append((
-                cyr_stem, pos_tags[ru_tag], meaning_to_lemma(meaning),
+                cyr_stem, pos_alias[ru_tag], meaning_to_lemma(meaning),
             ))
 
     if INCLUDE_LATIN:
@@ -160,10 +177,9 @@ def generate_lexicons():
     
     # converting to lexd format strings and writing to files
     for ru_tag, data in tqdm(pos_lists.items(), desc='Making lexd'):
-        tag = get_tag_name(pos_tags[ru_tag])
-        file_name = output_dir.joinpath(f"{tag}.lexd")
+        file_name = output_dir.joinpath(f"{pos_alias[ru_tag]}.lexd")
         with open(file_name, 'w', encoding='utf-8') as f:
-            f.write(f'LEXICON {get_lexicon_name(pos_tags[ru_tag])}\n')
+            f.write(f'LEXICON {get_lexicon_name(pos_alias[ru_tag])}\n')
             for line in data:
                 # cyrillic stem version
                 f.write(lexd_str(line[0], line[2]))

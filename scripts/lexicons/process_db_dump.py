@@ -4,6 +4,9 @@ import re
 import csv
 import os
 
+from src.noun_fix import fix_nouns
+from src.pron_fix import fix_pronouns
+
 input_dir = Path(__file__).parent.joinpath('db_dumps')
 output_dir = Path(__file__).parent.parent.parent.joinpath('lexd/lexicons')
 
@@ -15,15 +18,7 @@ fixes = {
     'ц̌': 'ч',
     '́': '' # remove stress
 }
-
 noun_tags = ['pl_all', 'sg']
-noun_plurals = {
-    'pl_in-laws': ['свояк', 'своячн', 'зять', 'невестка', 'тесть', 'деверь', 'шурин', 'теща', 'свекровь'],
-    'pl_cousins': ['двоюродный брат', 'двоюродная сестра'],
-    'pl_sisters': ['сестра', 'сестричка'],
-    'pl_timesOfDay': ['утро', 'утрен', 'день', 'дневн', 'вечер', 'ночь', 'ночн', 'сумерки', 'закат', 'восход'],
-    'pl_timesOfYear': ['весна', 'зима', 'лето', 'осень'],
-}
 
 def is_a_word(word: str) -> bool:
     return not ' ' in word and \
@@ -83,20 +78,13 @@ def process(file: Path) -> None:
             lines[i] = (f'{lines[i][0]}[{tag}]', lines[i][1])
     # adding noun tags
     if 'noun' in file.stem:
-        for i in range(len(lines)):
-            for tag, triggers in noun_plurals.items():
-                found = False
-                for trig in triggers:
-                    if trig in lines[i][1]:
-                        lines[i] = (f'{lines[i][0]}[{tag}]', lines[i][1])
-                        found = True
-                        break
-                if found: 
-                    break
+        fix_nouns(lines)
     # fixing inf stems
     if 'verb_inf' in file.stem:
         for i in range(len(lines)):
             lines[i] = (lines[i][0].removesuffix('оw'), lines[i][1])
+    if 'pron' in file.stem:
+        lines = fix_pronouns(lines)
                 
     # writing words
     write_lexicon(output_dir.joinpath(out_file), lines)

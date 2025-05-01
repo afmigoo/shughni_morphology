@@ -7,7 +7,7 @@ RuLemmasConj [<conj>:<conj>]
 RuLemmasN [<n>:<n>]
 RuLemmasNum [<num>:<num>]
 RuLemmasPrep [<prep>:<prep>]
-RuLemmasPron [<pron>:<pron>]
+RuLemmasPro [<pro>:<pro>]|[<pers>:<pers>]|[<dem>:<dem>]
 RuLemmasV [<v>:<v>]
 
 LEXICON RuLemmasTags
@@ -28,7 +28,9 @@ LEXICON RuLemmasTags
 <coord1>:<coord1>
 <coord2>:<coord2>
 <coord3>:<coord3>
+<d3>:<d3>
 <dat>:<dat>
+<dem>:<dem>
 <dim>:<dim>
 <dir>:<dir>
 <disj>:<disj>
@@ -39,6 +41,7 @@ LEXICON RuLemmasTags
 <if>:<if>
 <imp>:<imp>
 <inf>:<inf>
+<int>:<int>
 <let>:<let>
 <loc>:<loc>
 <m>:<m>
@@ -48,10 +51,11 @@ LEXICON RuLemmasTags
 <num>:<num>
 <obl>:<obl>
 <ord>:<ord>
+<pers>:<pers>
 <pl>:<pl>
 <prep>:<prep>
 <prf>:<prf>
-<pron>:<pron>
+<pro>:<pro>
 <prs>:<prs>
 <pst>:<pst>
 <ptcp>:<ptcp>
@@ -59,6 +63,7 @@ LEXICON RuLemmasTags
 <quot>:<quot>
 <refl>:<refl>
 <self>:<self>
+<sg>:<sg>
 <subd>:<subd>
 <sup>:<sup>
 <v>:<v>

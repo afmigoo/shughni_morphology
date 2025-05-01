@@ -3,54 +3,79 @@
 ################
 
 PATTERNS
-PersonalPronounsNomObl                                  GlobClitics?
-PersonalPronounsNomObl[hon] _morph_hyphen_  Honorable   GlobClitics?
-PersonalPronounsLocDat      _morph_hyphen_  PronAdpos   GlobClitics?
-ReflectivePronouns         (_morph_hyphen_  PronAdpos)? GlobClitics?
+PronounBase GlobClitics?
+
+PATTERN PronounBase
+PersonalPronounsNom         [<nom>:]
+PersonalPronounsObl         [<obl>:]
+PersonalPronounsNom[hon]    [<nom>:] Honorable
+PersonalPronounsObl[hon]    [<obl>:] Honorable
+DemonstrativesNom           [<nom>:]          
+DemonstrativesObl           [<obl>:]
+PersonalPronounsNom|PersonalPronounsObl          _morph_hyphen_  PronAdpos
+PersonalPronounsNom[hon]                         _morph_hyphen_  PronAdpos    Honorable
+DemonstrativesNom|DemonstrativesObl              _morph_hyphen_  PronAdpos
+InterrogativePronouns                           (_morph_hyphen_  PronAdpos)?
+ReflectivePronouns                              (_morph_hyphen_  PronAdpos)?
+LexiconPron                 [<pro>:]            (_morph_hyphen_  PronAdpos)?
 
 LEXICON PronAdpos
 <loc>:{А}нд
 <dat>:{А}рд
 
-LEXICON PersonalPronounsLocDat
-wаз<pron><1sg>:wаз
-wуз<pron><1sg>:wуз
-уз<pron><1sg>:уз
-му<pron><1sg>:му
-ту<pron><2sg>:ту
-йу<pron><3sg>:йу
-йā<pron><3sg>:йā
-wи<pron><3sg>:wи
-wам<pron><3sg>:wам
-мāш<pron><1pl>:мāш
-тама<pron><2pl>:тама
-тамā<pron><2pl>:тамā
-wāδ<pron><3pl>:wāδ
-wев<pron><3pl>:wев
+################
+### Personal ###
+################
+LEXICON PersonalPronounsNom
+wаз<pers><1sg>:wаз # Баджувский диалект
+wуз<pers><1sg>:wуз
+уз<pers><1sg>:уз
+ту<pers><2sg>:ту
+мāш<pers><1pl>:мāш
+тама<pers><2pl>:тама[hon]
+тамā<pers><2pl>:тамā[hon]
 
-LEXICON PersonalPronounsNomObl
-wаз<pron><1sg><nom>:wаз
-wуз<pron><1sg><nom>:wуз
-уз<pron><1sg><nom>:уз
-му<pron><1sg><obl>:му
-ту<pron><2sg><nom>:ту
-ту<pron><2sg><obl>:ту
-йу<pron><3sg><m><nom>:йу
-йā<pron><3sg><f><nom>:йā
-wи<pron><3sg><m><obl>:wи
-wам<pron><3sg><f><obl>:wам
-мāш<pron><1pl><nom>:мāш
-мāш<pron><1pl><obl>:мāш
-тама<pron><2pl><nom>:тама[hon]
-тама<pron><2pl><obl>:тама[hon]
-тамā<pron><2pl><nom>:тамā[hon]
-тамā<pron><2pl><obl>:тамā[hon]
-wāδ<pron><3pl><nom>:wāδ
-wев<pron><3pl><obl>:wев
-
-LEXICON ReflectivePronouns
-ху<pron><refl>:ху
-хубаθ<pron><self>:хубаθ
+LEXICON PersonalPronounsObl
+му<pers><1sg>:му
+ту<pers><2sg>:ту
+мāш<pers><1pl>:мāш
+тама<pers><2pl>:тама[hon]
+тамā<pers><2pl>:тамā[hon]
 
 LEXICON Honorable
 <hon>:-йет
+
+######################
+### Demonstratives ###
+######################
+LEXICON DemonstrativesNom
+йу<dem><d3><m><sg>:йу
+йā<dem><d3><f><sg>:йā
+wāδ<dem><d3><pl>:wāδ
+
+LEXICON DemonstrativesObl
+wи<dem><d3><m><sg>:wи
+wам<dem><d3><f><sg>:wам
+wев<dem><d3><pl>:wев
+
+################
+### Pronouns ###
+################
+LEXICON InterrogativePronouns
+чӣз<pro>:чӣз        # Parker 2023
+чӣр<pro>:чӣр        # Parker 2023
+чиду̊м<pro>:чиду̊м    # Parker 2023    
+кā<pro>:кā          # Parker 2023
+чай<pro>:чай        # Parker 2023
+чи<pro>:чи          # Parker 2023
+цу̊нд<pro>:цу̊нд      # Parker 2023
+цар<pro>:цар        # Parker 2023
+
+##################
+### Reflective ###
+##################
+LEXICON ReflectivePronouns
+ху<pro><refl>:ху
+хубаθ<pro><self>:хубаθ
+
+
