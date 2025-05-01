@@ -38,11 +38,11 @@ sgh_base_stem.hfst: sgh.lexd twol/all.hfst
 ## cyrillic morph-separated transducers
 # wискӯн<n>><loc>:wискӯн>анд
 sgh_gen_stem_morph_cyr.hfst: sgh_base_stem.hfst twol/bar.hfst
-	hfst-compose-intersect $^ | hfst-minimize -o $@
+	hfst-compose-intersect $^ -o $@
 ## cyrillic transducers with no morpheme borders
 # wискӯн<n>><loc>:wискӯнанд or wискӯн<n>><loc>:wискӯн-анд
 sgh_gen_stem_word_cyr.hfst: sgh_base_stem.hfst twol/sep.hfst
-	hfst-compose-intersect $^ | hfst-minimize -o $@
+	hfst-compose-intersect $^ -o $@
 
 ## Russian lemmas instead of shughni stems
 # вилы<n>><loc>:wискӯн>-анд
@@ -50,10 +50,10 @@ sgh_base_rulem.hfst: translate/rulem2sgh.hfst sgh_base_stem.hfst
 	hfst-compose $^ -o $@
 # вилы<n>><loc>:wискӯн>анд
 sgh_gen_rulem_morph_cyr.hfst: sgh_base_rulem.hfst twol/bar.hfst
-	hfst-compose-intersect $^ | hfst-minimize -o $@
+	hfst-compose-intersect $^ -o $@
 # вилы<n>><loc>:wискӯнанд or вилы<n>><loc>:wискӯн-анд
 sgh_gen_rulem_word_cyr.hfst: sgh_base_rulem.hfst twol/sep.hfst
-	hfst-compose-intersect $^ | hfst-minimize -o $@
+	hfst-compose-intersect $^ -o $@
 
 ## Latin versions of transducers
 # any cyr generator + cyr2lat -> lat generator
