@@ -3,12 +3,12 @@ PATTERNS
 (AdjPrefix _hyphen_morph_)? ParticipleBase  GlobClitics?
 
 PATTERN AdjBase
-Adjective [<adj>:] (_morph_hyphen_ AdjSuffix)?
+LexiconAdj [<adj>:] (_morph_hyphen_ AdjSuffix)?
 ### Derivation from Nouns ###
-Noun [<n>:] _morph_hyphen_ NounAdjectivatorsSuffix
-NounAdjectivatorsPrefix _hyphen_morph_ Noun [<n>:]
+LexiconNoun [<n>:] _morph_hyphen_ NounAdjectivatorsSuffix
+NounAdjectivatorsPrefix _hyphen_morph_ LexiconNoun [<n>:]
 ### Compound adjectives ###
-Adjective [<adj>:] _morph_hyphen_ Noun [<n>:]
+LexiconAdj [<adj>:] _morph_hyphen_ LexiconNoun [<n>:]
 
 PATTERN ParticipleBase
 ### Derivation from Verbs ###

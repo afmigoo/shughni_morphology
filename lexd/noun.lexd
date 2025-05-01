@@ -9,7 +9,7 @@ PATTERNS
 (NounPrepos _hyphen_morph_)? NounNumberBase (_morph_hyphen_ NounAdpos)? (FutureClitic|PronClitics)? AdditiveClitic?
 
 PATTERN NounBase
-Noun [<n>:] (_morph_ Diminutive)?
+LexiconNoun [<n>:] (_morph_ Diminutive)?
 
 PATTERN NounNumberBase
 NounBase[sg]                                    NounNum[sg]            

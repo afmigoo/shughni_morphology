@@ -13,25 +13,25 @@ PerfVerbBase
 InfVerbBase
 
 PATTERN NPastVerbBase
-NPastVerbStem       [<v><prs>:] (_morph_hyphen_ PresSuffixes)?
+LexiconVerbNpst       [<v><prs>:] (_morph_hyphen_ PresSuffixes)?
 
 PATTERN PastVerbBase
-PastVerbStem[f]     [<v><pst><f>:]
-PastVerbStem[m]     [<v><pst><m>:]
-PastVerbStem[-m,-f] [<v><pst>:]
+LexiconVerbPst[f]     [<v><pst><f>:]
+LexiconVerbPst[m]     [<v><pst><m>:]
+LexiconVerbPst[-m,-f] [<v><pst>:]
 # the past stem is identical to the infinitive (Parker 2023, p. 109)
-InfVerbStem         [<v><pst>:]
+LexiconVerbInf         [<v><pst>:]
 
 PATTERN ImperVerbBase
-ImperVerbStem       [<v><imp>:]
+LexiconVerbImper       [<v><imp>:]
 
 PATTERN PerfVerbBase
-PerfVerbStem[f]     [<v><prf><f>:]
-PerfVerbStem[m]     [<v><prf><m>:]
-PerfVerbStem[-m,-f] [<v><prf>:]
+LexiconVerbPerf[f]     [<v><prf><f>:]
+LexiconVerbPerf[m]     [<v><prf><m>:]
+LexiconVerbPerf[-m,-f] [<v><prf>:]
 
 PATTERN InfVerbBase
-InfVerbStem         [<v><inf>:] (_morph_hyphen_ PurpSuff)?
+LexiconVerbInf         [<v><inf>:] (_morph_hyphen_ PurpSuff)?
 
 
 # Parker 8.2.1
