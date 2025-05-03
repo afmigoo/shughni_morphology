@@ -120,11 +120,26 @@ metrics: coverage accuracy
 
 # Accuracy
 ACCURACY_DIR := scripts/accuracy
+RESULTS_DIR := $(ACCURACY_DIR)/results
 EAF_FILES := $(wildcard $(ACCURACY_DIR)/elans/*.eaf)
-CSV_FILES := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,scripts/accuracy/csv/%.csv,$(EAF_FILES))
+CSV_FILES := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,$(ACCURACY_DIR)/csv/%.csv,$(EAF_FILES))
+DETAIL_DIRS := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,$(RESULTS_DIR)/%,$(EAF_FILES))
 
-accuracy: accuracy_data
-	$(ACCURACY_DIR)/eval.py --pretty-output
+accuracy: accuracy_data sgh_analyze_stem_word_lat.hfstol translit/cyr2lat.hfstol
+	cat $(ACCURACY_DIR)/csv/*.csv | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -p \
+		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
+		--hfst-translit translit/cyr2lat.hfstol \
+		--details-dir $(ACCURACY_DIR)/results/total
+accuracy_individual_files: $(DETAIL_DIRS)
+$(ACCURACY_DIR)/results/%: $(ACCURACY_DIR)/csv/%.csv sgh_analyze_stem_word_lat.hfstol translit/cyr2lat.hfstol
+	cat $< | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -p \
+		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
+		--hfst-translit translit/cyr2lat.hfstol \
+		--details-dir $@
+
+accuracy_results_clear:
+	rm -r $(RESULTS_DIR)
+
 accuracy_data: $(CSV_FILES)
 accuracy_data_clear: 
 	rm $(ACCURACY_DIR)/csv/*.csv

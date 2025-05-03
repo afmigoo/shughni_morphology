@@ -29,15 +29,26 @@ class TaggedWord:
     wordform: str
     stem: str
     pos: str
-    tags: List[str]
+    gloss_stem: List[str]
+    gloss_suffix: List[List[str]]
+    gloss_prefix: List[List[str]]
     source_file: Path
 
     def tagged(self) -> str:
-        tags = f"<{self.pos}>" + "".join([f"<{x}>" for x in self.tags])
-        return f'{self.stem}{tags}'
+        pos = f'<{self.pos}>'
+        stem_gloss_str = ''
+        pref_gloss_str = ''
+        suff_gloss_str = ''
+        if self.gloss_stem:
+            stem_gloss_str = ''.join(f'<{x}>' for x in self.gloss_stem)
+        if self.gloss_suffix and self.gloss_suffix[0]:
+            suff_gloss_str = '>' + '>'.join([''.join(f'<{x}>' for x in morph) for morph in self.gloss_suffix])
+        if self.gloss_prefix and self.gloss_prefix[0]:
+            pref_gloss_str = '>'.join([''.join(f'<{x}>' for x in morph) for morph in self.gloss_prefix]) + '>'
+        return f'{pref_gloss_str}{self.stem}{pos}{stem_gloss_str}{suff_gloss_str}'.lower()
 
     def __str__(self):
-        return f'{self.tagged()}:{self.wordform}'
+        return f'{self.tagged()}:{self.wordform.lower()}'
     
     def __repr__(self):
         return str(self)
@@ -100,7 +111,7 @@ def resolve_pos(morphs: List[List[TierItem]]) -> str:
     # some words have multiple POS... I will think that the first one is the one
     for parts in morphs:
         for m in parts:
-            if 'pos' in m.tier:
+            if 'pos' in m.tier or 'msa' in m.tier:
                 return m.content.lower()
 
 def resolve_stem(morphs: List[List[TierItem]]) -> str:
@@ -118,21 +129,43 @@ def resolve_stem(morphs: List[List[TierItem]]) -> str:
     # if POS is tagged on word level, then stem is the first morph
     return clean_segment(morphs[0][0].content)
 
-def resolve_tags(morphs: List[List[TierItem]], stem: str) -> List[str]:
+def resolve_tags(morphs: List[List[TierItem]], stem: str) -> dict:
     # all other morphs but stem
-    tags: List[str] = []
+    tags_prefix: List[List[str]] = []
+    tags_stem: List[str] = []
+    tags_suffix: List[List[str]] = []
+    stem_passed = False
     for parts in morphs:
         new_tags = []
         is_stem = False
         for m in parts:
             if clean_segment(m.content) == stem:
-                is_stem = True
-                break
+                is_stem = stem_passed = True
             if 'gls' in m.tier or 'glos' in m.tier:
-                new_tags.extend(t.lower() for t in m.content.split('.') if t)
-        if not is_stem:
-            tags.extend(new_tags)
-    return tags
+                if m.content:
+                    new_tags.extend(t for t in m.content.split('.') if t)
+        if not new_tags:
+            continue
+        if is_stem:
+            tags_stem.extend(new_tags)
+        elif stem_passed:
+            tags_suffix.extend([new_tags])
+        else:
+            tags_prefix.extend([new_tags])
+    return {
+        'prefix': tags_prefix,
+        'stem': tags_stem,
+        'suffix': tags_suffix
+    }
+
+def remove_lemma_glosses(word: TaggedWord):
+    # lemma glosses are english semantic labels like 'go' in NEG-go.PST
+    # this functions tries to filter them out since we are using Shughni stem instead
+    def is_lemma_gloss(g: str) -> bool:
+        if g.lower() == g: # lemma glosses are mostly lowercase
+            return True
+        return False
+    word.gloss_stem = [g for g in word.gloss_stem if not is_lemma_gloss(g)]
 
 def get_word_pairs(elan_file: Path) -> List[TaggedWord]:
     """Reads elan file and returns tagged words
@@ -152,10 +185,16 @@ def get_word_pairs(elan_file: Path) -> List[TaggedWord]:
         morphs = get_morphs(word)
         stem = resolve_stem(morphs)
         pos = resolve_pos(morphs)
+        glosses = resolve_tags(morphs, stem)
         if stem and pos:
             words.append(TaggedWord(
                 wordform=wordform, 
                 stem=stem, pos=pos,
-                tags=resolve_tags(morphs, stem), source_file=elan_file
+                gloss_stem=glosses['stem'],
+                gloss_suffix=glosses['suffix'],
+                gloss_prefix=glosses['prefix'],
+                source_file=elan_file
             ))
+    for w in words:
+        remove_lemma_glosses(w)
     return words

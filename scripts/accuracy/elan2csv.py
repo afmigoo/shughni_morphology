@@ -29,7 +29,7 @@ def main():
                 writer.writerow((rmpunct(w.wordform), w.tagged()))
 
 def test():
-    words = get_word_pairs('/home/kesha/dev/hse/shughni/shugni_morphology/scripts/accuracy/elans/Luke_parallel_10_fixed.eaf')
+    words = get_word_pairs('/home/kesha/dev/hse/shughni/shugni_morphology/scripts/accuracy/elans/Bear_thief_new.eaf')
 
 if __name__ == '__main__':
     main()
