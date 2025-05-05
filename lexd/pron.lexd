@@ -18,6 +18,7 @@ DemonstrativesNom|DemonstrativesObl              _morph_hyphen_  PronAdpos
 InterrogativePronouns                           (_morph_hyphen_  PronAdpos)?
 ReflectivePronouns                              (_morph_hyphen_  PronAdpos)?
 LexiconPron                 [<pro>:]            (_morph_hyphen_  PronAdpos)?
+IndefinitePronouns          [<pro>:]            (_morph_hyphen_  PronAdpos)?
 
 LEXICON PronAdpos
 <loc>:{А}нд
@@ -49,13 +50,23 @@ LEXICON Honorable
 ### Demonstratives ###
 ######################
 LEXICON DemonstrativesNom
-йу<dem><d3><m><sg>:йу
+йам<dem><d1><sg>:йам
+мāδ<dem><d1><pl>:мāδ
+йид<dem><d2><sg>:йид
+дāδ<dem><d2><pl>:дāδ
 йā<dem><d3><f><sg>:йā
+йу<dem><d3><m><sg>:йу
 wāδ<dem><d3><pl>:wāδ
 
 LEXICON DemonstrativesObl
-wи<dem><d3><m><sg>:wи
+мам<dem><d1><f><sg>:мам
+ми<dem><d1><m><sg>:ми
+мев<dem><d1><pl>:мев
+дам<dem><d2><f><sg>:дам
+ди<dem><d2><m><sg>:ди
+дев<dem><d2><pl>:дев
 wам<dem><d3><f><sg>:wам
+wи<dem><d3><m><sg>:wи
 wев<dem><d3><pl>:wев
 
 ################
@@ -70,6 +81,22 @@ LEXICON InterrogativePronouns
 чи<pro>:чи          # Parker 2023
 цу̊нд<pro>:цу̊нд      # Parker 2023
 цар<pro>:цар        # Parker 2023
+
+LEXICON IndefinitePronRoots # Parker 2023 p.193
+чӣз[g1,g2]
+чай[g1,g2]
+царāнг[g1]
+цаwахт[g1]
+рāнг[g2]
+wахт[g2]
+ҷой[g1,g2]
+
+PATTERN IndefinitePronouns
+[ар]  _hyphen_ IndefinitePronRoots[g1] _hyphen_ [ца] # Assertive
+[йи]  _hyphen_ IndefinitePronRoots[g1]               # Elective
+[йи]  _hyphen_ IndefinitePronRoots[g1] _hyphen_ [аθ] # Negative
+[фук] _hyphen_ IndefinitePronRoots[g2] _hyphen_ [аθ]# Universal
+
 
 ##################
 ### Reflective ###

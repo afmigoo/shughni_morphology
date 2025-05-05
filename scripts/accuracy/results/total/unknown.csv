@@ -18,7 +18,7 @@ bebun,<without>>bun<n>,<*without><adj>>бун<n>/bebun<adj>,UNKNOWN
 bix̌čīrt,bix̌čīr<v>><prs><3sg>,*bix̌čīrt,UNKNOWN
 sůd,sů<v>><prs><3sg>,*sůd,UNKNOWN
 sůd,sů<v>><prs><3sg>,*sůd,UNKNOWN
-ikditi,ik<prt><emph>><d2><m><sg><o>><sup>,*ikditi,UNKNOWN
+ikditi,ik<prt><emph>><d2><m><sg><obl>><sup>,*ikditi,UNKNOWN
 yůrx̌ak,yůrx̌<n>><dim>,*yůrx̌ak,UNKNOWN
 sāraki-ec,sāraki<n>><lim2>,*sāraki-ec,UNKNOWN
 bix̌čīrt-at,bix̌čīr<v>><prs><3sg>><coord2>,*bix̌čīrt-at,UNKNOWN
@@ -49,7 +49,7 @@ odamizod,odamizod<n>,*odamizod,UNKNOWN
 yeso,yeso<nprop><jesus>,*yeso,UNKNOWN
 yerusalīm,yerusalīm<nprop><jerusalem>,*yerusalīm,UNKNOWN
 yerixůn,yerixůn<nprop><jericho>,*yerixůn,UNKNOWN
-yik-wi,yik<dem><emph>><d3><m><sg><o>,*yik-wi,UNKNOWN
+yik-wi,yik<dem><emph>><d3><m><sg><obl>,*yik-wi,UNKNOWN
 koyin,koyin<n>,*koyin,UNKNOWN
 lewī,lewī<nprop><levite>,*lewī,UNKNOWN
 x̌īvǰīn,x̌īv<v>><pf>><ptcp1>,*x̌īvǰīn,UNKNOWN
@@ -59,7 +59,7 @@ bečorā-yi,bečorā<n>><3sg>,<*without><adj>>чорā<n>><3sg>/bečorā<adj>><3
 maǰrū,maǰrū<n>,*maǰrū,UNKNOWN
 zaytūn,zaytūn<n>,*zaytūn,UNKNOWN
 memūnxůnā-yi,memūnxůnā<n>><3sg>,*memūnxůnā-yi,UNKNOWN
-wê-θ,wê<dem><d3><m><sg><o>><int>,*wê-θ,UNKNOWN
+wê-θ,wê<dem><d3><m><sg><obl>><int>,*wê-θ,UNKNOWN
 memūnxůnā,memūnxůnā<n>,*memūnxůnā,UNKNOWN
 dinor,dinor<n>,*dinor,UNKNOWN
 dāk,dāk<v>,*dāk,UNKNOWN
@@ -199,7 +199,7 @@ yidê,yidê<cnj><compl>,*yidê,UNKNOWN
 saršumori,saršumori<n>,*saršumori,UNKNOWN
 awwalīn,awwalīn<n>,*awwalīn,UNKNOWN
 saršumori,saršumori<n>,*saršumori,UNKNOWN
-wiy-en,wi<dem><d3><m><sg><o>><3pl>,*wiy-en,UNKNOWN
+wiy-en,wi<dem><d3><m><sg><obl>><3pl>,*wiy-en,UNKNOWN
 naɣ̌ǰimč-at,naɣ̌ǰim<v>><pf>><pqp>,*naɣ̌ǰimč-at,UNKNOWN
 idê,idê<cnj><compl>,*idê,UNKNOWN
 sūriyā,sūriyā<nprop><syria>,*sūriyā,UNKNOWN
@@ -575,7 +575,7 @@ tīzd,tīz<v>><prs><3sg>,*tīzd,UNKNOWN
 sůd,sů<v>><prs><3sg>,*sůd,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
 wāδ…,wāδ<dem><d3><pl>,*wāδ…,UNKNOWN
-wiri,wi<dem><d3><m><sg><o>><dat>,*wiri,UNKNOWN
+wiri,wi<dem><d3><m><sg><obl>><dat>,*wiri,UNKNOWN
 šlyāpga,šlyāp<n>><add1>,*šlyāpga,UNKNOWN
 riwozd,riwoz<v>><prs><3sg>,*riwozd,UNKNOWN
 bād…,bād<n>,*bād…,UNKNOWN
@@ -611,7 +611,7 @@ bād,bād<n>,*bād,UNKNOWN
 daraxten…,daraxt<n>><pl>,*daraxten…,UNKNOWN
 sifīnt,sifīn<v>><prs><3sg>,*sifīnt,UNKNOWN
 zêzd,zêz<v>><prs><3sg>,*zêzd,UNKNOWN
-wiǰa,wi<dem><d3><m><sg><o>><p><loc>,*wiǰa,UNKNOWN
+wiǰa,wi<dem><d3><m><sg><obl>><p><loc>,*wiǰa,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
 yoδd,yoδ<v>><prs><3sg>,*yoδd,UNKNOWN
 ɣiδabucak,ɣiδa<n>><child><m>><dim>,*ɣiδabucak,UNKNOWN
@@ -712,7 +712,7 @@ aro,aro<prt><adr>,*aro,UNKNOWN
 koroči,koroči<rus><hez>,*koroči,UNKNOWN
 fāmtato?,fām<v>><pst>><2sg>><q>,*fāmtato?,UNKNOWN
 wāδen.,wāδ<dem><d3><pl>><3pl>,*wāδen.,UNKNOWN
-wiyaθ,wi<dem><d3><m><sg><o>><int>,*wiyaθ,UNKNOWN
+wiyaθ,wi<dem><d3><m><sg><obl>><int>,*wiyaθ,UNKNOWN
 naɣ̌ǰidata,naɣ̌ǰi<v>><pst>><advs>,*naɣ̌ǰidata,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
@@ -799,7 +799,7 @@ fāmiyo,fām<v>><prs><2sg>><q>,*fāmiyo,UNKNOWN
 sayuz,sayuz<n><soviet>,*sayuz,UNKNOWN
 lāgerenando,lāger<n>><? pl>><loc>><q>,*lāgerenando,UNKNOWN
 māko,māk<n>><q>,*māko,UNKNOWN
-miti…,mi<dem><d1><m><sg><o>><sup>,*miti…,UNKNOWN
+miti…,mi<dem><d1><m><sg><obl>><sup>,*miti…,UNKNOWN
 ca…,ca<cnj><subd>,*ca…,UNKNOWN
 vud…,vu<v>><pst>,*vud…,UNKNOWN
 gālstukako,gālstuk<n>><dim>><q>,*gālstukako,UNKNOWN
@@ -827,7 +827,7 @@ yast,yast<v>,*yast,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
 aro…,aro<prt><adr>,*aro…,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
-wev…,wev<dem><d3><pl><o>,*wev…,UNKNOWN
+wev…,wev<dem><d3><pl><obl>,*wev…,UNKNOWN
 nu,nu<rus><hez>,*nu,UNKNOWN
 faktīčeski,faktīčeski<rus>,*faktīčeski,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
@@ -924,11 +924,11 @@ qatī-yen,qatī<post><com>><3pl>,*qatī-yen,UNKNOWN
 bād-en…,bād<n>><3pl>,*bād-en…,UNKNOWN
 miloim,miloyim<n>,*miloim,UNKNOWN
 bād-en,bād<n>><3pl>,*bād-en,UNKNOWN
-ik-mi…,ik<prt><emph>><d1><m><sg><o>,*ik-mi…,UNKNOWN
+ik-mi…,ik<prt><emph>><d1><m><sg><obl>,*ik-mi…,UNKNOWN
 misol,misol<prt>,<*cont2>>сол<n>/misol<n>,UNKNOWN
 bād-en,bād<n>><3pl>,*bād-en,UNKNOWN
 bād-en,bād<n>><3pl>,*bād-en,UNKNOWN
-ik-di,ik<prt><emph>><d2><m><sg><o>,*ik-di,UNKNOWN
+ik-di,ik<prt><emph>><d2><m><sg><obl>,*ik-di,UNKNOWN
 půst…,půst<n>,*půst…,UNKNOWN
 uzum…,uz<pers><prn><1sg>><=1sg>,*uzum…,UNKNOWN
 misoland,misol<n>><=loc>,<*cont2>>сол<n>><loc>/misol<n>><loc>,UNKNOWN
@@ -944,11 +944,11 @@ misoland…,misol<n>><=loc>,*misoland…,UNKNOWN
 nax̌toyd…,nax̌toy<v><f/pl>><-pst>,*nax̌toyd…,UNKNOWN
 ičidům,i<pro><indef->><which>,*ičidům,UNKNOWN
 ičīz,i<pro><indef->><thing>,*ičīz,UNKNOWN
-diǰāt,di<dem><d2><m><sg><o>><=ben>,*diǰāt,UNKNOWN
+diǰāt,di<dem><d2><m><sg><obl>><=ben>,*diǰāt,UNKNOWN
 yakumin,yakumin<num><ord>,*yakumin,UNKNOWN
 iků,ik<prt><emph=>><d1>,*iků,UNKNOWN
 māš…,māš<pers><prn><1pl>,*māš…,UNKNOWN
-ikwi,ik<prt><emph=>><d3><m><sg><o>,*ikwi,UNKNOWN
+ikwi,ik<prt><emph=>><d3><m><sg><obl>,*ikwi,UNKNOWN
 tarztiyām,tarz<n>><=sup>><=1pl>,*tarztiyām,UNKNOWN
 tarzi…,tarz<n>><=3sg>,*tarzi…,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN

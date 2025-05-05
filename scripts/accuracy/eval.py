@@ -30,7 +30,8 @@ parser.add_argument("--details-dir",
                     help="Csv directory where details should be logged in format 'wordform,tagged,status'")
 
 tag_aliases = {
-    '<lat>': '<dat>'
+    '<lat>': '<dat>',
+    '<o>': '<obl>'
 }
 
 AccFuncsMapping = Dict[str, Callable[[str, str], bool]]

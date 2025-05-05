@@ -125,13 +125,13 @@ EAF_FILES := $(wildcard $(ACCURACY_DIR)/elans/*.eaf)
 CSV_FILES := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,$(ACCURACY_DIR)/csv/%.csv,$(EAF_FILES))
 DETAIL_DIRS := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,$(RESULTS_DIR)/%,$(EAF_FILES))
 
-accuracy: accuracy_data sgh_analyze_stem_word_lat.hfstol translit/cyr2lat.hfstol
+accuracy: accuracy_data
 	cat $(ACCURACY_DIR)/csv/*.csv | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -p \
 		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
 		--hfst-translit translit/cyr2lat.hfstol \
 		--details-dir $(ACCURACY_DIR)/results/total
 accuracy_individual_files: $(DETAIL_DIRS)
-$(ACCURACY_DIR)/results/%: $(ACCURACY_DIR)/csv/%.csv sgh_analyze_stem_word_lat.hfstol translit/cyr2lat.hfstol
+$(ACCURACY_DIR)/results/%: $(ACCURACY_DIR)/csv/%.csv
 	cat $< | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -p \
 		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
 		--hfst-translit translit/cyr2lat.hfstol \
