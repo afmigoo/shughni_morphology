@@ -1,77 +1,78 @@
 PATTERNS
-RuLemmasTags* (RuLemmasBase RuLemmasTags_copy*)+
+(RuLemmasBase|RuLemmasTags)+
 
 PATTERN RuLemmasBase
-RuLemmasAdj [<adj>:<adj>]
-RuLemmasConj [<conj>:<conj>]
-RuLemmasN [<n>:<n>]
-RuLemmasNum [<num>:<num>]
-RuLemmasPrep [<prep>:<prep>]
-RuLemmasPro [<pro>:<pro>]|[<pers>:<pers>]|[<dem>:<dem>]
-RuLemmasV [<v>:<v>]
+RuLemmasAdj [<adj>]
+RuLemmasConj [<conj>]
+RuLemmasN [<n>]
+RuLemmasNum [<num>]
+RuLemmasPrep [<prep>]
+RuLemmasPro [<pro>]|[<pers>]|[<dem>]
+RuLemmasV [<v>]
 
 LEXICON RuLemmasTags
->:>
-<1pl>:<1pl>
-<1sg>:<1sg>
-<2pl>:<2pl>
-<2sg>:<2sg>
-<3pl>:<3pl>
-<3sg>:<3sg>
-<add>:<add>
-<adj>:<adj>
-<advs>:<advs>
-<aug>:<aug>
-<compl>:<compl>
-<conj>:<conj>
-<cont2>:<cont2>
-<coord1>:<coord1>
-<coord2>:<coord2>
-<coord3>:<coord3>
-<d3>:<d3>
-<dat>:<dat>
-<dem>:<dem>
-<dim>:<dim>
-<dir>:<dir>
-<disj>:<disj>
-<f>:<f>
-<full>:<full>
-<fut>:<fut>
-<hon>:<hon>
-<if>:<if>
-<imp>:<imp>
-<inf>:<inf>
-<int>:<int>
-<let>:<let>
-<loc>:<loc>
-<m>:<m>
-<n>:<n>
-<neg>:<neg>
-<nom>:<nom>
-<num>:<num>
-<obl>:<obl>
-<ord>:<ord>
-<pers>:<pers>
-<pl>:<pl>
-<prep>:<prep>
-<prf>:<prf>
-<pro>:<pro>
-<prs>:<prs>
-<pst>:<pst>
-<ptcp>:<ptcp>
-<purp>:<purp>
-<quot>:<quot>
-<refl>:<refl>
-<self>:<self>
-<sg>:<sg>
-<subd>:<subd>
-<sup>:<sup>
-<v>:<v>
-<when>:<when>
-<wish>:<wish>
-<with>:<with>
-<with_little>:<with_little>
-<without>:<without>
-ALIAS RuLemmasTags RuLemmasTags_copy
+>
+<1pl>
+<1sg>
+<2pl>
+<2sg>
+<3pl>
+<3sg>
+<add>
+<adj>
+<advs>
+<aug>
+<compl>
+<conj>
+<cont2>
+<coord1>
+<coord2>
+<coord3>
+<d1>
+<d2>
+<d3>
+<dat>
+<dem>
+<dim>
+<dir>
+<disj>
+<f>
+<full>
+<fut>
+<hon>
+<if>
+<imp>
+<inf>
+<int>
+<let>
+<loc>
+<m>
+<n>
+<neg>
+<nom>
+<num>
+<obl>
+<ord>
+<pers>
+<pl>
+<prep>
+<prf>
+<pro>
+<prs>
+<pst>
+<ptcp>
+<purp>
+<quot>
+<refl>
+<self>
+<sg>
+<subd>
+<sup>
+<v>
+<when>
+<wish>
+<with>
+<with_little>
+<without>
 
 

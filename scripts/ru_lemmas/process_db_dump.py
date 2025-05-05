@@ -52,9 +52,9 @@ def get_lexicon_name(tag: str) -> str:
 def get_lexd_formatted_tags(tag: str) -> str:
     """ 'tagname' -> [<tagname>:<tagname>] """
     if not tag in extra_variants:
-        return f'[<{tag}>:<{tag}>]'
+        return f'[<{tag}>]'
     all_tags = [tag] + extra_variants[tag]
-    return '|'.join(f'[<{t}>:<{t}>]' for t in all_tags)
+    return '|'.join(f'[<{t}>]' for t in all_tags)
 
 def generate_rules():
     print('Generating rules...')
@@ -69,9 +69,8 @@ def generate_rules():
     
     with open(output_dir.joinpath('0_rules.lexd'), 'w', encoding='utf-8') as f:
         f.write(f'PATTERNS\n')
-        f.write('{tags_lex_1}* ({base} {tags_lex_2}*)+\n\n'.format(
-            tags_lex_1=get_lexicon_name('Tags'),
-            tags_lex_2=get_lexicon_name('Tags_copy'),
+        f.write('({base}|{tags_lex})+\n\n'.format(
+            tags_lex=get_lexicon_name('Tags'),
             base=get_lexicon_name('Base')
         ))
         f.write(f"PATTERN {get_lexicon_name('Base')}\n")
@@ -82,10 +81,9 @@ def generate_rules():
             ))
         f.write('\n')
         f.write(f"LEXICON {get_lexicon_name('Tags')}\n")
-        f.write('>:>\n')
+        f.write('>\n')
         for tag in sorted(all_tags):
-            f.write(f'{tag}:{tag}\n')
-        f.write(f"ALIAS {get_lexicon_name('Tags')} {get_lexicon_name('Tags_copy')}\n")
+            f.write(f'{tag}\n')
         f.write('\n\n')
 
 def cyr2lat(cyr_stems: List[str]) -> List[str]:
