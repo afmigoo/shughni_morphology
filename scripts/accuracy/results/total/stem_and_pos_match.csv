@@ -26,6 +26,7 @@ x̌oǰ,x̌oǰ<n>,x̌oǰ<n>/x̌oǰ<n>,CORRECT
 čīraθ,čīr<pro>><int>,čīr<pro>><int>/čīr<pro>><int>,CORRECT
 meθ-at,meθ<n>><in>,meθ<n>><2sg>/meϑ<n>><2sg>/meθ<n>><coord2>/meϑ<n>><coord2>,CORRECT
 mūysafedik,mūysafed<n>><dim>,mūysafed<adj>><dim>/mūysafed<n>><dim>,CORRECT
+bebun,<without>>bun<n>,<without><adj>>bun<n>/bebun<adj>,CORRECT
 cimūd,cimūd<n>,cimūd<n>,CORRECT
 tar,tar<prep><eq>,tar<prep>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
@@ -38,6 +39,7 @@ di,di<dem><d2><m><sg><obl>,di<conj><when>/di<dem><d2><m><sg><obl>/di<pro>/di<v><
 boǰak,boǰak<n>,boǰ<n>><dim>/boǰ<n>><dim>/boǰak<n>/boǰak<n>,CORRECT
 ar,ar<prep><down>,ar<n>/ar<prep>/ar<pro>,CORRECT
 di,di<dem><d2><m><sg><obl>,di<conj><when>/di<dem><d2><m><sg><obl>/di<pro>/di<v><imp>/di<v><prs>,CORRECT
+bebun,<without>>bun<n>,<without><adj>>bun<n>/bebun<adj>,CORRECT
 cimūd,cimūd<n>,cimūd<n>,CORRECT
 di,di<dem><d2><m><sg><obl>,di<conj><when>/di<dem><d2><m><sg><obl>/di<pro>/di<v><imp>/di<v><prs>,CORRECT
 cimūd,cimūd<n>,cimūd<n>,CORRECT
@@ -169,6 +171,7 @@ samari,samari<nprop><samaritan>,samar<n>><3sg>,FAIL
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 půnd-ti,půnd<n>><sup>,půnd<n>><2sg>><3sg>/půnd<n>><sup>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
+bečorā-yi,bečorā<n>><3sg>,<without><adj>>čorā<n>><3sg>/bečorā<adj>><3sg>/bečorā<n>><3sg>,CORRECT
 rām-i,rām<n>><3sg>,rām<n>><3sg>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 as,as<prep><el>,as<prep>,CORRECT
@@ -419,6 +422,7 @@ tar,tar<prep><eq>,tar<prep>,CORRECT
 x̌ār,x̌ār<n>,x̌ār<adj>/x̌ār<n>,CORRECT
 as,as<prep><el>,as<prep>,CORRECT
 kučā-t,kučā<n>><coord2>,kučā<n>><2sg>,CORRECT
+kambaɣal,kambaɣal<n>,<with_little><adj>>baɣal<n>/kambaɣal<n>,CORRECT
 kůr,kůr<n>,kůr<adj>/kůr<n>,CORRECT
 va,va<v>,va<v><imp>,CORRECT
 wi-rd-i,wi<dem><d3><m><sg><obl>><dat>><3sg>,wi<dem><d3><m><sg>><dat>><3sg>,CORRECT
@@ -504,6 +508,7 @@ mamlakat-and,mamlakat<n>><loc>,mamlakat<n>><loc>,CORRECT
 moɣ̌ӡ,moɣ̌ʒ<n>,moɣ̌ӡ<n>/moɣ̌ʒ<n>/moɣ̌ӡ<n>,CORRECT
 yu,yu<dem><d3><m><sg>,yu<dem><d3><m><sg><nom>,CORRECT
 sof,sof<n>,sof<n>,CORRECT
+benawo,benawo<n>,<without><adj>>nawo<n>/benawo<n>,CORRECT
 as,as<prep><el>,as<prep>,CORRECT
 maǰbūri,maǰbūri<n>,maǰbūr<adj>><3sg>/maǰbūr<adj>><3sg>/maǰbūri<adj>/maǰbūri<adj>/maǰbūri<n>/maǰbūri<n>,CORRECT
 tar,tar<prep><eq>,tar<prep>,CORRECT
@@ -2036,6 +2041,7 @@ kayůn,kayůn<n>,kayůn<n>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 kayůnen,kayůn<n>><pl>,kayůn<n>><3pl>/kayůn<n>><pl>,CORRECT
 wev,wev<dem><d3><pl><obl>,wev<dem><d3><pl><obl>,CORRECT
+miδustti,mi<prep><cont2>><hand>><sup>,<cont2>>ðust<n>><2sg>><3sg>/<cont2>>δust<n>><2sg>><3sg>/<cont2>>ðust<n>><sup>/<cont2>>δust<n>><sup>,FAIL
 az,az<prep><el>,az<prep>,CORRECT
 di,di<dem><d2><m><sg><obl>,di<conj><when>/di<dem><d2><m><sg><obl>/di<pro>/di<v><imp>/di<v><prs>,CORRECT
 yamand,yam<dem><d1><sg>><loc>,yam<dem><d1><sg>><loc>/yam<n>><loc>/yam<pro>><loc>,CORRECT
@@ -2191,6 +2197,9 @@ ya,yā<dem><d3><f><sg>,ya<v><imp>,FAIL
 čor,čor<n>,čor<n>/čor<num>,CORRECT
 mu,mu<pers><prn><1sg><obl>,mu<pers><1sg><obl>,CORRECT
 modar,modar<n>,modar<n>,CORRECT
+navad,navad<num>,<neg>>vad<v><pst><f>,FAIL
+navad,navad<num>,<neg>>vad<v><pst><f>,FAIL
+navad,navad<num>,<neg>>vad<v><pst><f>,FAIL
 yāni,yāni<prt>,yān<v><prs>><2sg>/yān<v><prs>><3sg>,FAIL
 čīz,čīz<pro>,čīz<pro>/čīz<n>/čīz<pro>,CORRECT
 sabab-i,sabab<n>><ez>,sabab<n>><3sg>,CORRECT
@@ -2289,6 +2298,7 @@ rūšt,rūšt<n>,rūšt<adj>/rūšt<n>,CORRECT
 māš,māš<pers><prn><1pl>,māš<pers><1pl><nom>/māš<pers><1pl><obl>,CORRECT
 yat,ya<v>><-pst>,ya<v><imp>><2sg>/yat<v><inf>/yat<v><pst>,CORRECT
 yakumaθ,yak<num>><-ord>><-adv>,yakum<adj>><int>,FAIL
+misoland,misol<n>><=loc>,<cont2>>sol<n>><loc>/misol<n>><loc>,CORRECT
 māš,māš<pers><prn><1pl>,māš<pers><1pl><nom>/māš<pers><1pl><obl>,CORRECT
 mardumen,mardum<n>><-pl>,mard<adj>><1sg>><3pl>/mard<n>><1sg>><3pl>/mardum<n>><3pl>/mardum<n>><pl>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT

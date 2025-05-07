@@ -10,19 +10,6 @@ class HfstException(Exception):
 class HFSTInvalidFormat(HfstException):
     pass
 
-@dataclass
-class ParsedItem:
-    input_str: str
-    out_variants: List[str]
-
-    def variants(self) -> str:
-        return f'{"/".join(self.out_variants)}'
-
-    def __str__(self):
-        return f'{self.input_str} -> {self.variants()}'
-
-    def __repr__(self):
-        return f'[ParsedItem {str(self)}]'
 
 def call_command(args: List[str], input: str) -> Tuple[str, str, int]:
     """Call custom bash command and pass input to stdin

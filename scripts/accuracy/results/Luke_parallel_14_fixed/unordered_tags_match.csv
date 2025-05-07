@@ -1,4 +1,5 @@
 memūn,memūn<n>,me<adj>>мӯн<n>/memūn<n>,CORRECT
+di-yi,di<dem><d2><m><sg><obl>><3sg>,di<dem><d2><m><sg><obl>><3sg>/di<pro>><3sg>/di<v><imp>><3sg>/di<v><prs>><2sg>/di<v><prs>><3sg>,CORRECT
 xušbaxt,xušbaxt<n>,xuš<adj>>бахт<n>/xušbaxt<adj>/xušbaxt<n>,CORRECT
 šelůn,šelůn<n>,šelůn<n>,CORRECT
 odam,odam<n>,odam<n>,CORRECT
@@ -17,6 +18,7 @@ fukaθ,fukaθ<pro>,fuk<pro>><int>/fukaθ<pro>/fukaϑ<pro>,CORRECT
 yīw,yīw<num>,yīw<adj>/yīw<num>/yīw<pro>,CORRECT
 zimc-i,zimc<n>><3sg>,zimc<n>><3sg>,CORRECT
 xarīt,xarīt<n>,xarīt<n>,CORRECT
+wam,wam<dem><d3><f><sg><obl>,wam<dem><d3><f><sg><obl>,CORRECT
 bax̌xix̌,bax̌xix̌<n>,bax̌xix̌<n>,CORRECT
 kinen,kin<v>><prs><3pl>,kin<v><imp>><3pl>/kin<v><prs>><3pl>,CORRECT
 ǰuft,ǰuft<n>,ǰuft<n>/ǰuft<n>,CORRECT
@@ -26,15 +28,19 @@ boyad,boyad<v>,boy<n>><coord2>,FAIL
 kinen,kin<v>><prs><3pl>,kin<v><imp>><3pl>/kin<v><prs>><3pl>,CORRECT
 seyum,se<num>><ord>,se<num>><ord>,CORRECT
 ɣ̌in,ɣ̌in<n>,ɣ̌in<n>,CORRECT
+wam,wam<dem><d3><f><sg><obl>,wam<dem><d3><f><sg><obl>,CORRECT
 gax̌t-i,gax̌t<n>><3sg>,gax̌t<n>><3sg>,CORRECT
 xūǰayīn-ard-i,xūǰayīn<n>><dat>><3sg>,xūǰayīn<n>><dat>><3sg>/xūǰayīn<n>><dat>><3sg>,CORRECT
 naqli,naqli<n>,naql<n>><3sg>/naqli<n>,CORRECT
 tām,tām<n>,tām<n>,CORRECT
+wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 xūǰayīn,xūǰayīn<n>,xūǰayīn<n>/xūǰayīn<n>,CORRECT
+wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 ɣulům-ard-i,ɣulům<n>><dat>><3sg>,ɣulům<n>><dat>><3sg>,CORRECT
 farmůn,farmůn<n>,farmůn<n>,CORRECT
 ǰāldi,ǰāl<n>><comp>,ǰāld<adj>><3sg>/ǰāld<adj>><3sg>,FAIL
 x̌ār,x̌ār<n>,x̌ār<adj>/x̌ār<n>,CORRECT
+kambaɣal,kambaɣal<n>,<with_little><adj>>baɣal<n>/kambaɣal<n>,CORRECT
 kůr,kůr<n>,kůr<adj>/kůr<n>,CORRECT
 xūǰayīn,xūǰayīn<n>,xūǰayīn<n>/xūǰayīn<n>,CORRECT
 farmůn,farmůn<n>,farmůn<n>,CORRECT
@@ -55,5 +61,6 @@ yaden,yad<v>><prs><3pl>,yad<v><imp>><3pl>/yad<v><prs>><3pl>,CORRECT
 čīd,čīd<n>,čīd<n>/čīd<v><inf>/čīd<v><pst>,CORRECT
 memůn,memůn<n>,me<adj>>му̊н<n>/memůn<n>,CORRECT
 lům,lů<v>><prs><1sg>,lům<n>,FAIL
+wev,wev<dem><d3><pl><obl>,wev<dem><d3><pl><obl>,CORRECT
 dastorxůn,dastorxůn<n>,dastor<adj>>ху̊н<n>/dastorxůn<n>,CORRECT
 kāl,kāl<n>,kāl<n>,CORRECT

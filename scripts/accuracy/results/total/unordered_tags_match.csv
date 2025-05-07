@@ -111,6 +111,7 @@ samari,samari<nprop><samaritan>,samar<n>><3sg>,FAIL
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 půnd-ti,půnd<n>><sup>,půnd<n>><2sg>><3sg>/půnd<n>><sup>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
+bečorā-yi,bečorā<n>><3sg>,<without><adj>>čorā<n>><3sg>/bečorā<adj>><3sg>/bečorā<n>><3sg>,CORRECT
 rām-i,rām<n>><3sg>,rām<n>><3sg>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 xu,xu<pro><refl>,xu<conj><coord1>/xu<pro><refl>,CORRECT
@@ -260,6 +261,7 @@ wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 farmůn,farmůn<n>,farmůn<n>,CORRECT
 ǰāldi,ǰāl<n>><comp>,ǰāld<adj>><3sg>/ǰāld<adj>><3sg>,FAIL
 x̌ār,x̌ār<n>,x̌ār<adj>/x̌ār<n>,CORRECT
+kambaɣal,kambaɣal<n>,<with_little><adj>>baɣal<n>/kambaɣal<n>,CORRECT
 kůr,kůr<n>,kůr<adj>/kůr<n>,CORRECT
 xūǰayīn,xūǰayīn<n>,xūǰayīn<n>/xūǰayīn<n>,CORRECT
 farmůn,farmůn<n>,farmůn<n>,CORRECT
@@ -318,6 +320,7 @@ wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 mamlakat-and,mamlakat<n>><loc>,mamlakat<n>><loc>,CORRECT
 moɣ̌ӡ,moɣ̌ʒ<n>,moɣ̌ӡ<n>/moɣ̌ʒ<n>/moɣ̌ӡ<n>,CORRECT
 sof,sof<n>,sof<n>,CORRECT
+benawo,benawo<n>,<without><adj>>nawo<n>/benawo<n>,CORRECT
 maǰbūri,maǰbūri<n>,maǰbūr<adj>><3sg>/maǰbūr<adj>><3sg>/maǰbūri<adj>/maǰbūri<adj>/maǰbūri<n>/maǰbūri<n>,CORRECT
 boy,boy<n>,boy<n>,CORRECT
 kor,kor<n>,kor<n>,CORRECT
@@ -1268,6 +1271,7 @@ kayůn,kayůn<n>,kayůn<n>,CORRECT
 wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 kayůnen,kayůn<n>><pl>,kayůn<n>><3pl>/kayůn<n>><pl>,CORRECT
 wev,wev<dem><d3><pl><obl>,wev<dem><d3><pl><obl>,CORRECT
+miδustti,mi<prep><cont2>><hand>><sup>,<cont2>>ðust<n>><2sg>><3sg>/<cont2>>δust<n>><2sg>><3sg>/<cont2>>ðust<n>><sup>/<cont2>>δust<n>><sup>,FAIL
 di,di<dem><d2><m><sg><obl>,di<conj><when>/di<dem><d2><m><sg><obl>/di<pro>/di<v><imp>/di<v><prs>,CORRECT
 yamand,yam<dem><d1><sg>><loc>,yam<dem><d1><sg>><loc>/yam<n>><loc>/yam<pro>><loc>,CORRECT
 gāp,gāp<n>,gāp<n>,CORRECT
@@ -1352,6 +1356,9 @@ modar,modar<n>,modar<n>,CORRECT
 ya,yā<dem><d3><f><sg>,ya<v><imp>,FAIL
 čor,čor<n>,čor<n>/čor<num>,CORRECT
 modar,modar<n>,modar<n>,CORRECT
+navad,navad<num>,<neg>>vad<v><pst><f>,FAIL
+navad,navad<num>,<neg>>vad<v><pst><f>,FAIL
+navad,navad<num>,<neg>>vad<v><pst><f>,FAIL
 yāni,yāni<prt>,yān<v><prs>><2sg>/yān<v><prs>><3sg>,FAIL
 čīz,čīz<pro>,čīz<pro>/čīz<n>/čīz<pro>,CORRECT
 dev-en,dev<dem><d2><pl><obl>><3pl>,dev<dem><d2><pl><obl>><3pl>/dev<pro>><3pl>,CORRECT

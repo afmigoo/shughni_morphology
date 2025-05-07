@@ -126,13 +126,22 @@ CSV_FILES := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,$(ACCURACY_DIR)/csv/%.csv,$(
 DETAIL_DIRS := $(patsubst $(ACCURACY_DIR)/elans/%.eaf,$(RESULTS_DIR)/%,$(EAF_FILES))
 
 accuracy: accuracy_data
-	cat $(ACCURACY_DIR)/csv/*.csv | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -p \
+	cat $(ACCURACY_DIR)/csv/*.csv | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -f table \
 		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
 		--hfst-translit translit/cyr2lat.hfstol \
 		--details-dir $(ACCURACY_DIR)/results/total
+
+accuracy_pos_%:
+	mkdir -p $(ACCURACY_DIR)/results/pos
+	cat $(ACCURACY_DIR)/csv/*.csv | grep -E "[^,]*,[^,]*<$(subst accuracy_pos_,,$@)>" |\
+		grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -f table \
+		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
+		--hfst-translit translit/cyr2lat.hfstol \
+		--details-dir $(ACCURACY_DIR)/results/pos/$(subst accuracy_pos_,,$@)
+
 accuracy_individual_files: $(DETAIL_DIRS)
 $(ACCURACY_DIR)/results/%: $(ACCURACY_DIR)/csv/%.csv
-	cat $< | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -p \
+	cat $< | grep -v "wordform,tagged" | $(ACCURACY_DIR)/eval.py -f table \
 		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \
 		--hfst-translit translit/cyr2lat.hfstol \
 		--details-dir $@

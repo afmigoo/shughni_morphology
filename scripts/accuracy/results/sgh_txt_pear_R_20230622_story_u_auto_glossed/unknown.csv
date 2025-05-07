@@ -56,7 +56,7 @@ aro,aro<prt><adr>,*aro,UNKNOWN
 koroči,koroči<rus><hez>,*koroči,UNKNOWN
 fāmtato?,fām<v>><pst>><2sg>><q>,*fāmtato?,UNKNOWN
 wāδen.,wāδ<dem><d3><pl>><3pl>,*wāδen.,UNKNOWN
-wiyaθ,wi<dem><d3><m><sg><o>><int>,*wiyaθ,UNKNOWN
+wiyaθ,wi<dem><d3><m><sg><obl>><int>,*wiyaθ,UNKNOWN
 naɣ̌ǰidata,naɣ̌ǰi<v>><pst>><advs>,*naɣ̌ǰidata,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
@@ -64,7 +64,6 @@ arayga,aray<num>><add1>,*arayga,UNKNOWN
 wirīvӡin…,wirīv<v>><pf><f>><ptcp1>,*wirīvӡin…,UNKNOWN
 aro,aro<prt><adr>,*aro,UNKNOWN
 čīsen;,čīs<v>><prs><3pl>,*čīsen;,UNKNOWN
-baɣer,baɣer<n>,<*with><adj>>ғер<n>,UNKNOWN
 baɣer…,baɣer<n>,*baɣer…,UNKNOWN
 ga,ga<prt><add1>,*ga,UNKNOWN
 plus,plus<prt>,*plus,UNKNOWN
@@ -123,7 +122,6 @@ spakoynikaθ,spakoyn<n>><dim>><adv>,*spakoynikaθ,UNKNOWN
 točnei,točnei<rus>,*točnei,UNKNOWN
 nist…,nist<v><neg>,*nist…,UNKNOWN
 aro…,aro<prt><adr>,*aro…,UNKNOWN
-miδustti,mi<prep><cont2>><hand>><sup>,<*cont2>>δуст<n>><2sg>><3sg>/<*cont2>>δуст<n>><sup>,UNKNOWN
 dāži,dāži<rus>,*dāži,UNKNOWN
 ga,ga<prt><add1>,*ga,UNKNOWN
 id,id<dem><d2><sg>,*id,UNKNOWN
@@ -143,7 +141,7 @@ fāmiyo,fām<v>><prs><2sg>><q>,*fāmiyo,UNKNOWN
 sayuz,sayuz<n><soviet>,*sayuz,UNKNOWN
 lāgerenando,lāger<n>><? pl>><loc>><q>,*lāgerenando,UNKNOWN
 māko,māk<n>><q>,*māko,UNKNOWN
-miti…,mi<dem><d1><m><sg><o>><sup>,*miti…,UNKNOWN
+miti…,mi<dem><d1><m><sg><obl>><sup>,*miti…,UNKNOWN
 ca…,ca<cnj><subd>,*ca…,UNKNOWN
 vud…,vu<v>><pst>,*vud…,UNKNOWN
 gālstukako,gālstuk<n>><dim>><q>,*gālstukako,UNKNOWN
@@ -171,7 +169,7 @@ yast,yast<v>,*yast,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
 aro…,aro<prt><adr>,*aro…,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN
-wev…,wev<dem><d3><pl><o>,*wev…,UNKNOWN
+wev…,wev<dem><d3><pl><obl>,*wev…,UNKNOWN
 nu,nu<rus><hez>,*nu,UNKNOWN
 faktīčeski,faktīčeski<rus>,*faktīčeski,UNKNOWN
 bād,bād<n>,*bād,UNKNOWN

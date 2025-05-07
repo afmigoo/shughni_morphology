@@ -21,6 +21,7 @@ guno,guno<n>,guno<n>,CORRECT
 fukard-aθ,fuk<pro>><dat>><int>,fuk<pro>><dat>><int>/fuka<pro>><dat>><int>,CORRECT
 ar,ar<pro>,ar<n>/ar<prep>/ar<pro>,CORRECT
 čāy,čāy<pro>,čāy<n>/čāy<pro>,CORRECT
+wev,wev<dem><d3><pl><obl>,wev<dem><d3><pl><obl>,CORRECT
 guno,guno<n>,guno<n>,CORRECT
 kinām,kin<v>><prs><1pl>,kin<v><imp>><1pl>/kin<v><prs>><1pl>,CORRECT
 ozmūd-ard,ozmūd<n>><dat>,ozmūd<n>><dat>,CORRECT
@@ -29,12 +30,14 @@ yiblīs,yiblīs<n>,yiblīs<n>,CORRECT
 nigo,nigo<n>,nigo<n>,CORRECT
 farz-ām,farz<n>><1pl>,farz<n>><1pl>,CORRECT
 dūst,dūst<n>,dūst<n>,CORRECT
+wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 čīd,čīd<n>,čīd<n>/čīd<v><inf>/čīd<v><pst>,CORRECT
 divi,divi<n>,divi<n>,CORRECT
 dūst,dūst<n>,dūst<n>,CORRECT
 garδā,garδā<n>,garðā<n>/garδā<n>,CORRECT
 čīd,čīd<n>,čīd<n>/čīd<v><inf>/čīd<v><pst>,CORRECT
 dūst,dūst<n>,dūst<n>,CORRECT
+wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 čīd-and,čīd<n>><loc>,čīd<n>><loc>,CORRECT
 dūst-ard,dūst<n>><dat>,dūst<n>><dat>,CORRECT
 ǰůn,ǰůn<n>,ǰůn<n>/ǰůn<n>,CORRECT
@@ -46,6 +49,7 @@ lům,lů<v>><prs><1sg>,lům<n>,FAIL
 dūst,dūst<n>,dūst<n>,CORRECT
 garδā,garδā<n>,garðā<n>/garδā<n>,CORRECT
 picemak,picemak<n>,picemak<n>,CORRECT
+wi,wi<dem><d3><m><sg><obl>,wi<dem><d3><m><sg><obl>,CORRECT
 ar,ar<pro>,ar<n>/ar<prep>/ar<pro>,CORRECT
 cůnd,cůnd<pro>,cůnd<pro>,CORRECT
 fort,for<v>><prs><3sg>,for<v><prs>><2sg>/for<v><prs>><3sg>/fort<v><inf>/fort<v><pst>,CORRECT
@@ -53,7 +57,7 @@ lům,lů<v>><prs><1sg>,lům<n>,FAIL
 tilābet,tilāb<v>><prs><2pl>,tilāb<v><prs>><2pl>,CORRECT
 x̌ikaret,x̌ikar<v>><prs><2pl>,x̌ikar<v><prs>><2pl>,CORRECT
 divi,divi<n>,divi<n>,CORRECT
-diyet,di<v>><prs><2pl>,di<pro>><2pl>/di<v><imp>><2pl>/di<v><prs>><2pl>,CORRECT
+diyet,di<v>><prs><2pl>,di<dem><d2><m><sg><obl>><2pl>/di<pro>><2pl>/di<v><imp>><2pl>/di<v><prs>><2pl>,CORRECT
 yet,yet<n>,yet<adj>/yet<n>,CORRECT
 kinen,kin<v>><prs><3pl>,kin<v><imp>><3pl>/kin<v><prs>><3pl>,CORRECT
 ar,ar<pro>,ar<n>/ar<prep>/ar<pro>,CORRECT
