@@ -1,9 +1,13 @@
+from typing import Dict, List, Set, Tuple, DefaultDict
+from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List
-import subprocess
 from tqdm import tqdm
+from statistics import mean, median
+import subprocess
 import csv
 import re
+
+import matplotlib.pyplot as plt
 
 input_dump = Path(__file__).parent.joinpath('dump.csv')
 output_dir = Path(__file__).parent.parent.parent.joinpath('translate/lexd')
@@ -114,13 +118,18 @@ def meaning_to_lemma(meaning: str) -> str:
     """
     lemma = meaning.lower()
     lemma = lemma.replace('\n', '')
-    # remove everythihg inside ()
-    lemma = re.sub(r'\(.*\)', '', lemma)
-    # take first substring before ; or ,
-    lemma = re.split(r',|;', lemma, maxsplit=1)[0]
-    # take last substring if : is present
-    if ':' in lemma:
-        lemma = re.split(r':', lemma)[-1]
+    # remove everythihg inside () if its not the entire string
+    no_brackets = re.sub(r'\(.*\)', '', lemma)
+    if no_brackets:
+        lemma = no_brackets
+    else:
+        lemma = re.sub(r'\(|\)', '', lemma)
+    # take first substring before ;
+    lemma = re.split(r';', lemma, maxsplit=1)[0]
+    # take last substring after :
+    lemma = re.split(r':', lemma)[-1]
+    # take first substring before ,
+    lemma = re.split(r',', lemma, maxsplit=1)[0]
     # take first substring if it has 'a) walk b) run' format
     if re.findall(r'.\)', lemma):
         lemma = re.split(r'.\)', lemma)[1]
@@ -134,15 +143,14 @@ def lexd_str(stem: str, lemma: str) -> str:
 
 def generate_lexicons():
     print('Generating lexicons...')
-    pos_lists: Dict[str, list] = {}
-    for ru_tag, pos_tag in pos_alias.items():
-        pos_lists[ru_tag] = list()
+    pos_lists: Dict[str, List[Tuple]] = {}
 
     with open(input_dump, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         next(reader)
 
-        skipped_tags = set()
+        skipped_tags: Set[str] = set()
+        unique_pairs: DefaultDict[str, Set[Tuple[str, str]]] = defaultdict(set)
         # loading dump
         for cyr_stem, ru_tag, meaning in tqdm(reader, desc='Reading dump'):
             if not ru_tag in pos_alias:
@@ -150,6 +158,8 @@ def generate_lexicons():
                 continue
             if re.findall(r' |\.|\(|\)|=|\?', cyr_stem) or cyr_stem.startswith('-'):
                 continue
+            if cyr_stem == 'са́ри':
+                print(123)
             for a, b in cyr_stem_fixes.items():
                 cyr_stem = cyr_stem.replace(a, b)
 
@@ -159,33 +169,45 @@ def generate_lexicons():
                 continue
             if cyr_stem.startswith('-') or cyr_stem.endswith('-'):
                 continue
-            pos_lists[ru_tag].append((
-                cyr_stem, pos_alias[ru_tag], meaning_to_lemma(meaning),
+            unique_pairs[ru_tag].add((
+                cyr_stem, meaning_to_lemma(meaning),
             ))
+        for tag, pairs in unique_pairs.items():
+            pos_lists[tag] = sorted(list(pairs), key=lambda x: x[0] + x[1])
+        del unique_pairs
 
     if INCLUDE_LATIN:
         # creating latin stems from cyrillic
-        for ru_tag, data in tqdm(pos_lists.items(), desc='Generating latin stems'):
-            lat_stems = cyr2lat([x[0] for x in data])
-            if '(каузатив+?' in lat_stems:
-                print('b')
-            assert len(lat_stems) == len(data)
-            for i in range(len(data)):
-                data[i] = (*data[i], lat_stems[i])
+        for ru_tag, pairs in tqdm(pos_lists.items(), desc='Generating latin stems'):
+            # generating latin forms
+            lat_stems = cyr2lat([x[0] for x in pairs])
+            assert len(lat_stems) == len(pairs)
+            for i in range(len(pairs)):
+                # adding latin forms to pairs (now they are triplets)
+                pairs[i] = (*pairs[i], lat_stems[i])
     
     # converting to lexd format strings and writing to files
+    char_lengths = []
+    word_lengths = []
     for ru_tag, data in tqdm(pos_lists.items(), desc='Making lexd'):
         file_name = output_dir.joinpath(f"{pos_alias[ru_tag]}.lexd")
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write(f'LEXICON {get_lexicon_name(pos_alias[ru_tag])}\n')
             for line in data:
                 # cyrillic stem version
-                f.write(lexd_str(line[0], line[2]))
+                char_lengths.append((len(line[1]), line[1]))
+                word_lengths.append((len(line[1].split('_')), line[1]))
+                f.write(lexd_str(line[0], line[1]))
                 # latin stem version
                 if INCLUDE_LATIN and not '+?' in line[0]: # not recognized
-                    f.write(lexd_str(line[3], line[2]))
+                    f.write(lexd_str(line[2], line[1]))
             f.write('\n\n')
 
+    print(sum(1 for x in word_lengths if x[0] <= 5) / len(word_lengths))
+    print(f'[Chars] Mean: {mean(x[0] for x in char_lengths):.3f}; median: {median(x[0] for x in char_lengths)} min: {min(char_lengths)} max: {max(char_lengths)}')
+    print(f'[Words] Mean: {mean(x[0] for x in word_lengths):.3f}; median: {median(x[0] for x in word_lengths)} min: {min(word_lengths)} max: {max(word_lengths)}')
+    #plt.hist([x[0] for x in lemma_lengths], bins=100)
+    #plt.savefig("lemma_len.pdf", format="pdf", bbox_inches="tight") 
     print('Skipped tags:', *skipped_tags)
 
 def main():

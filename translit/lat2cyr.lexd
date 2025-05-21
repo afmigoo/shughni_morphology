@@ -1,5 +1,5 @@
 PATTERNS
-((Letters Stress?)|SpecialCharacters)*
+(Letters|Stress|SpecialCharacters)*
 
 LEXICON Letters
 a:а     # a
