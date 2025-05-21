@@ -21,6 +21,7 @@ def rmpunct(s: str) -> str:
 def main():
     args = parser.parse_args()
     words = get_word_pairs(Path(args.elan_file))
+    print(args.elan_file, ':', len(words))
     with open(args.csv_file, 'w', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(('wordform', 'tagged'))

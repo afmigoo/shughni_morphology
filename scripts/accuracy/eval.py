@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-from typing import List, Dict, Tuple, Callable, Union, Literal
+from typing import List, Dict, Tuple, Callable, Union, Literal, Set, Iterable
+from collections import defaultdict
 from dataclasses import dataclass
 from pprint import pprint
 from pathlib import Path
@@ -91,10 +92,10 @@ class HfstException(Exception):
 @dataclass
 class ParsedItem:
     input_str: str
-    out_variants: List[str]
+    out_variants: List[str] | None
 
     def variants(self) -> str:
-        return f'{"/".join(self.out_variants)}'
+        return f'{"/".join(self.out_variants)}' if self.out_variants else 'UNK'
     def __str__(self):
         return f'{self.input_str} -> {self.variants()}'
     def __repr__(self):
@@ -106,6 +107,8 @@ def parse_apertium(stdout: str) -> List[ParsedItem]:
     for raw in re.finditer(r'\^([^\^\$]+)\$', stdout):
         apertium = raw.groups()[-1]
         input_str, *output_variants = apertium.split('/')
+        if '*' in output_variants[0]: # unrecognized
+            output_variants = None
         items.append(ParsedItem(input_str=input_str,
                                 out_variants=output_variants))
     return items
@@ -126,7 +129,9 @@ def hfst_lookup(hfst_file: Union[Path, str],
     stderr = stderr.decode() if stderr else ''
     if proc.returncode != 0:
         raise HfstException(f'hfst-lookup: stdout={stdout}; stderr={stderr}')
-    return parse_apertium(stdout)
+    parsed = parse_apertium(stdout)
+    assert set(x.input_str for x in parsed) == set(input_strings)
+    return parsed
 
 ##############################
 #    Stem Transliteration    #
@@ -138,17 +143,18 @@ def make_latin(items: List[ParsedItem], hfst: str):
     cyr2lat: Dict[str, List[str]] = {}
     # gathering all present stems
     for it in items:
-        if '*' in it.out_variants[0]:
+        if it.out_variants is None:
             continue
         for var in it.out_variants:
             stem = get_stem(var)
             cyr2lat[stem] = []
     # transliterating all stems at once is ~40 times faster than transliterating one stem at a time
     for translit in hfst_lookup(hfst, list(cyr2lat.keys())):
-        cyr2lat[translit.input_str] = translit.out_variants
+        if not translit.out_variants is None:
+            cyr2lat[translit.input_str] = translit.out_variants
     # replacing cyr stems with lat stems
     for it in items:
-        if '*' in it.out_variants[0]:
+        if it.out_variants is None:
             continue
         new_variants: List[str] = []
         for var in it.out_variants:
@@ -192,7 +198,9 @@ accuracy_funcs: AccFuncsMapping = {
 ################
 #    OUTPUT    #
 ################
-def log_details(dir: Path, out_file: str, wordform: str, reference: str, real_output: str, result: str):
+def log_details(dir: Path, out_file: str, 
+                wordform: str, reference: str,
+                real_output: str, result: str):
     if dir is None:
         return
     if not out_file.endswith('.csv'):
@@ -201,66 +209,80 @@ def log_details(dir: Path, out_file: str, wordform: str, reference: str, real_ou
         writer = csv.writer(out_f)
         writer.writerow((wordform, reference, real_output, result))
 
-def table_results(results: dict, format: Literal['table', 'json', 'json_indent']):
-    if format == 'table':
-        table = [['coverage', results['recognized']/results['total'], f"{results['recognized']}/{results['total']}"]]
-        for metric, data in results['accuracy'].items():
-            table.append([metric, data['acc'], f"{data['correct']}/{data['recognized']}"])
-        for row in table:
-            row[1] = f'{row[1] * 100:.2f}%'
-        print(tabulate([['metric', 'value', 'absolute'], *table],
-                        tablefmt="rounded_outline", headers='firstrow'))
-        print()
-    else:
-        if format == 'json':
-            print(results)
-        if format == 'json_indent':
-            pprint(results)
+def table_results(results: dict):
+    print(tabulate([['metric', 'Value', 'Absolute'],
+                    ['coverage', results['recognized']/results['total'], f"{results['recognized']}/{results['total']}"]],
+                    tablefmt="rounded_outline", headers='firstrow'))
+    columns = list(next(iter(results['metrics'].values())).keys()) # BRUH
+    columns.sort()
+    table = []
+    for metric, data in results['metrics'].items():
+        table.append([metric, *[data[c] for c in columns]])
+    print(tabulate([['metric', *columns], *table],
+                    tablefmt="rounded_outline", headers='firstrow'))
+    print()
 
 ####################
 #    Evaluation    #
 ####################
-def replace_aliases(tagged: List[str]):
-    for i in range(len(tagged)):
+def replace_aliases(wf_variants: Dict[str, Set[str]]):
+    for wf, variants in wf_variants.items():
         for old, new in tag_aliases.items():
-            tagged[i] = tagged[i].replace(old, new)
+            for v in list(variants): # converting to list makes a copy of set items, which evades iteration over changing set problem
+                new_v = v.replace(old, new)
+                if new_v != v:
+                    variants.remove(v)
+                    variants.add(new_v)
 
-def compare(reference: List[str], predicted: List[ParsedItem], 
+def compare(ref_variants: Dict[str, Set[str]], predicted: List[ParsedItem], 
             acc_funcs: AccFuncsMapping, details_dir: Path) -> dict:
-    if len(reference) != len(predicted):
-        raise RuntimeError(f'Reference count {len(reference)} != Predicted count {len(predicted)}')
-    total = len(reference)
+    details_dir.mkdir(exist_ok=True, parents=True)
+    for f in details_dir.iterdir():
+        f.unlink()
+    total = len(predicted)
     recognized = 0
-    acc_results = {k: {'correct': 0, 'recognized': 0} 
+    raw_metrics = {k: {'TP': 0, 'FN': 0, 'ANY': 0}
                    for k in acc_funcs.keys()}
-    # evaluating absolute counts
-    for ref, pred in zip(reference, predicted):
-        is_correct = False
-        if '*' in pred.out_variants[0]:
-            log_details(details_dir, 'unknown', pred.input_str, ref, pred.variants(), 'UNKNOWN')
+    # evaluating absolute TP, FN counts
+    for pred in predicted:
+        if not pred.input_str in ref_variants:
+            raise RuntimeError(f'Prediction {pred} is missing in gold standard')
+        reference_variants = '/'.join(ref_variants[pred.input_str])
+        if pred.out_variants is None:
+            log_details(details_dir, 'unknown', pred.input_str, reference_variants, pred.variants(), 'UNKNOWN')
             continue
         recognized += 1
-        for acc_type in acc_funcs.keys():
-            acc_results[acc_type]['recognized'] += 1
+        for acc_variant in acc_funcs.keys():
+            lazy_any_correct = False
             for pred_var in pred.out_variants:
-                if acc_funcs[acc_type](ref, pred_var):
-                    is_correct = True
-                    acc_results[acc_type]['correct'] += 1
-                    log_details(details_dir, acc_type, pred.input_str, ref, pred.variants(), 'CORRECT')
-                    break
-            if not is_correct:
-                log_details(details_dir, acc_type, pred.input_str, ref, pred.variants(), 'FAIL')
-    # evaluating fractional counts
-    for acc_type in acc_funcs.keys():
-        if acc_results[acc_type]['recognized'] == 0:
-            acc_results[acc_type]['acc'] = 0
+                is_correct = False
+                for ref in ref_variants[pred.input_str]:
+                    is_correct = is_correct or acc_funcs[acc_variant](ref, pred_var) # raise flag if not up yet
+                raw_metrics[acc_variant]['TP'] += int(is_correct)
+                raw_metrics[acc_variant]['FN'] += int(not is_correct)
+                lazy_any_correct = lazy_any_correct or is_correct # raise flag if not up yet
+
+            raw_metrics[acc_variant]['ANY'] += int(lazy_any_correct)
+            log_details(details_dir, acc_variant, pred.input_str, 
+                        reference_variants, pred.variants(), 
+                        'CORRECT' if lazy_any_correct else 'FAIL')
+    # evaluating Precision and Recall
+    FP = total - recognized # FP = unrecognized
+    for acc_variant in acc_funcs.keys():
+        FN = raw_metrics[acc_variant]['FN']; del raw_metrics[acc_variant]['FN']
+        TP = raw_metrics[acc_variant]['TP']; del raw_metrics[acc_variant]['TP']
+        raw_metrics[acc_variant]['Precision'] = TP / (TP + FN)
+    # evaluating lazy accuracy
+    for acc_variant in acc_funcs.keys():
+        if recognized == 0:
+            raw_metrics[acc_variant]['Accuracy_ANY'] = 0
         else:
-            acc_results[acc_type]['acc'] = acc_results[acc_type]['correct'] /\
-                                           acc_results[acc_type]['recognized']
+            raw_metrics[acc_variant]['Accuracy_ANY'] = raw_metrics[acc_variant]['ANY'] / recognized
+        del raw_metrics[acc_variant]['ANY']
     return {
         'total': total,
         'recognized': recognized,
-        'accuracy': acc_results
+        'metrics': raw_metrics
     }
 
 def main():
@@ -268,25 +290,58 @@ def main():
     details_dir = None
     if args.details_dir:
         details_dir = Path(args.details_dir)
-        details_dir.mkdir(exist_ok=True, parents=True)
-        for f in details_dir.iterdir():
-            f.unlink()
+        all_subdir = details_dir.joinpath('all')
+        unique_subdir = details_dir.joinpath('unique_subdir')
 
     # READING THE DATA
     if args.csv == 'STDIN':
         wordforms, reference = read_stdin(drop_first=args.drop_first_csv_row)
     else:
         wordforms, reference = read_csv(args.csv, drop_first=args.drop_first_csv_row)
+    # Forming all unique reference variants for all unique wordforms
+    wf_variants = defaultdict(set)
+    wf_freq = defaultdict(int)
+    for wf, ref in zip(wordforms, reference):
+        wf_variants[wf].add(ref)
+        wf_freq[wf] += 1
     # PREPROCESS
-    replace_aliases(reference)
-    predicted = hfst_lookup(args.hfst_analyzer, wordforms)
+    replace_aliases(wf_variants)
+    # PREDICTION
+    predicted_unique = hfst_lookup(args.hfst_analyzer, list(wf_variants.keys()))
+    predicted_all = hfst_lookup(args.hfst_analyzer, wordforms)
     if args.hfst_translit:
-        make_latin(predicted, hfst=args.hfst_translit)
+        make_latin(predicted_unique, hfst=args.hfst_translit)
+        make_latin(predicted_all, hfst=args.hfst_translit)
     # EVALUATE
-    results = compare(reference, predicted, accuracy_funcs, details_dir=details_dir)
+    results_unique = compare(wf_variants, predicted_unique, accuracy_funcs, details_dir=unique_subdir)
+    results_all = compare(wf_variants, predicted_all, accuracy_funcs, details_dir=all_subdir)
     # PRINT
-    table_results(results, format=args.output_format)
+    if args.output_format == 'table':
+        print('All tokens')
+        table_results(results_all)
+        print('Unique tokens')
+        table_results(results_unique)
+    else:
+        json_ = {'all': results_all, 'unique': results_unique}
+        if args.output_format == 'json':
+            print(json_)
+        if args.output_format == 'json_indent':
+            pprint(json_)
 
 if __name__ == '__main__':
     main()
-    #print(parse_apertium(call_hfst_lookup(HFST_ANALYZER, ['wi-rd-i', 'wi-rd-i', 'wi-rd-i'])))
+    exit()
+    wordforms, reference = read_csv('scripts/accuracy/csv/Bear_thief_new.csv', drop_first=True)
+
+    wf_variants = defaultdict(set)
+    wf_freq = defaultdict(int)
+    for wf, ref in zip(wordforms, reference):
+        wf_variants[wf].add(ref)
+        wf_freq[wf] += 1
+    replace_aliases(wf_variants)
+
+    predicted = hfst_lookup('sgh_analyze_stem_word_lat.hfst', list(wf_variants.keys()))
+    make_latin(predicted, hfst='translit/cyr2lat.hfst')
+    results = compare(wf_variants, predicted, accuracy_funcs, details_dir=None)
+
+    pprint(results)

@@ -73,6 +73,7 @@ def main():
     lat_words: List[str] = []
     cyr_words: List[str] = []
     for line in stdin:
+        line = line.lower()
         if writing_score(line, LAT) > writing_score(line, CYR):
             lat_words.extend(line.strip().split())
         else:
@@ -89,7 +90,7 @@ def main():
 
     print('Coverage corpus')
     print(tabulate([['metric', 'value', 'absolute'],
-                    ['coverage', f'{success / len(analyzed):.4f}', f'{success}/{len(analyzed)}']],
+                    ['coverage', f'{100 * success / len(analyzed):.2f}%', f'{success}/{len(analyzed)}']],
                     tablefmt="rounded_outline", headers='firstrow'))
     print(f"Top 5 unrecognized (morphs):")
     pprint(fail_morph.most_common(5))
