@@ -277,13 +277,15 @@ def compare(ref_variants: Dict[str, List[str]], predicted: List[ParsedItem],
             raw_metrics[acc_variant]['FP'] += FP
             raw_metrics[acc_variant]['ANY'] += int(TP > 0)
     # evaluating Precision and Recall
-    FP = total - recognized # FP = unrecognized
     for acc_variant in acc_funcs.keys():
         FN = raw_metrics[acc_variant].pop('FN')
         TP = raw_metrics[acc_variant].pop('TP')
         FP = raw_metrics[acc_variant].pop('FP')
-        raw_metrics[acc_variant]['Precision'] = TP / (TP + FP)
-        raw_metrics[acc_variant]['Recall'] = TP / (TP + FN)
+        precision = TP / (TP + FP)
+        recall = TP / (TP + FN)
+        raw_metrics[acc_variant]['Precision'] = precision
+        raw_metrics[acc_variant]['Recall'] = recall
+        raw_metrics[acc_variant]['F-Score'] = (2*precision*recall) / (precision + recall)
     # evaluating lazy accuracy
     for acc_variant in acc_funcs.keys():
         if recognized == 0:
