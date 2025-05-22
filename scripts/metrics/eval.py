@@ -49,7 +49,7 @@ tag_aliases = {
     '<o>': '<obl>'
 }
 
-AccFuncsMapping = Dict[str, Callable[[str, str], bool]]
+EqFunc = Callable[[str, str], bool]
 
 ###############
 #    INPUT    #
@@ -109,6 +109,9 @@ def parse_apertium(stdout: str) -> List[ParsedItem]:
         input_str, *output_variants = apertium.split('/')
         if '*' in output_variants[0]: # unrecognized
             output_variants = None
+        else:
+            # leaving only unique strings
+            output_variants = sorted(set(output_variants))
         items.append(ParsedItem(input_str=input_str,
                                 out_variants=output_variants))
     return items
@@ -188,7 +191,7 @@ def match_unordered(tagged1: str, tagged2: str) -> bool:
     tags2 = set(re.findall(r'<[^<>]+>', tagged2))
     return match_stem(tagged1, tagged2) and tags1 == tags2
 
-accuracy_funcs: AccFuncsMapping = {
+accuracy_funcs: Dict[str, EqFunc] = {
     'exact_match':          match_exact,
     'stem_match':           match_stem,
     'pos_match':            match_pos,
@@ -225,25 +228,36 @@ def table_results(results: dict):
 ####################
 #    Evaluation    #
 ####################
-def replace_aliases(wf_variants: Dict[str, Set[str]]):
+def replace_aliases(wf_variants: Dict[str, List[str]]):
     for wf, variants in wf_variants.items():
-        for old, new in tag_aliases.items():
-            for v in list(variants): # converting to list makes a copy of set items, which evades iteration over changing set problem
-                new_v = v.replace(old, new)
-                if new_v != v:
-                    variants.remove(v)
-                    variants.add(new_v)
+        for i in range(len(variants)):
+            for old, new in tag_aliases.items():
+                variants[i] = variants[i].replace(old, new)
 
-def compare(ref_variants: Dict[str, Set[str]], predicted: List[ParsedItem], 
-            acc_funcs: AccFuncsMapping, details_dir: Path) -> dict:
+def count_tp_fn_fp(gold_standard: List[str], fst_output: List[str], 
+                   eq_fn: EqFunc) -> Tuple[int, int, int]:
+    TP = 0
+    gold_missing = [True] * len(gold_standard)
+    fst_missing = [True] * len(fst_output)
+    for i in range(len(gold_standard)):
+        for j in range(len(fst_output)):
+            if eq_fn(gold_standard[i], fst_output[j]):
+                TP += 1
+                gold_missing[i] = fst_missing[j] = False
+    FN = sum(int(flag) for flag in gold_missing)
+    FP = sum(int(flag) for flag in fst_missing)
+    return TP, FN, FP
+
+def compare(ref_variants: Dict[str, List[str]], predicted: List[ParsedItem], 
+            acc_funcs: Dict[str, EqFunc], details_dir: Path) -> dict:
     details_dir.mkdir(exist_ok=True, parents=True)
     for f in details_dir.iterdir():
         f.unlink()
     total = len(predicted)
     recognized = 0
-    raw_metrics = {k: {'TP': 0, 'FN': 0, 'ANY': 0}
+    raw_metrics = {k: {'TP': 0, 'FN': 0, 'FP': 0, 'ANY': 0}
                    for k in acc_funcs.keys()}
-    # evaluating absolute TP, FN counts
+    # evaluating absolute TP, FN, FP counts
     for pred in predicted:
         if not pred.input_str in ref_variants:
             raise RuntimeError(f'Prediction {pred} is missing in gold standard')
@@ -253,32 +267,29 @@ def compare(ref_variants: Dict[str, Set[str]], predicted: List[ParsedItem],
             continue
         recognized += 1
         for acc_variant in acc_funcs.keys():
-            lazy_any_correct = False
-            for pred_var in pred.out_variants:
-                is_correct = False
-                for ref in ref_variants[pred.input_str]:
-                    is_correct = is_correct or acc_funcs[acc_variant](ref, pred_var) # raise flag if not up yet
-                raw_metrics[acc_variant]['TP'] += int(is_correct)
-                raw_metrics[acc_variant]['FN'] += int(not is_correct)
-                lazy_any_correct = lazy_any_correct or is_correct # raise flag if not up yet
-
-            raw_metrics[acc_variant]['ANY'] += int(lazy_any_correct)
+            TP, FN, FP = count_tp_fn_fp(ref_variants[pred.input_str], pred.out_variants, 
+                                        acc_funcs[acc_variant])
             log_details(details_dir, acc_variant, pred.input_str, 
                         reference_variants, pred.variants(), 
-                        'CORRECT' if lazy_any_correct else 'FAIL')
+                        f'TP={TP};FN={FN};FP={FP}')
+            raw_metrics[acc_variant]['TP'] += TP
+            raw_metrics[acc_variant]['FN'] += FN
+            raw_metrics[acc_variant]['FP'] += FP
+            raw_metrics[acc_variant]['ANY'] += int(TP > 0)
     # evaluating Precision and Recall
     FP = total - recognized # FP = unrecognized
     for acc_variant in acc_funcs.keys():
-        FN = raw_metrics[acc_variant]['FN']; del raw_metrics[acc_variant]['FN']
-        TP = raw_metrics[acc_variant]['TP']; del raw_metrics[acc_variant]['TP']
-        raw_metrics[acc_variant]['Precision'] = TP / (TP + FN)
+        FN = raw_metrics[acc_variant].pop('FN')
+        TP = raw_metrics[acc_variant].pop('TP')
+        FP = raw_metrics[acc_variant].pop('FP')
+        raw_metrics[acc_variant]['Precision'] = TP / (TP + FP)
+        raw_metrics[acc_variant]['Recall'] = TP / (TP + FN)
     # evaluating lazy accuracy
     for acc_variant in acc_funcs.keys():
         if recognized == 0:
-            raw_metrics[acc_variant]['Accuracy_ANY'] = 0
+            raw_metrics[acc_variant]['Accuracy(any)'] = 0
         else:
-            raw_metrics[acc_variant]['Accuracy_ANY'] = raw_metrics[acc_variant]['ANY'] / recognized
-        del raw_metrics[acc_variant]['ANY']
+            raw_metrics[acc_variant]['Accuracy(any)'] = raw_metrics[acc_variant].pop('ANY') / recognized
     return {
         'total': total,
         'recognized': recognized,
@@ -299,10 +310,11 @@ def main():
     else:
         wordforms, reference = read_csv(args.csv, drop_first=args.drop_first_csv_row)
     # Forming all unique reference variants for all unique wordforms
-    wf_variants = defaultdict(set)
+    wf_variants = defaultdict(list)
     wf_freq = defaultdict(int)
     for wf, ref in zip(wordforms, reference):
-        wf_variants[wf].add(ref)
+        if not ref in wf_variants[wf]:
+            wf_variants[wf].append(ref)
         wf_freq[wf] += 1
     # PREPROCESS
     replace_aliases(wf_variants)
@@ -330,18 +342,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    exit()
-    wordforms, reference = read_csv('scripts/accuracy/csv/Bear_thief_new.csv', drop_first=True)
-
-    wf_variants = defaultdict(set)
-    wf_freq = defaultdict(int)
-    for wf, ref in zip(wordforms, reference):
-        wf_variants[wf].add(ref)
-        wf_freq[wf] += 1
-    replace_aliases(wf_variants)
-
-    predicted = hfst_lookup('sgh_analyze_stem_word_lat.hfst', list(wf_variants.keys()))
-    make_latin(predicted, hfst='translit/cyr2lat.hfst')
-    results = compare(wf_variants, predicted, accuracy_funcs, details_dir=None)
-
-    pprint(results)
+    #count_tp_fn_fp(['a<n>', 'a<conj>'], ['a<n>', 'a<v>', 'a<adj>'], match_stem_and_pos)
