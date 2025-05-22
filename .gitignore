@@ -10,6 +10,7 @@ test.*
 sgh.lexd
 translate/sgh_rulem.lexd
 scripts/metrics/results/pos
+scripts/metrics/results/total/all/
 
 converter
 tmp
