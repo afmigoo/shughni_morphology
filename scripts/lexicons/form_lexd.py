@@ -6,6 +6,7 @@ import os
 
 from src.noun_fix import fix_nouns
 from src.pron_fix import fix_pronouns
+from src.verb_fix import replace_ending_td, replace_ending_ch
 
 input_dir = Path(__file__).parent.joinpath('db_dumps')
 output_dir = Path(__file__).parent.parent.parent.joinpath('lexd/lexicons')
@@ -43,6 +44,23 @@ def write_lexicon(file: Path, lines: List[Tuple[str, str]]):
         for w, com in lines:
             f.write(f"{w}{' '*(comment_distance - len(w))}# {com}\n")    
 
+def apply_fixes(lines: List[Tuple[str, str]], file: Path) -> List[Tuple[str, str]]:
+    # adding noun tags
+    if 'noun' in file.stem:
+        fix_nouns(lines)
+    # fixing inf stems
+    if 'verb_inf' in file.stem:
+        for i in range(len(lines)):
+            lines[i] = (lines[i][0].removesuffix('оw'), lines[i][1])
+    # fixing pst and inf stem endings
+    if 'perf.csv' in file.stem:
+        lines = replace_ending_ch(lines)
+    # removing existing pronouns
+    if 'pron' in file.stem:
+        lines = fix_pronouns(lines)
+
+    return lines
+
 def process(file: Path) -> None:
     # reading lines in a list of tuples
     # and filtering out non-words
@@ -62,30 +80,15 @@ def process(file: Path) -> None:
         if lines[i][0] != lines[cur_main][0]:
             cur_main = i
         else:
-            lines[cur_main] = (lines[cur_main][0], f"{lines[cur_main][1]}; {lines[i][1]}")
+            if lines[i][1] in lines[cur_main][1]:
+                new_meaning = ''
+            else:
+                new_meaning = f"; {lines[i][1]}"
+            lines[cur_main] = (lines[cur_main][0], f"{lines[cur_main][1]}{new_meaning}")
             deleted.add(i)
     lines = [lines[i] for i in range(len(lines)) if not i in deleted]
-    # adding gender tag if present
     out_file = f'{file.stem}.lexd'
-    allowed_tags = ['f', 'm']
-    tag = ''
-    for t in allowed_tags:
-        if file.stem.endswith(f'_{t}'):
-            tag = t
-    if tag != '':
-        out_file = out_file.replace(f'_{tag}', '')
-        for i in range(len(lines)):
-            lines[i] = (f'{lines[i][0]}[{tag}]', lines[i][1])
-    # adding noun tags
-    if 'noun' in file.stem:
-        fix_nouns(lines)
-    # fixing inf stems
-    if 'verb_inf' in file.stem:
-        for i in range(len(lines)):
-            lines[i] = (lines[i][0].removesuffix('оw'), lines[i][1])
-    if 'pron' in file.stem:
-        lines = fix_pronouns(lines)
-                
+    lines = apply_fixes(lines, file)
     # writing words
     write_lexicon(output_dir.joinpath(out_file), lines)
 

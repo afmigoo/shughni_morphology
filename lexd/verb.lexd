@@ -13,26 +13,27 @@ PerfVerbBase
 InfVerbBase
 
 PATTERN NPastVerbBase
-LexiconVerbNpst       [<v><prs>:] (_morph_hyphen_ PresSuffixes)?
+LexiconVerbNpst     [<v><prs>:] (_morph_hyphen_ PresSuffixes)?
+LexiconVerbNpst1sgSh [<v>:] [<prs><1sg>:м] # Карамшоев и БД
 
 PATTERN PastVerbBase
-LexiconVerbPst[f]     [<v><pst><f>:]
-LexiconVerbPst[m]     [<v><pst><m>:]
-LexiconVerbPst[-m,-f] [<v><pst>:]
-# the past stem is identical to the infinitive (Parker 2023, p. 109)
-LexiconVerbInf         [<v><pst>:]
+LexiconVerbPstF     [<v><pst><f>:]
+LexiconVerbPstFPl   [<v><pst><f_pl>:]
+LexiconVerbPstM     [<v><pst><m>:]
+# Past stems are equivalent to the present stem with an additional stop -t/-d (Parker 2023, p. 256)
+LexiconVerbNpst     [<v>:] _morph_ [<pst>:{vДТ}]
 
 PATTERN ImperVerbBase
-LexiconVerbImper       [<v><imp>:]
+LexiconVerbImper    [<v><imp>:]
 
 PATTERN PerfVerbBase
-LexiconVerbPerf[f]     [<v><prf><f>:]
-LexiconVerbPerf[m]     [<v><prf><m>:]
-LexiconVerbPerf[-m,-f] [<v><prf>:]
+LexiconVerbPerfF     [<v><prf><f>:]
+LexiconVerbPerfM     [<v><prf><m>:]
+LexiconVerbNpst     [<v>:] _morph_ [<prf>:{vҶЧ}]
 
 PATTERN InfVerbBase
-LexiconVerbInf         [<v><inf>:] (_morph_hyphen_ PurpSuff)?
-
+# Infinite stems are equivalent to the present stems with an additional stop -t/-d (Parker 2023, p. 256)
+LexiconVerbNpst [<v>:] _morph_ [<inf>:{vДТ}] (_morph_hyphen_ PurpSuff)?
 
 # Parker 8.2.1
 LEXICON PresSuffixes
@@ -52,5 +53,6 @@ VERBNEG _hyphen_
 # Parker 8.2.2
 LEXICON VERBNEG 
 <neg>:на
+<neg>:нā # internal gloss document
 <neg>:мā
 

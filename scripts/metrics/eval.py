@@ -46,7 +46,9 @@ parser_optional.add_argument('--details-dir',
 
 tag_aliases = {
     '<lat>': '<dat>',
-    '<o>': '<obl>'
+    '<o>': '<obl>',
+    '<pf>': '<prf>',
+    '<f/pl>': '<f_pl>'
 }
 
 EqFunc = Callable[[str, str], bool]
@@ -140,7 +142,10 @@ def hfst_lookup(hfst_file: Union[Path, str],
 #    Stem Transliteration    #
 ##############################
 def get_stem(tagged: str) -> str:
-    return re.findall(r'>?([^<>]+)<', tagged)[0]
+    try:
+        return re.findall(r'>?([^<>]+)<', tagged)[0]
+    except IndexError:
+        raise RuntimeError(f'No stem found for \'{tagged}\'')
 
 def make_latin(items: List[ParsedItem], hfst: str):
     cyr2lat: Dict[str, List[str]] = {}
@@ -285,7 +290,10 @@ def compare(ref_variants: Dict[str, List[str]], predicted: List[ParsedItem],
         recall = TP / (TP + FN)
         raw_metrics[acc_variant]['Precision'] = precision
         raw_metrics[acc_variant]['Recall'] = recall
-        raw_metrics[acc_variant]['F-Score'] = (2*precision*recall) / (precision + recall)
+        if precision + recall == 0:
+            raw_metrics[acc_variant]['F-Score'] = 0
+        else:
+            raw_metrics[acc_variant]['F-Score'] = (2*precision*recall) / (precision + recall)
     # evaluating lazy accuracy
     for acc_variant in acc_funcs.keys():
         if recognized == 0:

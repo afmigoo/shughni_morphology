@@ -1,18 +1,27 @@
 Alphabet
-  а ā б в w г ғ ғ̌ ɣ̌ д δ е ê ж з z ž ȥ и й ӣ ӣ к қ л м н о п р с т θ у ӯ у̊ ф х х̌ ҳ ц ч ш ҷ 
+  а ā б в w г ғ ғ̌ ɣ̌ ɣ д δ е ê ж з ӡ z ž ȥ и й ӣ ӣ к қ л м н о п р с т θ у ӯ у̊ ф х х̌ ҳ ц ч ш ҷ 
   %- %> 
   %{Й%}:0 %{Й%}:й
   %{А%}:0 %{А%}:а
   %{ДТ%}:д %{ДТ%}:т
+  %{vДТ%}:д %{vДТ%}:т
+  %{vҶЧ%}:ҷ %{vҶЧ%}:ч
 ;
 
 Sets
 
-Consonant = б в w г ғ ғ̌ ɣ̌ д δ ж з z ž ȥ й к қ л м н п р с т θ ф х х̌ ҳ ц ч ш ҷ ;
+Consonant = б в w г ғ ғ̌ ɣ̌ д δ ж з z ž ӡ ȥ й к қ л м н п р с т θ ф х х̌ ҳ ц ч ш ҷ ;
 Vowel =     а ā е ê и ӣ ӣ о у ӯ у̊ ;
 
-DGroup = а ā е ê и ӣ ӣ о у ӯ у̊ б в w г ғ ғ̌ ɣ̌ д δ ж з z ž ȥ к қ ;
+DGroup = а ā е ê и ӣ ӣ о у ӯ у̊ б в w г ғ ғ̌ ɣ̌ ɣ д δ ж з z ž ȥ к қ ;
 TGroup = й л м н п р с т θ ф х х̌ ҳ ц ч ш ҷ ;
+
+VoicedObstruent = б д г в δ з ж ӡ z ž ȥ ɣ̌ ɣ ҷ ғ ғ̌ ;
+VoicelessConsonant = п т к ф θ с ш х х̌ ҳ ц ч қ ;
+
+Nasal = н м ;
+Liquid = л р ;
+Semivowel = w й ;
 
 Rules
 
@@ -24,3 +33,15 @@ Rules
 
 "Суффикс 3sg презенса д/т"
 %{ДТ%}:д <=> DGroup _ ;
+
+"Окончание глаголов Past и Inf"
+%{vДТ%}:д => [VoicedObstruent | Vowel | Semivowel] (%>) _ ;
+
+"Окончание глаголов Past и Inf"
+%{vДТ%}:т => [VoicelessConsonant | Nasal | Liquid] (%>) _ ;
+
+"Окончание глаголов Perf"
+%{vҶЧ%}:ҷ => [VoicedObstruent | Vowel | Semivowel] (%>) _ ;
+
+"Окончание глаголов Perf"
+%{vҶЧ%}:ч => [VoicelessConsonant | Nasal | Liquid] (%>) _ ;
