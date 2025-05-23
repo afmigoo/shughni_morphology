@@ -33,6 +33,60 @@
 ## Translit
 - почему stress удаляется только lat2cyr 
 
+## POS
+- ~~глагол~~
+- ~~существительное~~
+- ~~прилагательное~~
+- ~~местоимение~~
+- междометие
+- наречие
+- причастие
+- ~~числительное~~
+- частица
+- ~~предлог~~
+- послелог
+- ~~союз~~
+- вводное слово
+- предикатив
+
+## Glosses!!!
+- sup.pl
+- ~~pst.sh~~
+- ~~pst.m~~
+- ~~pst.f/pl~~
+- ~~pst.f~~
+- ~~pst~~
+- proh.sh
+- proh
+- pf.pl
+- ~~pf.m~~
+- ~~pf.f~~
+- ~~pf~~
+- ~~npst.sh~~
+- ~~npst.f.3sg~~
+- ~~npst.f~~
+- ~~npst.3sg.sh~~
+- ~~npst.3sg~~
+- ~~npst.3pl.sh~~
+- ~~npst.3pl~~
+- ~~npst.2sg.sh~~
+- ~~npst.2sg~~
+- ~~npst.2pl.sh~~
+- ~~npst.2pl~~
+- ~~npst.1sg.sh~~
+- ~~npst.1sg~~
+- ~~npst.1pl~~
+- ~~npst~~
+- noun.pl
+- inf.sh
+- inf.f
+- ~~inf~~
+- imper.sh
+- ~~imper~~
+- dim
+- cv
+- comp
+
 ## SQLs
 Extract all POS
 ```sql

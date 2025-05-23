@@ -17,5 +17,4 @@ def get_pron_from_lexd(file: Path) -> Set[str]:
 
 def fix_pronouns(lines: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
     existing = get_pron_from_lexd(main_lexd)
-    print(existing)
     return [l for l in lines if not l[0] in existing]

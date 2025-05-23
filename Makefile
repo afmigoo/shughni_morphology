@@ -160,3 +160,13 @@ COVERAGE_DIR := scripts/coverage
 metrics_quantity:
 	cat $(COVERAGE_DIR)/corpus/* | $(COVERAGE_DIR)/eval.py
 
+
+########
+# Misc #
+########
+
+lexicons:
+	python3 scripts/lexicons/form_lexd.py
+
+rulemmas:
+	python3 scripts/ru_lemmas/process_db_dump.py
