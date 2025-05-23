@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from typing import List, Dict, Tuple, Callable, Union, Literal, Set, Iterable
-from collections import defaultdict
+from collections import defaultdict, Counter
 from dataclasses import dataclass
 from pprint import pprint
 from pathlib import Path
@@ -48,7 +48,8 @@ tag_aliases = {
     '<lat>': '<dat>',
     '<o>': '<obl>',
     '<pf>': '<prf>',
-    '<f/pl>': '<f_pl>'
+    '<f/pl>': '<f_pl>',
+    '<cnj>': '<conj>'
 }
 
 EqFunc = Callable[[str, str], bool]
@@ -146,6 +147,12 @@ def get_stem(tagged: str) -> str:
         return re.findall(r'>?([^<>]+)<', tagged)[0]
     except IndexError:
         raise RuntimeError(f'No stem found for \'{tagged}\'')
+    
+def get_pos(tagged: str) -> str:
+    try:
+        return re.findall(r'[^<>\n]+<([^<>]+)>', tagged)[0]
+    except IndexError:
+        raise RuntimeError(f'No POS found for \'{tagged}\'')
 
 def make_latin(items: List[ParsedItem], hfst: str):
     cyr2lat: Dict[str, List[str]] = {}
@@ -178,30 +185,25 @@ def match_exact(tagged1: str, tagged2: str) -> bool:
     return tagged1 == tagged2
 
 def match_stem(tagged1: str, tagged2: str) -> bool:
-    stem1 = get_stem(tagged1)
-    stem2 = get_stem(tagged2)
-    return stem1 == stem2
+    return get_stem(tagged1) == get_stem(tagged2)
 
 def match_pos(tagged1: str, tagged2: str) -> bool:
-    pos_pattern = r'[^<>\n]+<([^<>]+)>'
-    pos1 = re.findall(pos_pattern, tagged1)[0]
-    pos2 = re.findall(pos_pattern, tagged2)[0]
-    return pos1 == pos2
+    return get_pos(tagged1) == get_pos(tagged2)
 
-def match_stem_and_pos(tagged1: str, tagged2: str) -> bool:
-    return match_stem(tagged1, tagged2) and match_pos(tagged1, tagged2)
-
-def match_unordered(tagged1: str, tagged2: str) -> bool:
+def match_tags_unordered(tagged1: str, tagged2: str) -> bool:
     tags1 = set(re.findall(r'<[^<>]+>', tagged1))
     tags2 = set(re.findall(r'<[^<>]+>', tagged2))
-    return match_stem(tagged1, tagged2) and tags1 == tags2
+    return tags1 == tags2
+
+def match_stem_tags_unordered(tagged1: str, tagged2: str) -> bool:
+    return match_stem(tagged1, tagged2) and match_tags_unordered(tagged1, tagged2)
 
 accuracy_funcs: Dict[str, EqFunc] = {
-    'exact_match':          match_exact,
-    'stem_match':           match_stem,
-    'pos_match':            match_pos,
-    'stem_and_pos_match':   match_stem_and_pos,
-    'unordered_tags_match': match_unordered,
+    'Exact':              match_exact,
+    'Stem':               match_stem,
+    'POS':                match_pos,
+    'Tagset':             match_tags_unordered,
+    'Tagset and stem':    match_stem_tags_unordered,
 }
 ################
 #    OUTPUT    #
@@ -262,12 +264,14 @@ def compare(ref_variants: Dict[str, List[str]], predicted: List[ParsedItem],
     recognized = 0
     raw_metrics = {k: {'TP': 0, 'FN': 0, 'FP': 0, 'ANY': 0}
                    for k in acc_funcs.keys()}
+    unrecognized_top = Counter()
     # evaluating absolute TP, FN, FP counts
     for pred in predicted:
         if not pred.input_str in ref_variants:
             raise RuntimeError(f'Prediction {pred} is missing in gold standard')
         reference_variants = '/'.join(ref_variants[pred.input_str])
         if pred.out_variants is None:
+            unrecognized_top[pred.input_str] += 1
             log_details(details_dir, 'unknown', pred.input_str, reference_variants, pred.variants(), 'UNKNOWN')
             continue
         recognized += 1
@@ -300,6 +304,9 @@ def compare(ref_variants: Dict[str, List[str]], predicted: List[ParsedItem],
             raw_metrics[acc_variant]['Accuracy(any)'] = 0
         else:
             raw_metrics[acc_variant]['Accuracy(any)'] = raw_metrics[acc_variant].pop('ANY') / recognized
+    
+    #pprint(unrecognized_top.most_common(10))
+
     return {
         'total': total,
         'recognized': recognized,

@@ -18,14 +18,14 @@ tadbīr-qati,tadbīr<n>><com>,UNK,UNKNOWN
 yawūden,yawūd<n><jewish>><pl>,UNK,UNKNOWN
 mūso,mūso<nprop><moses>,UNK,UNKNOWN
 tawrot,tawrot<n><torah>,UNK,UNKNOWN
-idê,idê<cnj><compl>/idi<cnj><compl>,UNK,UNKNOWN
+idê,idê<conj><compl>/idi<conj><compl>,UNK,UNKNOWN
 yeso-yi,yeso<nprop><jesus>><3sg>/yeso<nprop><jesus>><ez>,UNK,UNKNOWN
 carāng,carang<pro>,UNK,UNKNOWN
 yeso,yeso<nprop><jesus>,UNK,UNKNOWN
 tawrot-and-en,tawrot<n><torah>><loc>><3pl>,UNK,UNKNOWN
 firopt,firop<v>><prs><3sg>,UNK,UNKNOWN
 odamizod,odamizod<n>,UNK,UNKNOWN
-ammo,ammo<cnj>,UNK,UNKNOWN
+ammo,ammo<conj>,UNK,UNKNOWN
 yerusalīm,yerusalīm<nprop><jerusalem>,UNK,UNKNOWN
 yerixůn,yerixůn<nprop><jericho>,UNK,UNKNOWN
 yik-wi,yik<dem><emph>><d3><m><sg><obl>,UNK,UNKNOWN
@@ -43,7 +43,7 @@ lůvǰ-i,lův<v>><prf>><3sg>,UNK,UNKNOWN
 lapdi,lap<n>><comp>,UNK,UNKNOWN
 aray-and,aray<num>><loc>,UNK,UNKNOWN
 zalalwīnčin,zalal<v>><see>><prf>><ptcp1>,UNK,UNKNOWN
-yidê,yidê<cnj><compl>,UNK,UNKNOWN
+yidê,yidê<conj><compl>,UNK,UNKNOWN
 ǰo-ndi,ǰo<n>><loc>,UNK,UNKNOWN
 e,e<prt><voc>,UNK,UNKNOWN
 duočīd,duo<n>><do>><inf>,UNK,UNKNOWN
@@ -138,7 +138,7 @@ as rūyi,as rūyi<prep>,UNK,UNKNOWN
 taqdīmčīd,taqdīm<n>><do>><inf>,UNK,UNKNOWN
 narīnā,narīnā<n>,UNK,UNKNOWN
 taqdīm,taqdīm<n>,UNK,UNKNOWN
-āmga,ām<cnj>><add1>,UNK,UNKNOWN
+āmga,ām<conj>><add1>,UNK,UNKNOWN
 čibůdbuc,čibůd<n>><child>,UNK,UNKNOWN
 rimoδǰi,rimoδ<v>><prf>><3sg>,UNK,UNKNOWN
 ven,v<v>><prs><3pl>,UNK,UNKNOWN
@@ -300,7 +300,7 @@ sat…,sa<v><f_pl>><pst>,UNK,UNKNOWN
 mumkin,mumkin<prt>/mumkin<n>,UNK,UNKNOWN
 sad…,sad<num>,UNK,UNKNOWN
 sadi,sadi<n>,UNK,UNKNOWN
-amčun,amčun<cnj>,UNK,UNKNOWN
+amčun,amčun<conj>,UNK,UNKNOWN
 māš…,māš<pers><prn><1pl>,UNK,UNKNOWN
 šūrawi,šūrawi<n><soviet>,UNK,UNKNOWN
 qaššoq,qaššoq<n>,UNK,UNKNOWN
@@ -326,7 +326,7 @@ ik-mi…,ik<prt><emph>><d1><m><sg><obl>,UNK,UNKNOWN
 ik-di,ik<prt><emph>><d2><m><sg><obl>,UNK,UNKNOWN
 δod-en,δo<v>><pst>><3pl>,UNK,UNKNOWN
 uzum…,uz<pers><prn><1sg>><=1sg>,UNK,UNKNOWN
-ca…,ca<cnj><subd>,UNK,UNKNOWN
+ca…,ca<conj><subd>,UNK,UNKNOWN
 awɣůnistonand,awɣůniston<nprop><afghanistan>><=loc>,UNK,UNKNOWN
 dusikaθ,dus<adv>><-dim>><-adv>,UNK,UNKNOWN
 forsiti,forsi<n><persian>><=sup>,UNK,UNKNOWN
@@ -342,7 +342,7 @@ iků,ik<prt><emph=>><d1>,UNK,UNKNOWN
 ikwi,ik<prt><emph=>><d3><m><sg><obl>,UNK,UNKNOWN
 tarztiyām,tarz<n>><=sup>><=1pl>,UNK,UNKNOWN
 tarzi…,tarz<n>><=3sg>,UNK,UNKNOWN
-yo…,yo<cnj><or>,UNK,UNKNOWN
+yo…,yo<conj><or>,UNK,UNKNOWN
 čīyaθen,čī<pro>><-adv>><=3pl>,UNK,UNKNOWN
 ostāostā,ostā<n>,UNK,UNKNOWN
 dusik,dus<n>><-dim>,UNK,UNKNOWN
