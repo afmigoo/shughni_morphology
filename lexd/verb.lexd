@@ -13,13 +13,13 @@ PerfVerbBase
 InfVerbBase
 
 PATTERN NPastVerbBase
+LexiconVerbNpst|LexiconVerbNpstSh       [<v><prs>:]
 LexiconVerbNpst                         [<v>:] _morph_ [<prs>:] PresSuffixes  
 LexiconVerbNpst1sg                      [<v>:] _morph_ [<prs><1sg>:м]               # Карамшоев и БД
 LexiconVerbNpst2sg                      [<v>:] _morph_ [<prs><2sg>:{Й}и]            # Карамшоев и БД
 LexiconVerbNpst2pl                      [<v>:] _morph_ [<prs><2pl>:{Й}ет]           # Карамшоев и БД
 LexiconVerbNpst3sg                      [<v>:] _morph_ [<prs><3sg>:{ДТ}]            # Карамшоев и БД
 LexiconVerbNpst3pl                      [<v>:] _morph_ [<prs><3pl>:{Й}ен]           # Карамшоев и БД
-LexiconVerbNpstSh|LexiconVerbNpst       [<v><prs>:]
 LexiconVerbNpst1sgSh                    [<v><prs><1sg>:]                            # Карамшоев и БД
 LexiconVerbNpst2sgSh                    [<v><prs><2sg>:]                            # Карамшоев и БД
 LexiconVerbNpst2plSh                    [<v><prs><2pl>:]                            # Карамшоев и БД

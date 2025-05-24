@@ -9,16 +9,18 @@ PATTERNS
 (NounPrepos _hyphen_morph_)? NounNumberBase (_morph_hyphen_ NounAdpos)? GlobClitics?
 
 PATTERN NounBase
-LexiconNoun [<n>:]
+LexiconNoun                 [<n>:]
 
 PATTERN NounNumberBase
-NounBase[sg]                                    NounNum[sg]            
-NounBase[pl_all]            _morph_hyphen_      NounNum[pl_all]        
-NounBase[pl_in-laws]        _morph_hyphen_      NounNum[pl_in-laws]    
-NounBase[pl_cousins]        _morph_hyphen_      NounNum[pl_cousins]    
-NounBase[pl_sisters]        _morph_hyphen_      NounNum[pl_sisters]    
-NounBase[pl_timesOfDay]     _morph_             NounNum[pl_timesOfDay] 
-NounBase[pl_timesOfYear]    _morph_hyphen_      NounNum[pl_timesOfYear]
+NounBase[sg]                                        NounNum[sg]            
+NounBase[pl_all]                    _morph_hyphen_  NounNum[pl_all]        
+NounBase[pl_in-laws]                _morph_hyphen_  NounNum[pl_in-laws]    
+NounBase[pl_cousins]                _morph_hyphen_  NounNum[pl_cousins]    
+NounBase[pl_sisters]                _morph_hyphen_  NounNum[pl_sisters]    
+NounBase[pl_timesOfDay]             _morph_         NounNum[pl_timesOfDay] 
+NounBase[pl_timesOfYear]            _morph_hyphen_  NounNum[pl_timesOfYear]
+LexiconNounPlRegular[pl_all] [<n>:] _morph_hyphen_  NounNum[pl_all]        
+LexiconNounPlIrregular       [<n><pl>:]
 
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum

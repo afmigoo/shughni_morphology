@@ -36,8 +36,11 @@ def file2lexicon(file: Path) -> str:
 def write_lexicon(file: Path, lines: List[Tuple[str, str]]):
     if not file.exists():
         with open(file, 'w', encoding='utf-8') as f:
-            if 'noun' in file.name:
-                f.write(f'LEXICON {file2lexicon(file)}[{",".join(noun_tags)}]\n')
+            if 'noun' in file.name and not 'irregular' in file.name:
+                if 'pl' in file.name:
+                    f.write(f'LEXICON {file2lexicon(file)}[{noun_tags[0]}]\n')
+                else:
+                    f.write(f'LEXICON {file2lexicon(file)}[{",".join(noun_tags)}]\n')
             else:
                 f.write(f'LEXICON {file2lexicon(file)}\n')
     with open(file, 'a', encoding='utf-8') as f:
