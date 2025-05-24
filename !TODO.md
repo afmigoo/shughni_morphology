@@ -77,9 +77,9 @@
 - ~~npst.1sg~~
 - ~~npst.1pl~~
 - ~~npst~~
-- noun.pl
-- inf.sh
-- inf.f
+- ~~noun.pl~~
+- ~~inf.sh~~
+- ~~inf.f~~
 - ~~inf~~
 - imper.sh
 - ~~imper~~

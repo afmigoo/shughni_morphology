@@ -40,13 +40,14 @@ PATTERN ImperVerbBase
 LexiconVerbImper    [<v><imp>:]
 
 PATTERN PerfVerbBase
-LexiconVerbPerfF     [<v><prf><f>:]
-LexiconVerbPerfM     [<v><prf><m>:]
+LexiconVerbPerfF    [<v><prf><f>:]
+LexiconVerbPerfM    [<v><prf><m>:]
 LexiconVerbNpst     [<v>:] _morph_ [<prf>:{vҶЧ}]
 
 PATTERN InfVerbBase
 # Infinite stems are equivalent to the present stems with an additional stop -t/-d (Parker 2023, p. 256)
-LexiconVerbNpst [<v>:] _morph_ [<inf>:{vДТ}] (_morph_hyphen_ PurpSuff)?
+LexiconVerbNpst|LexiconVerbInfShSuffixable  [<v>:] _morph_ [<inf>:{vДТ}]    (_morph_hyphen_ PurpSuff)?
+LexiconVerbInfShNonsuffixable               [<v><inf>:]                     (_morph_hyphen_ PurpSuff)?
 
 # Parker 8.2.1
 LEXICON PresSuffixes
