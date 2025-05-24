@@ -37,12 +37,14 @@ LexiconVerbPstSh    [<v><pst>:]                                                 
 LexiconVerbNpst     [<v>:] _morph_ [<pst>:{vДТ}]
 
 PATTERN ImperVerbBase
-LexiconVerbImper    [<v><imp>:]
+LexiconVerbImper|LexiconVerbImperSh    [<v><imp>:]
 
 PATTERN PerfVerbBase
-LexiconVerbPerfF    [<v><prf><f>:]
-LexiconVerbPerfM    [<v><prf><m>:]
-LexiconVerbNpst     [<v>:] _morph_ [<prf>:{vҶЧ}]
+LexiconVerbPerfF            [<v><prf><f>:]
+LexiconVerbPerfM            [<v><prf><m>:]
+LexiconVerbNpst             [<v>:] _morph_ [<prf>:{vҶЧ}]
+LexiconVerbPerfPlRegular    [<v>:] _morph_ [<prf><pl>:{vҶЧ}]
+LexiconVerbPerfPlIrregular  [<v><prf><pl>:]
 
 PATTERN InfVerbBase
 # Infinite stems are equivalent to the present stems with an additional stop -t/-d (Parker 2023, p. 256)

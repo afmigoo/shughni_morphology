@@ -597,7 +597,7 @@ sol-i,sol<n>><3sg>,sol<n>><3sg>,TP=1;FN=0;FP=0
 čor,čor<n>/čor<num>,čor<n>/čor<num>,TP=2;FN=0;FP=0
 reδǰ,reδ<v>><prf>,reð<v>><prf>/reδ<v>><prf>,TP=2;FN=0;FP=0
 sol,sol<n>,sol<n>,TP=1;FN=0;FP=0
-sic,si<v>><prf><f_pl>,sic<v><prf><f>,TP=1;FN=0;FP=0
+sic,si<v>><prf><f_pl>,sic<v><prf><f>/sic<v><prf><pl>,TP=2;FN=0;FP=0
 ačaθ,ačaθ<prt>/ačaθ<n>,ač<pro>><int>/ačaθ<pro>/ačaϑ<pro>,TP=0;FN=2;FP=3
 nax̌tīc,nax̌tī<v>><prf><f_pl>,nax̌tīc<v><prf><f>,TP=1;FN=0;FP=0
 meθ-i,meθ<n>><3sg>,meθ<n>><3sg>/meϑ<n>><3sg>,TP=2;FN=0;FP=0

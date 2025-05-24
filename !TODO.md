@@ -58,7 +58,7 @@
 - ~~pst~~
 - proh.sh
 - proh
-- pf.pl
+- ~~pf.pl~~
 - ~~pf.m~~
 - ~~pf.f~~
 - ~~pf~~
@@ -81,7 +81,7 @@
 - ~~inf.sh~~
 - ~~inf.f~~
 - ~~inf~~
-- imper.sh
+- ~~imper.sh~~
 - ~~imper~~
 - dim
 - cv
