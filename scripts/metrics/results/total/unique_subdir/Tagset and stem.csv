@@ -150,7 +150,7 @@ půnd-ti,půnd<n>><sup>,půnd<n>><2sg>><3sg>/půnd<n>><sup>,TP=1;FN=0;FP=1
 yaθč,yaθ<v>><prf>,yaθ<v>><prf>/yaϑ<v>><prf>,TP=1;FN=0;FP=1
 bečorā-yi,bečorā<n>><3sg>,<without><adj>>čorā<n>><3sg>/bečorā<adj>><3sg>/bečorā<n>><3sg>,TP=1;FN=0;FP=2
 rām-i,rām<n>><3sg>,rām<n>><3sg>,TP=1;FN=0;FP=0
-bar,bar<prep><all>,bar<n>,TP=0;FN=1;FP=1
+bar,bar<prep><all>,bar<intj>/bar<n>,TP=0;FN=1;FP=2
 qačīr-ti,qačīr<n>><sup>,qačīr<n>><2sg>><3sg>/qačīr<n>><sup>,TP=1;FN=0;FP=1
 xāvǰ,xāv<v>><prf>,xāv<v>><prf>,TP=1;FN=0;FP=0
 zaxmiyen-i,zaxmi<n>><pl>><3sg>,zaxmi<adj>><3pl>><3sg>/zaxmi<n>><3pl>><3sg>/zaxmi<n>><pl>><3sg>,TP=1;FN=0;FP=2
@@ -186,6 +186,7 @@ dis-ga,dis<pro>><add2>/dis<pro>><add1>/dis<adj.pro>><add1>,dis<pro>><add>,TP=0;F
 meθ,meθ<n>,meθ<n>/meϑ<n>,TP=1;FN=0;FP=1
 duo-yi,duo<n>><3sg>,duo<n>><3sg>,TP=1;FN=0;FP=0
 x̌ogird,x̌ogird<n>,x̌ogird<n>,TP=1;FN=0;FP=0
+e,e<prt><voc>,e<intj>,TP=0;FN=1;FP=1
 māš,māš<pers><prn><1pl>,māš<pers><1pl><nom>/māš<pers><1pl><obl>,TP=0;FN=1;FP=2
 uxmānd,uxmānd<n>,uxmānd<adj>,TP=0;FN=1;FP=1
 x̌ogirden-i,x̌ogird<n>><pl>><3sg>,x̌ogird<n>><3pl>><3sg>/x̌ogird<n>><pl>><3sg>,TP=1;FN=0;FP=1
@@ -207,6 +208,7 @@ māš-ard,māš<pers><prn><1pl>><dat>,māš<pers><1pl>><dat>,TP=0;FN=1;FP=1
 risq,risq<n>,risq<n>,TP=1;FN=0;FP=0
 rūzi,rūzi<n>,rūz<n>><3sg>/rūzi<n>,TP=1;FN=0;FP=1
 guno,guno<n>,guno<n>,TP=1;FN=0;FP=0
+biyomurzīdā,biyomurzīdā<n>,biyomurzīdā<intj>,TP=0;FN=1;FP=1
 fukard-aθ,fuk<pro>><dat>><int>,fuk<pro>><dat>><int>/fuka<pro>><dat>><int>,TP=1;FN=0;FP=1
 badi,bad<n>><subst>,bad<adj>><3sg>/bad<n>><3sg>/badi<n>,TP=0;FN=1;FP=3
 wev,wev<dem><d3><pl><obl>/wev<pro><d3><pl><obl>,wev<dem><d3><pl><obl>,TP=1;FN=1;FP=0
@@ -238,7 +240,7 @@ yu-ta,yu<dem><d3><m><sg>><irr>,yu<dem><d3><m><sg><nom>><fut>,TP=0;FN=1;FP=1
 čīd-and,čīd<n>><loc>,čīd<n>><loc>,TP=1;FN=0;FP=0
 dūst-ard,dūst<n>><dat>,dūst<n>><dat>,TP=1;FN=0;FP=0
 ǰůn,ǰůn<n>,ǰůn<n>/ǰůn<n>,TP=1;FN=0;FP=1
-ol,ol<n>,ol<n>,TP=1;FN=0;FP=0
+ol,ol<n>,ol<intj>/ol<n>,TP=1;FN=0;FP=1
 čust,čust<v>,čust<adj>,TP=0;FN=1;FP=1
 bāč-kāč-en,bāčkāč<n>><redup>><3pl>,bāč-kāč<n>><3pl>/bāč-kāč<n>><pl>,TP=0;FN=1;FP=2
 x̌êvӡ,x̌êv<v>><prf><f_pl>,x̌êvʒ<v><prf><f>/x̌êvӡ<v><prf><f>,TP=0;FN=1;FP=2
@@ -299,7 +301,7 @@ x̌īǰ-i,x̌īǰ<n>><3sg>,x̌īǰ<adj>><3sg>/x̌īǰ<adj>><3sg>/x̌īǰ<n>>
 čost,čos<v>><prs><3sg>,čos<v>><prs><3sg>,TP=1;FN=0;FP=0
 wāδ,wāδ<dem><d3><pl>,wāð<dem><d3><pl><nom>/wāδ<dem><d3><pl><nom>,TP=0;FN=1;FP=2
 bāf-en,bāf<n>><3pl>,bāf<v><prs>><3pl>,TP=0;FN=1;FP=1
-yo,yo<conj><or>/yo<conj><disj>,yo<conj><disj>/yo<v><prs>,TP=1;FN=1;FP=1
+yo,yo<conj><or>/yo<conj><disj>,yo<conj><disj>/yo<intj>/yo<v><prs>,TP=1;FN=1;FP=2
 nay,nay<prt>,nay<n>,TP=0;FN=1;FP=1
 seyum,se<num>><ord>,se<num>><ord>,TP=1;FN=0;FP=0
 ɣ̌in,ɣ̌in<n>,ɣ̌in<n>,TP=1;FN=0;FP=0
@@ -620,6 +622,7 @@ red,re<v>><pst>,re<v>><inf>/re<v>><pst>,TP=1;FN=0;FP=1
 wizent,wizen<v>><pst>,wiz<v><prs>><3pl>><2sg>/wiz<v>><prs><3pl>><2sg>/wizen<v><prs>><2sg>/wizen<v>><inf>/wizen<v>><prs><3sg>/wizen<v>><pst>,TP=1;FN=0;FP=5
 xayol-en,xayol<n>><3pl>,xayol<n>><3pl>/xayol<n>><pl>,TP=1;FN=0;FP=1
 darūn,darūn<n>/darūn<post>,darūn<adj>/darūn<n>,TP=1;FN=1;FP=1
+tay,tay<n>,tay<intj>,TP=0;FN=1;FP=1
 tām-en,tām<conj>><3pl>,tām<n>><3pl>/tām<n>><pl>,TP=0;FN=1;FP=2
 baladen,balad<n>><3pl>,bal<n>><coord2>><3pl>/balad<adj>><3pl>,TP=0;FN=1;FP=2
 x̌ikīd,x̌ikī<n>><inf>,x̌ikī<v>><inf>/x̌ikī<v>><pst>,TP=0;FN=1;FP=2
@@ -947,6 +950,6 @@ farqiyaten,farqiyat<n><pl>><=3pl>,farq<n>><3sg>><2sg>><3pl>,TP=0;FN=1;FP=1
 mardumand,mardum<n>><=loc>,mardum<n>><loc>,TP=0;FN=1;FP=1
 zivand,ziv<n>><=loc>,ziv<n>><loc>,TP=0;FN=1;FP=1
 tarafat,taraf<n>><=coord2>,taraf<n>><2sg>/taraf<n>><coord2>,TP=0;FN=1;FP=2
-dar,dar<prep><loc>,dar<adj>/dar<n>,TP=0;FN=1;FP=2
+dar,dar<prep><loc>,dar<adj>/dar<intj>/dar<n>,TP=0;FN=1;FP=3
 nazar,nazar<n>,nazar<n>,TP=1;FN=0;FP=0
 dari,dari<n><dari>,dar<adj>><3sg>/dar<n>><3sg>,TP=0;FN=1;FP=2

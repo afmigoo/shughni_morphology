@@ -8,6 +8,7 @@ RuLemmasN [<n>]
 RuLemmasNum [<num>]
 RuLemmasPrep [<prep>]
 RuLemmasPro [<pro>]|[<pers>]|[<dem>]
+RuLemmasIntj [<intj>]
 RuLemmasV [<v>]
 
 LEXICON RuLemmasTags
@@ -41,11 +42,9 @@ LEXICON RuLemmasTags
 <full>
 <fut>
 <hon>
-<if>
 <imp>
 <inf>
 <int>
-<let>
 <loc>
 <m>
 <n>
@@ -70,7 +69,6 @@ LEXICON RuLemmasTags
 <subd>
 <sup>
 <v>
-<when>
 <wish>
 <with>
 <with_little>
