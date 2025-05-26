@@ -3,6 +3,9 @@
 #############################
 
 PATTERNS
+GlobCliticsPrep? PrepBase GlobClitics?
+
+PATTERN PrepBase
 LexiconPrep|Preposition     [<prep>:]
 LexiconPost|Postposition    [<post>:]
 

@@ -21,6 +21,7 @@ def process(line: str) -> str:
     line = line.lower().strip()
     line.replace(' ', ' ') # NO-BREAK SPACE 
     line = re.sub(r'[\u0301]', '', line) # removing stress diacritic
+    line = line.replace('á', 'a')
     line = re.sub(f'[{punct}]', '', line) # removing punctuation
     line = re.sub(r' +', ' ', line) # squishing spaces
     return line

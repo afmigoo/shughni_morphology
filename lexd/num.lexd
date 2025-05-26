@@ -3,6 +3,9 @@
 ################
 
 PATTERNS
+GlobCliticsPrep? NumBase GlobClitics?
+
+PATTERN NumBase
 ShugniNums                  [<num>:]   (_morph_hyphen_ OrdinalNum)?
 ShugniNumsTen CliticAnd?    [<num>:]   (_morph_hyphen_ OrdinalNum)?
 BorrowedTadjikNums          [<num>:]   (_morph_hyphen_ OrdinalNum)?

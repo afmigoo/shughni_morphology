@@ -3,7 +3,7 @@
 ################
 
 PATTERNS
-PronounBase (_morph_hyphen_ NounDeriv)? GlobClitics?
+GlobCliticsPrep? PronounBase (_morph_hyphen_ NounDeriv)? GlobClitics?
 
 PATTERN PronounBase
 PersonalPronounsNom                 

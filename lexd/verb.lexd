@@ -3,7 +3,7 @@
 #############
 
 PATTERNS
-(VerbNegation _morph_)? VerbBases GlobClitics?
+GlobCliticsPrep? (VerbNegation _morph_)? VerbBases GlobClitics?
 
 PATTERN VerbBases
 NPastVerbBase
@@ -46,8 +46,8 @@ LexiconVerbImper|LexiconVerbImperSh    [<v><imp>:]
 
 ### Perfect ###
 PATTERN PerfVerbBase
-PerfVerbBaseMasc
-PerfVerbBaseOther
+PerfVerbBaseMasc    (_morph_hyphen_ VerbPluQuamPerf)?
+PerfVerbBaseOther   (_morph_hyphen_ VerbPluQuamPerf)?
 
 PATTERN PerfVerbBaseMasc
 LexiconVerbPerfM            [<v><prf><m>:]
@@ -105,3 +105,5 @@ LEXICON VERBNEG
 <neg>:нā # internal gloss document
 <neg>:мā
 
+LEXICON VerbPluQuamPerf
+<pqp>:ат

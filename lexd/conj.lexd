@@ -3,7 +3,7 @@
 ####################
 
 PATTERNS
-DocConjunctionsWords
+GlobCliticsPrep? DocConjunctionsWords GlobClitics?
 
 PATTERN ConjClitics
 _morph_hyphen_ DocConjunctionsClitics

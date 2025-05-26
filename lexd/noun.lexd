@@ -6,7 +6,7 @@
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-(NounPrepos _hyphen_morph_)? NounNumberBase NounDeriv? (_morph_hyphen_ NounAdpos)? (_morph_hyphen_ Adv)? (_morph_hyphen_ NounPostClitics)? GlobClitics?
+GlobCliticsPrep? (NounPrepos _hyphen_morph_)? NounNumberBase NounDeriv? (_morph_hyphen_ NounAdpos)? (_morph_hyphen_ Adv)? GlobClitics?
 
 PATTERN NounBase
 LexiconNoun                 [<n>:]
@@ -63,22 +63,4 @@ LEXICON NounAdpos
 <dat>:рд
 <dat>:рад
 <dat>:ра
-
-# internal gloss doc
-LEXICON NounPostClitics
-<cause>:авен
-<cause>:ҷāт
-<cause>:ҷā
-<dir>:аҷ
-<lim2>:ец
-<com>:қати
-<com>:қатӣр
-<com>:қатеθ
-<sup>:ти
-<p_loc>:ҷа
-<p_loc>:ҷā
-<p_loc>:ҷāд
-<p_loc>:ҷид
-<p_loc>:ҷи
-<prol>:ва
 

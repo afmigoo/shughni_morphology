@@ -5,7 +5,10 @@
 # Patterns
 PATTERN GlobClitics
 #IntensiveClitic? (PronClitics|FutureClitic)? AdditiveClitic?
-(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics|SuperessiveClitic|CaseClitic)+
+(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics|SuperessiveClitic|CaseClitic|AllPostClitics)+
+
+PATTERN GlobCliticsPrep
+AllPrepClitics
 
 # позволять всем клитикам выражаться с и без дефиса
 PATTERN PronClitics
@@ -23,7 +26,13 @@ _morph_hyphen_ INT
 PATTERN SuperessiveClitic
 _morph_hyphen_ SUP
 
-# These acl as suffixes with nouns and pronouns but as clitics with everything else
+PATTERN AllPostClitics
+_morph_hyphen_ ALL_POST_CLITICS
+
+PATTERN AllPrepClitics
+ALL_PREP_CLITICS _hyphen_morph_
+
+# These act as suffixes with nouns and pronouns but as clitics with everything else
 PATTERN CaseClitic
 _morph_hyphen_ NounAdpos
 
@@ -37,6 +46,28 @@ LEXICON PCS
 <1pl>:{Й}ам     # internal glosses doc
 <2pl>:{Й}ет
 <3pl>:{Й}ен
+
+# internal gloss doc
+LEXICON ALL_POST_CLITICS
+<cause>:авен
+<cause>:ҷāт
+<cause>:ҷā
+<dir>:аҷ
+<lim2>:ец
+<com>:қати
+<com>:қатӣр
+<com>:қатеθ
+<sup>:ти
+<p.loc>:ҷа
+<p.loc>:ҷā
+<p.loc>:ҷāд
+<p.loc>:ҷид
+<p.loc>:ҷи
+<prol>:ва
+
+LEXICON ALL_PREP_CLITICS
+<emph>:ик
+<emph>:к
 
 LEXICON FUT
 <fut>:та

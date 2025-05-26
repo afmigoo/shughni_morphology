@@ -23,6 +23,7 @@ def process_line(line: str) -> str:
     line = line.lower()
     line.replace(' ', ' ') # NO-BREAK SPACE 
     line = re.sub(r'[\u0301]', '', line) # removing stress diacritic
+    line = line.replace('á', 'a')
     line = re.sub(f'[{punct}0-9]', '', line) # removing punctuation and numbers
     line = re.sub(r' +', ' ', line) # squishing spaces
     line = line.replace('=', '-')
