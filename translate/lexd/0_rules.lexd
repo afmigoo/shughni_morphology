@@ -22,7 +22,7 @@ LEXICON RuLemmasTags
 <2sg>
 <3pl>
 <3sg>
-<add>
+<add1>
 <adj>
 <adv>
 <advs>
@@ -46,6 +46,7 @@ LEXICON RuLemmasTags
 <dim>
 <dir>
 <disj>
+<emph>
 <f>
 <f_pl>
 <full>
@@ -61,6 +62,7 @@ LEXICON RuLemmasTags
 <loc>
 <m>
 <n>
+<neg.q>
 <neg>
 <num>
 <obl>
@@ -71,9 +73,11 @@ LEXICON RuLemmasTags
 <pl>
 <place>
 <post>
+<pqp>
 <prep>
 <prf>
 <pro>
+<proh>
 <prol>
 <prs>
 <prt>
@@ -81,7 +85,7 @@ LEXICON RuLemmasTags
 <ptcp1>
 <ptcp2>
 <purp>
-<quot>
+<q>
 <redup>
 <refl>
 <self>
@@ -91,7 +95,6 @@ LEXICON RuLemmasTags
 <sup>
 <time>
 <v>
-<wish>
 <with>
 <with_little>
 <without>

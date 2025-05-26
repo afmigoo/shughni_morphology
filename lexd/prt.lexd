@@ -1,3 +1,11 @@
 PATTERNS
 GlobCliticsPrep? LexiconPrt [<prt>:] GlobClitics?
 
+PATTERN PrtClitics
+_morph_hyphen_ DocPrtClitics
+
+LEXICON DocPrtClitics
+<q>:о
+<neg.q>:нā
+<neg.q>:на
+

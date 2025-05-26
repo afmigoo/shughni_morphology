@@ -42,7 +42,7 @@ LexiconVerbNpst     [<v>:] _morph_ [<pst>:{vДТ}]
 
 ### Imperative ###
 PATTERN ImperVerbBase
-LexiconVerbImper|LexiconVerbImperSh    [<v><imp>:]
+(ImperNeg _hyphen_morph_)? LexiconVerbImper|LexiconVerbImperSh    [<v><imp>:]
 
 ### Perfect ###
 PATTERN PerfVerbBase
@@ -103,7 +103,9 @@ VERBNEG _hyphen_
 LEXICON VERBNEG 
 <neg>:на
 <neg>:нā # internal gloss document
-<neg>:мā
+
+LEXICON ImperNeg
+<proh>:мā
 
 LEXICON VerbPluQuamPerf
 <pqp>:ат

@@ -5,7 +5,7 @@
 # Patterns
 PATTERN GlobClitics
 #IntensiveClitic? (PronClitics|FutureClitic)? AdditiveClitic?
-(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics|SuperessiveClitic|CaseClitic|AllPostClitics)+
+(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics|PrtClitics|SuperessiveClitic|CaseClitic|AllPostClitics)+
 
 PATTERN GlobCliticsPrep
 AllPrepClitics
@@ -73,7 +73,10 @@ LEXICON FUT
 <fut>:та
 
 LEXICON ADD
-<add>:га
+<add1>:га
+<add1>:гад
+<add1>:гид
+<add1>:ги
 
 LEXICON INT
 <int>:аθ
