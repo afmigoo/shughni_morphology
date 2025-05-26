@@ -22,6 +22,7 @@ NounBase[pl_timesOfDay]             _morph_         NounNum[pl_timesOfDay]
 NounBase[pl_timesOfYear]            _morph_hyphen_  NounNum[pl_timesOfYear]
 LexiconNounPlRegular[pl_all] [<n>:] _morph_hyphen_  NounNum[pl_all]        
 LexiconNounPlIrregular       [<n><pl>:]
+LexiconAdv                   [<n>:]
 
 PATTERN NounDeriv
 (_morph_hyphen_ NounDerivLexicon)+

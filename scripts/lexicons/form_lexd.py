@@ -17,7 +17,8 @@ fixes = {
     'ӯ̊': 'ӯ', # invalid set of diacritics
     'ҳ̌': 'ҳ',
     'ц̌': 'ч',
-    '́': '' # remove stress
+    '́': '', # remove stress
+    '=': '-', # remove clitic borders
 }
 noun_tags = ['pl_all', 'sg']
 
