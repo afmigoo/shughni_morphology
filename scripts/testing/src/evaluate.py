@@ -33,8 +33,8 @@ def read_file(file: Path) -> List[TestCase]:
         for line in reader:
             inp, out, mustpass, hfst_file = line[:4]
             if mustpass.lower() in ['pass', 'true']:
-                contents.append(TestCase(input_str=inp, 
-                                         output_str=out, 
+                contents.append(TestCase(input_str=inp.lower(), 
+                                         output_str=out.lower(), 
                                          origin_file=file,
                                          fst=hfst_file))
     return contents

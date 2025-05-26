@@ -1,4 +1,4 @@
-from typing import Dict, List, Set, Tuple, DefaultDict
+from typing import Dict, List, Set, Tuple, DefaultDict, Generator
 from collections import defaultdict
 from pathlib import Path
 from tqdm import tqdm
@@ -49,6 +49,13 @@ cyr_stem_fixes = {
     '́': '' # remove stress
 }
 
+verb_stem_infl = [
+    r'[дт]$',       # past, inf
+    r'[дт]оw$',     # inf
+    r'оw$',         # inf
+    r'[ҷч]$'        # pref
+]
+
 def tag(tag: str) -> str:
     """ 'tagname' -> '<tagname>' """
     return re.sub(r'<|>', '', tag)
@@ -63,6 +70,19 @@ def get_lexd_formatted_tags(tag: str) -> str:
         return f'[<{tag}>]'
     all_tags = [tag] + extra_variants[tag]
     return '|'.join(f'[<{t}>]' for t in all_tags)
+
+def verb_forms(verb_form: str) -> List[str]:
+    """Backtracks verb stem inflection to generate less inflected verb stems"""
+    forms = set([verb_form])
+    for pattern in verb_stem_infl:
+        forms.add(re.sub(pattern, '', verb_form))
+    return list(forms)
+
+def inflate_verb_stems(verbs: Set[Tuple[str, str]]):
+    new_stems = set()
+    for stem, meaning in verbs:
+        new_stems.update((stem_form, meaning) for stem_form in verb_forms(stem))
+    verbs.update(new_stems)
 
 def generate_rules():
     print('Generating rules...')
@@ -162,8 +182,6 @@ def generate_lexicons():
                 continue
             if re.findall(r' |\.|\(|\)|=|\?', cyr_stem) or cyr_stem.startswith('-'):
                 continue
-            if cyr_stem == 'са́ри':
-                print(123)
             for a, b in cyr_stem_fixes.items():
                 cyr_stem = cyr_stem.replace(a, b)
 
@@ -176,6 +194,8 @@ def generate_lexicons():
             unique_pairs[ru_tag].add((
                 cyr_stem, meaning_to_lemma(meaning),
             ))
+
+        inflate_verb_stems(unique_pairs['гл.'])
         for tag, pairs in unique_pairs.items():
             pos_lists[tag] = sorted(list(pairs), key=lambda x: x[0] + x[1])
         del unique_pairs

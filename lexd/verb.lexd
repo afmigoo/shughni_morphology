@@ -11,8 +11,10 @@ PastVerbBase
 ImperVerbBase
 PerfVerbBase
 InfVerbBase
+Participle2Base
 ToBeParadigm
 
+### Present ###
 PATTERN NPastVerbBase
 LexiconVerbNpst|LexiconVerbNpstSh       [<v><prs>:]
 LexiconVerbNpst                         [<v>:] _morph_ [<prs>:] PresSuffixes  
@@ -29,6 +31,7 @@ LexiconVerbNpst3plSh                    [<v><prs><3pl>:]                        
 LexiconVerbNpstF                        [<v><prs><f>:]                              # Карамшоев и БД
 LexiconVerbNpstF3sg                     [<v><prs><f><2sg>:]                         # Карамшоев и БД
 
+### Past ###
 PATTERN PastVerbBase
 LexiconVerbPstF                             [<v><pst><f>:]
 LexiconVerbPstFPl                           [<v><pst><f_pl>:]                                               # Карамшоев и БД
@@ -37,21 +40,35 @@ LexiconVerbPstSh|LexiconVerbPstIrregular    [<v><pst>:]                         
 # Past stems are equivalent to the present stem with an additional stop -t/-d (Parker 2023, p. 256)
 LexiconVerbNpst     [<v>:] _morph_ [<pst>:{vДТ}]
 
+### Imperative ###
 PATTERN ImperVerbBase
 LexiconVerbImper|LexiconVerbImperSh    [<v><imp>:]
 
+### Perfect ###
 PATTERN PerfVerbBase
-LexiconVerbPerfF            [<v><prf><f>:]
+PerfVerbBaseMasc
+PerfVerbBaseOther
+
+PATTERN PerfVerbBaseMasc
 LexiconVerbPerfM            [<v><prf><m>:]
 LexiconVerbNpst             [<v>:] _morph_ [<prf>:{vҶЧ}]
+
+PATTERN PerfVerbBaseOther
+LexiconVerbPerfF            [<v><prf><f>:]
 LexiconVerbPerfPlRegular    [<v>:] _morph_ [<prf><pl>:{vҶЧ}]
 LexiconVerbPerfPlIrregular  [<v><prf><pl>:]
 
+### Infinitive ###
 PATTERN InfVerbBase
 # Infinite stems are equivalent to the present stems with an additional stop -t/-d (Parker 2023, p. 256)
 LexiconVerbNpst|LexiconVerbInfShSuffixable  [<v>:] _morph_ [<inf>:{vДТ}]    (_morph_hyphen_ PurpSuff)?
 LexiconVerbInfShNonsuffixable               [<v><inf>:]                     (_morph_hyphen_ PurpSuff)?
 
+### Participle2 ###
+PATTERN Participle2Base
+PerfVerbBaseMasc _morph_hyphen_ [<ptcp2>:ак]
+
+### Lexicons ###
 LEXICON ToBeParadigm
 видоw<v><inf>:видоw
 видоw<v><inf>:вид
