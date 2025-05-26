@@ -73,7 +73,7 @@ muallimi,muallim<n>><subst>,muallim<n>><3sg>/muallim<n>><adj>/muallim<n>><subst>
 vud,vu<v><m>><pst>/vu<v><f_pl>><pst>/vu<v>><-pst>,vu<v>><inf>/vu<v>><pst>/vud<v><pst><m>,TP=6;FN=0;FP=1
 ozmūd,ozmūd<n>,ozmūd<n>/ōzmūd<n>,TP=1;FN=0;FP=1
 čīd,čī<v>><inf>/čīd<n>,čī<v>><inf>/čī<v>><pst>/čīd<n>,TP=3;FN=0;FP=0
-sut,su<v><m>><pst>/su<v>><pst>,su<v><prs>><2sg>/su<v>><prs><3sg>/sut<v><prs>,TP=4;FN=0;FP=1
+sut,su<v><m>><pst>/su<v>><pst>,su<v><prs>><2sg>/su<v>><prs><3sg>/sut<v><prs>/sut<v><pst>,TP=4;FN=0;FP=2
 andūyd,andūy<v><m>><pst>,andūy<v>><inf>/andūy<v>><pst>/andūyd<v><pst><m>,TP=2;FN=0;FP=1
 lůd-i,lů<v>><pst>><3sg>,lůd<v><imp>><3sg>/lůd<v><prs><3pl>><3sg>/lůd<v><prs><3sg>><3sg>/lůd<v><prs>><3sg>/lůd<v><pst>><3sg>,TP=0;FN=1;FP=5
 wistoδ,wistoδ<n>,wistoð<n>/wistoδ<n>/wistōð<n>/wistōδ<n>,TP=1;FN=0;FP=3
@@ -294,7 +294,7 @@ qīwd,qīw<v>><pst>,qīw<v>><inf>/qīw<v>><prs><3sg>/qīw<v>><pst>,TP=3;FN=0;FP=
 dastorxůn,dastorxůn<n>,dastor<adj>>ху̊н<n>/dastōr<adj>>ху̊н<n>/dastorxůn<n>/dastōrxůn<n>,TP=1;FN=0;FP=3
 kāl-ti,kāl<n>><sup>,kāl<n>><2sg>><3sg>/kāl<n>><sup>,TP=2;FN=0;FP=0
 nīstow,nīs<v>><inf>><purp>,nīs<v>><inf>><purp>/nīstow<v><prs>/nīstōw<v><prs>,TP=1;FN=0;FP=2
-yat,ya<v>><pst>/ya<v>><-pst>,ya<v><imp>><2sg>/ya<v><prs>><2sg>/ya<v>><prs><3sg>/yat<prt>/yat<v><prs>,TP=6;FN=0;FP=2
+yat,ya<v>><pst>/ya<v>><-pst>,ya<v><imp>><2sg>/ya<v><prs>><2sg>/ya<v>><prs><3sg>/yat<prt>/yat<v><prs>/yat<v><pst>,TP=6;FN=0;FP=3
 ɣulům-i,ɣulům<n>><3sg>,ɣulům<n>><3sg>/ɣulům<n>><adj>/ɣulům<n>><subst>,TP=3;FN=0;FP=0
 rimod,rimo<v>><pst>,rimo<v>><inf>/rimō<v>><inf>/rimo<v>><pst>/rimō<v>><pst>,TP=2;FN=0;FP=2
 wev-ard,wev<dem><d3><pl><obl>><dat>/wev<pro><d3><pl><obl>><dat>,wev<dem><d3><pl>><dat>,TP=2;FN=0;FP=0

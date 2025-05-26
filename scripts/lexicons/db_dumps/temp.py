@@ -1,16 +1,25 @@
 import csv
 from pathlib import Path
+import re
 
 _root = Path(__file__).parent
 
-inp = _root.joinpath('verb_perf_pl.csv')
-irregular_file = _root.joinpath('verb_perf_pl_irregular.csv')
-regular_file = _root.joinpath('verb_perf_pl_regular.csv')
+inp = _root.joinpath('verb_pst.csv_')
+irregular_file = _root.joinpath('verb_pst_irregular.csv_')
+regular_file = _root.joinpath('verb_pst_regular.csv_')
 
-regular_endings = [
-    'ч',
-    'ҷ',
-]
+VoicelessConsonant = 'пткфθсшхх̌ҳцчқ'
+Nasal = 'нм'
+Liquid = 'лр'
+
+VoicedObstruent = 'бдгвδзжӡzžȥɣ̌ɣҷғғ̌'
+Vowel = 'аāеêиӣӣоуӯу̊'
+Semivowel = 'wй'
+
+regular_endings = {
+    'т': VoicelessConsonant+Nasal+Liquid,
+    'д': VoicedObstruent+Vowel+Semivowel,
+}
 
 with open(inp, 'r', encoding='utf-8') as fin, \
      open(irregular_file, 'w', encoding='utf-8') as firr, \
@@ -21,8 +30,8 @@ with open(inp, 'r', encoding='utf-8') as fin, \
 
     for row in reader:
         is_reg = False
-        for end in regular_endings:
-            if row[0].endswith(end):
+        for end, prev_letters in regular_endings.items():
+            if re.match(f'^.*[{prev_letters}]{end}$', row[0]):
                 regular_writer.writerow((row[0].removesuffix(end), row[1]))
                 is_reg = True
                 break

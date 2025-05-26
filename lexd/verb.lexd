@@ -30,10 +30,10 @@ LexiconVerbNpstF                        [<v><prs><f>:]                          
 LexiconVerbNpstF3sg                     [<v><prs><f><2sg>:]                         # Карамшоев и БД
 
 PATTERN PastVerbBase
-LexiconVerbPstF     [<v><pst><f>:]
-LexiconVerbPstFPl   [<v><pst><f_pl>:]                                               # Карамшоев и БД
-LexiconVerbPstM     [<v><pst><m>:]
-LexiconVerbPstSh    [<v><pst>:]                                                     # Карамшоев и БД
+LexiconVerbPstF                             [<v><pst><f>:]
+LexiconVerbPstFPl                           [<v><pst><f_pl>:]                                               # Карамшоев и БД
+LexiconVerbPstM                             [<v><pst><m>:]
+LexiconVerbPstSh|LexiconVerbPstIrregular    [<v><pst>:]                                                     # Карамшоев и БД
 # Past stems are equivalent to the present stem with an additional stop -t/-d (Parker 2023, p. 256)
 LexiconVerbNpst     [<v>:] _morph_ [<pst>:{vДТ}]
 
