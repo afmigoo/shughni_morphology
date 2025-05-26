@@ -17,13 +17,14 @@ eaf_dirs = [root_dir.joinpath('raw_corpus/bible_luke'),
 
 punctuation_chars = ''.join([chr(i) for i in range(sys.maxunicode) 
                              if category(chr(i)).startswith("P")])
-punct = punctuation_chars.replace('-', '')
+punct = punctuation_chars.replace('-', '') + '–'
 
 def process_line(line: str) -> str:
     line = line.lower()
     line.replace(' ', ' ') # NO-BREAK SPACE 
     line = re.sub(r'[\u0301]', '', line) # removing stress diacritic
     line = re.sub(f'[{punct}0-9]', '', line) # removing punctuation and numbers
+    line = re.sub(r' +', ' ', line) # squishing spaces
     line = line.replace('=', '-')
     return line.strip()
 

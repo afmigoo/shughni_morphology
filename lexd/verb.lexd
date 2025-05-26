@@ -11,6 +11,7 @@ PastVerbBase
 ImperVerbBase
 PerfVerbBase
 InfVerbBase
+ToBeParadigm
 
 PATTERN NPastVerbBase
 LexiconVerbNpst|LexiconVerbNpstSh       [<v><prs>:]
@@ -18,7 +19,7 @@ LexiconVerbNpst                         [<v>:] _morph_ [<prs>:] PresSuffixes
 LexiconVerbNpst1sg                      [<v>:] _morph_ [<prs><1sg>:м]               # Карамшоев и БД
 LexiconVerbNpst2sg                      [<v>:] _morph_ [<prs><2sg>:{Й}и]            # Карамшоев и БД
 LexiconVerbNpst2pl                      [<v>:] _morph_ [<prs><2pl>:{Й}ет]           # Карамшоев и БД
-LexiconVerbNpst3sg                      [<v>:] _morph_ [<prs><3sg>:{ДТ}]            # Карамшоев и БД
+LexiconVerbNpst3sg                      [<v>:] _morph_ [<prs><3sg>:{vДТ}]           # Карамшоев и БД
 LexiconVerbNpst3pl                      [<v>:] _morph_ [<prs><3pl>:{Й}ен]           # Карамшоев и БД
 LexiconVerbNpst1sgSh                    [<v><prs><1sg>:]                            # Карамшоев и БД
 LexiconVerbNpst2sgSh                    [<v><prs><2sg>:]                            # Карамшоев и БД
@@ -50,6 +51,20 @@ PATTERN InfVerbBase
 # Infinite stems are equivalent to the present stems with an additional stop -t/-d (Parker 2023, p. 256)
 LexiconVerbNpst|LexiconVerbInfShSuffixable  [<v>:] _morph_ [<inf>:{vДТ}]    (_morph_hyphen_ PurpSuff)?
 LexiconVerbInfShNonsuffixable               [<v><inf>:]                     (_morph_hyphen_ PurpSuff)?
+
+LEXICON ToBeParadigm
+видоw<v><inf>:видоw
+видоw<v><inf>:вид
+вад<v><pst><f>:вад
+вуд<v><pst><m>:вуд
+виц<v><prf><f>:виц
+вуδҷ<v><prf><m>:вуδҷ
+вӣм<v><prs>><1sg>:ви
+вийи<v><prs>><2sg>:ви
+вид<v><prs>><3sg>:ви
+вийāм<v><prs>><1pl>:ви
+вийет<v><prs>><2pl>:ви
+вийен<v><prs>><3pl>:ви
 
 # Parker 8.2.1
 LEXICON PresSuffixes

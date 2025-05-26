@@ -14,3 +14,9 @@ _morph_ _hyphen_
 PATTERN _hyphen_morph_
 _hyphen_ _morph_
 
+##########################################
+# Adverbal suffix (nouns and adjectives) #
+##########################################
+LEXICON Adv
+<adv>:{Й}аθ
+

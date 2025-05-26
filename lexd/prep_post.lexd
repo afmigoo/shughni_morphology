@@ -1,0 +1,27 @@
+#############################
+### (PRE-/POST-)POSITIONS ###
+#############################
+
+PATTERNS
+LexiconPrep|Preposition     [<prep>:]
+LexiconPost|Postposition    [<post>:]
+
+# глоссы из внутреннего документа экспедиций ВШЭ в город Хорог
+LEXICON Preposition
+ар
+аз
+ас
+ба
+чи
+пар
+пи
+пис
+тар
+то
+
+LEXICON Postposition
+бӣрӣн
+бӣр
+хез
+хел
+

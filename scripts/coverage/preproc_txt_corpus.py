@@ -15,13 +15,14 @@ output_file_lat = corpus_dir.joinpath(f"{_out_file}-fit-lat.txt")
 ## Processing
 LAT = "aābvwgɣɣɣ̌dδeêžzӡiyīīkqlmnoprstθϑuūůfxx̌hcčšǰǰ"
 CYR = "аāбвwгғғ̌ɣ̌дδеêжзȥийӣӣкқлмнопрстθθуӯу̊фхх̌ҳцчшҷҷ"
-punct = punctuation.replace('-', '')
+punct = punctuation.replace('-', '') + '–'
 
 def process(line: str) -> str:
     line = line.lower().strip()
     line.replace(' ', ' ') # NO-BREAK SPACE 
     line = re.sub(r'[\u0301]', '', line) # removing stress diacritic
     line = re.sub(f'[{punct}]', '', line) # removing punctuation
+    line = re.sub(r' +', ' ', line) # squishing spaces
     return line
 
 def writing_score(line: str, charset: str) -> float:

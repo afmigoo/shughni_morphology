@@ -1,9 +1,9 @@
 PATTERNS
-(AdjPrefix _hyphen_morph_)? AdjBase         GlobClitics?
-(AdjPrefix _hyphen_morph_)? ParticipleBase  GlobClitics?
+(AdjPrefix _hyphen_morph_)? AdjBase        GlobClitics?
+(AdjPrefix _hyphen_morph_)? ParticipleBase GlobClitics?
 
 PATTERN AdjBase
-LexiconAdj [<adj>:] (_morph_hyphen_ AdjSuffix)?
+LexiconAdj [<adj>:] (_morph_hyphen_ AdjSuffix|Adv)?
 ### Derivation from Nouns ###
 LexiconNoun [<n>:] _morph_hyphen_ NounAdjectivatorsSuffix
 NounAdjectivatorsPrefix _hyphen_morph_ LexiconNoun [<n>:]
@@ -16,7 +16,9 @@ PerfVerbBase _hyphen_morph_ [<ptcp>:ин]
 
 LEXICON AdjSuffix
 <dim>:рāнг
+<dim>:ак-аθ
 <dim>:акаθ
+<dim>:ак
 <aug>:изор
 
 LEXICON AdjPrefix

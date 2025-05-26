@@ -1,0 +1,12 @@
+#PATTERNS
+#AdvBase GlobClitics?
+#
+#PATTERN AdvBase
+#LexiconAdv [<adv>:] (_hyphen_morph_ AdvSuffix)?
+#LexiconAdv [<adv>:]  _hyphen_morph_ :LexiconAdv [<redup>:]
+#
+#LEXICON AdvSuffix
+#<int>:{Й}аθ     # Parker 277
+#<comp>:ди       # Parker 277
+#<comp_at>:дарди # Internal doc
+

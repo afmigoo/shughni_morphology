@@ -3,14 +3,14 @@
 ################
 
 PATTERNS
-PronounBase GlobClitics?
+PronounBase (_morph_hyphen_ NounDeriv)? GlobClitics?
 
 PATTERN PronounBase
-PersonalPronounsNom         [<nom>:]
+PersonalPronounsNom                 
 PersonalPronounsObl         [<obl>:]
-PersonalPronounsNom[hon]    [<nom>:] Honorable
+PersonalPronounsNom[hon]             Honorable
 PersonalPronounsObl[hon]    [<obl>:] Honorable
-DemonstrativesNom           [<nom>:]          
+DemonstrativesNom                             
 DemonstrativesObl           [<obl>:]
 PersonalPronounsNom|PersonalPronounsObl          _morph_hyphen_  PronAdpos
 PersonalPronounsNom[hon]                         _morph_hyphen_  PronAdpos    Honorable

@@ -23,12 +23,15 @@ if INCLUDE_LATIN and not cyr2lat_translit.is_file:
 
 pos_alias = {
     'прил.': 'adj',
+    'нареч.': 'adv',
     'союз': 'conj',
+    'межд.': 'intj',
     'сущ.': 'n',
     'числ.': 'num',
     'предл.': 'prep',
     'мест.': 'pro',
-    'межд.': 'intj',
+    'част.': 'prt',
+    'посл.': 'post',
     'гл.': 'v',
 }
 

@@ -6,10 +6,11 @@
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-(NounPrepos _hyphen_morph_)? NounNumberBase (_morph_hyphen_ NounAdpos)? GlobClitics?
+(NounPrepos _hyphen_morph_)? NounNumberBase NounDeriv? (_morph_hyphen_ NounAdpos)? (_morph_hyphen_ Adv)? (_morph_hyphen_ NounPostClitics)? GlobClitics?
 
 PATTERN NounBase
 LexiconNoun                 [<n>:]
+LexiconVerbNpst [<v>:] _morph_hyphen_ [<agn>:иҷ]
 
 PATTERN NounNumberBase
 NounBase[sg]                                        NounNum[sg]            
@@ -22,6 +23,9 @@ NounBase[pl_timesOfYear]            _morph_hyphen_  NounNum[pl_timesOfYear]
 LexiconNounPlRegular[pl_all] [<n>:] _morph_hyphen_  NounNum[pl_all]        
 LexiconNounPlIrregular       [<n><pl>:]
 
+PATTERN NounDeriv
+(_morph_hyphen_ NounDerivLexicon)+
+
 # [Parker 2023] A Grammar of the Shugni language. Table 5.3
 LEXICON NounNum
 :[sg]
@@ -29,21 +33,52 @@ LEXICON NounNum
 <pl>:орҷ[pl_in-laws]
 <pl>:у̊н[pl_cousins]
 <pl>:дзинен[pl_sisters]
-<pl>:аҷев[pl_timesOfDay]
-<pl>:а-ҷев[pl_timesOfDay]
-<pl>:ҷев[pl_timesOfYear]
 
 LEXICON NounPrepos
 <cont2>:ми
 <cont2>:ма
 
+LEXICON NounDerivLexicon
+<dim>:{Й}ик     # Parker and internal gloss doc
+<dim>:{Й}ак
+<subst>:и       # Internal gloss doc
+<adj>:и
+<hb>:дор
+<time>:ҷев
+<time>:аҷев
+<time>:а-ҷев
+<in>:тā
+<in>:атā
+<place>:зор
+<orig>:чи
+<adv>:{Й}аθ
+<adv>:θ
+<hb>:ā
+
 LEXICON NounAdpos
 <loc>:{Й}анд
+<loc>:нд
 <dat>:{Й}ард
+<dat>:рд
 <dat>:рад
 <dat>:ра
+
+# internal gloss doc
+LEXICON NounPostClitics
+<cause>:авен
+<cause>:ҷāт
+<cause>:ҷā
 <dir>:аҷ
-<sup>:тӣр
-#<sup>:тӣ
+<lim2>:ец
+<com>:қати
+<com>:қатӣр
+<com>:қатеθ
 <sup>:ти
+<sup>:тӣр
+<p_loc>:ҷа
+<p_loc>:ҷā
+<p_loc>:ҷāд
+<p_loc>:ҷид
+<p_loc>:ҷи
+<prol>:ва
 

@@ -125,6 +125,8 @@ EAF_FILES := $(wildcard $(METRICS_DIR)/elans/*.eaf)
 CSV_FILES := $(patsubst $(METRICS_DIR)/elans/%.eaf,$(METRICS_DIR)/csv/%.csv,$(EAF_FILES))
 DETAIL_DIRS := $(patsubst $(METRICS_DIR)/elans/%.eaf,$(RESULTS_DIR)/%,$(EAF_FILES))
 
+metrics_quality_hfsts: sgh_analyze_stem_word_lat.hfstol translit/cyr2lat.hfstol
+
 metrics_quality: metrics_quality_data
 	cat $(METRICS_DIR)/csv/*.csv | grep -v "wordform,tagged" | $(METRICS_DIR)/eval.py -f table \
 		--hfst-analyzer sgh_analyze_stem_word_lat.hfstol \

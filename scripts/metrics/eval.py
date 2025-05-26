@@ -49,7 +49,8 @@ tag_aliases = {
     '<o>': '<obl>',
     '<pf>': '<prf>',
     '<f/pl>': '<f_pl>',
-    '<cnj>': '<conj>'
+    '<cnj>': '<conj>',
+    '<pers><prn>': '<pers>',
 }
 
 EqFunc = Callable[[str, str], bool]

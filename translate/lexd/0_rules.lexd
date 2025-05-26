@@ -3,12 +3,15 @@ PATTERNS
 
 PATTERN RuLemmasBase
 RuLemmasAdj [<adj>]
+RuLemmasAdv [<adv>]
 RuLemmasConj [<conj>]
+RuLemmasIntj [<intj>]
 RuLemmasN [<n>]
 RuLemmasNum [<num>]
 RuLemmasPrep [<prep>]
 RuLemmasPro [<pro>]|[<pers>]|[<dem>]
-RuLemmasIntj [<intj>]
+RuLemmasPrt [<prt>]
+RuLemmasPost [<post>]
 RuLemmasV [<v>]
 
 LEXICON RuLemmasTags
@@ -21,8 +24,14 @@ LEXICON RuLemmasTags
 <3sg>
 <add>
 <adj>
+<adv>
 <advs>
+<agn>
 <aug>
+<cause>
+<com>
+<comp>
+<comp_at>
 <compl>
 <conj>
 <cont2>
@@ -41,33 +50,45 @@ LEXICON RuLemmasTags
 <f_pl>
 <full>
 <fut>
+<hb>
 <hon>
 <imp>
+<in>
 <inf>
 <int>
+<intj>
+<lim2>
 <loc>
 <m>
 <n>
 <neg>
-<nom>
 <num>
 <obl>
 <ord>
+<orig>
+<p_loc>
 <pers>
 <pl>
+<place>
+<post>
 <prep>
 <prf>
 <pro>
+<prol>
 <prs>
+<prt>
 <pst>
 <ptcp>
 <purp>
 <quot>
+<redup>
 <refl>
 <self>
 <sg>
 <subd>
+<subst>
 <sup>
+<time>
 <v>
 <wish>
 <with>
