@@ -62,8 +62,10 @@ sgh_gen_rulem_word_cyr.hfst: sgh_base_rulem.hfst twol/sep.hfst
 sgh_gen_%_lat.hfst: sgh_gen_%_cyr.hfst translit/cyr2lat.hfst
 	hfst-compose $^ | hfst-minimize -o $@
 ## Every analyzer is just an inverted generator
-sgh_analyze_%.hfst: sgh_gen_%.hfst
+sgh_analyze_%_cyr.hfst: sgh_gen_%_cyr.hfst
 	hfst-invert $< | hfst-minimize -o $@
+sgh_analyze_%_lat.hfst: translit/lat2cyr.hfst sgh_analyze_%_cyr.hfst
+	hfst-compose $^ | hfst-minimize -o $@
 
 ########
 # TWOL #
@@ -94,8 +96,8 @@ translit/cyr2lat_unstressed.hfst: translit/remove_stresses.hfst translit/cyr2lat
 	hfst-compose $^ -o $@
 translit/lat2cyr_unstressed.hfst: translit/remove_stresses.hfst translit/lat2cyr.hfst
 	hfst-compose $^ -o $@
-translit/cyr2lat.hfst: translit/lat2cyr.hfst
-	hfst-invert $< -o $@
+translit/cyr2lat.hfst: translit/cyr2lat.lexd
+	lexd $< | hfst-txt2fst -o $@
 translit/lat2cyr.hfst: translit/lat2cyr.lexd
 	lexd $< | hfst-txt2fst -o $@
 translit/remove_stresses.hfst: translit/remove_stresses.lexd

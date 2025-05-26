@@ -4,8 +4,8 @@
 
 # Patterns
 PATTERN GlobClitics
-IntensiveClitic? (PronClitics|FutureClitic)? AdditiveClitic?
-(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics)+
+#IntensiveClitic? (PronClitics|FutureClitic)? AdditiveClitic?
+(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics|SuperessiveClitic|CaseClitic)+
 
 # позволять всем клитикам выражаться с и без дефиса
 PATTERN PronClitics
@@ -19,6 +19,13 @@ _morph_hyphen_ ADD
 
 PATTERN IntensiveClitic
 _morph_hyphen_ INT
+
+PATTERN SuperessiveClitic
+_morph_hyphen_ SUP
+
+# These acl as suffixes with nouns and pronouns but as clitics with everything else
+PATTERN CaseClitic
+_morph_hyphen_ NounAdpos
 
 # Lexicons
 LEXICON PCS
@@ -39,4 +46,7 @@ LEXICON ADD
 
 LEXICON INT
 <int>:аθ
+
+LEXICON SUP
+<sup>:ти
 

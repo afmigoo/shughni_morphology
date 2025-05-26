@@ -1,0 +1,62 @@
+PATTERNS
+(Letters|Stress|SpecialCharacters)*
+
+LEXICON Letters
+а:a     # a
+ā:ā     # aː
+б:b     # b
+в:v     # v
+w:w     # w
+г:g     # g
+ғ:ɣ     # ʁ
+ɣ̌:ɣ̌     # ɣ
+д:d     # d
+ð:δ     # ð
+δ:δ     # ð
+е:e     # eː
+ê:ê     # ɛː
+ж:ž     # ʒ
+з:z     # z
+ȥ:dz    # d͜z
+ӡ:dz    # d͜z
+Ӡ:dz    # d͜z
+Ʒ:dz    # d͜z
+ȥ:ʒ     # d͜z
+ӡ:ʒ     # d͜z
+Ӡ:ʒ     # d͜z
+Ʒ:ʒ     # d͜z
+и:i     # ɪ
+й:y     # j
+ӣ:ī     # iː
+ӣ:ī     # iː
+к:k     # k
+қ:q     # q
+л:l     # l
+м:m     # m
+н:n     # n
+о:o     # ɔː
+ō:o     # ɔː
+п:p     # p
+р:r     # ɾ
+с:s     # s
+т:t     # t
+θ:θ     # θ
+ϑ:θ     # θ
+у:u     # ʊ
+ӯ:ū     # uː
+у̊:ů     # øː
+ф:f     # f
+х:x     # χ
+х̌:x̌     # x
+ҳ:h     # h
+ц:c     # t͜s
+ч:č     # t͜ʃ
+ш:š     # ʃ
+ҷ:ǰ     # d͜ʒ
+
+LEXICON SpecialCharacters
+-:-
+\>:\>
+
+LEXICON Stress
+́
