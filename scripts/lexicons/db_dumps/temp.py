@@ -4,9 +4,9 @@ import re
 
 _root = Path(__file__).parent
 
-inp = _root.joinpath('verb_pst.csv_')
-irregular_file = _root.joinpath('verb_pst_irregular.csv_')
-regular_file = _root.joinpath('verb_pst_regular.csv_')
+inp = _root.joinpath('verb_perf_pl.csv_')
+irregular_file = _root.joinpath('verb_perf_pl_irregular.csv')
+regular_file = _root.joinpath('verb_perf_pl_regular.csv')
 
 VoicelessConsonant = 'пткфθсшхх̌ҳцчқ'
 Nasal = 'нм'
@@ -17,8 +17,8 @@ Vowel = 'аāеêиӣӣоуӯу̊'
 Semivowel = 'wй'
 
 regular_endings = {
-    'т': VoicelessConsonant+Nasal+Liquid,
-    'д': VoicedObstruent+Vowel+Semivowel,
+    'ч': VoicelessConsonant+Nasal+Liquid,
+    'ҷ': VoicedObstruent+Vowel+Semivowel,
 }
 
 with open(inp, 'r', encoding='utf-8') as fin, \
