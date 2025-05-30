@@ -10,7 +10,6 @@ import logging
 import csv
 import sys
 import re
-from tabulate import tabulate
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -221,6 +220,7 @@ def log_details(dir: Path, out_file: str,
         writer.writerow((wordform, reference, real_output, result))
 
 def table_results(results: dict):
+    from tabulate import tabulate
     print(tabulate([['metric', 'Value', 'Absolute'],
                     ['coverage', results['recognized']/results['total'], f"{results['recognized']}/{results['total']}"]],
                     tablefmt="rounded_outline", headers='firstrow'))

@@ -1,2 +1,2 @@
 input,output,mustpass,hfst,source,page,description
-панҷ<num>,panǰ,pass,sgh_gen_stem_morph_lat,…,…,первый вариант символа "ǰ"
+панҷ<num>,panǰ,pass,sgh_gen_stem_segm_lat,…,…,первый вариант символа "ǰ"

@@ -3,7 +3,7 @@
 ################
 
 PATTERNS
-GlobCliticsPrep? PronounBase (_morph_hyphen_ NounDeriv)? GlobClitics?
+GlobCliticsPrep PronounBase NounDeriv? GlobClitics
 
 PATTERN PronounBase
 PersonalPronounsNom                 
@@ -91,11 +91,11 @@ LEXICON IndefinitePronRoots # Parker 2023 p.193
 wахт[g2]
 ҷой[g1,g2]
 
-PATTERN IndefinitePronouns
-[ар]  _hyphen_ IndefinitePronRoots[g1] _hyphen_ [ца] # Assertive
-[йи]  _hyphen_ IndefinitePronRoots[g1]               # Elective
-[йи]  _hyphen_ IndefinitePronRoots[g1] _hyphen_ [аθ] # Negative
-[фук] _hyphen_ IndefinitePronRoots[g2] _hyphen_ [аθ]# Universal
+PATTERN IndefinitePronouns # Parker p.99
+[ар]  _hyphen_ IndefinitePronRoots[g1] _hyphen_ [ца]    # Assertive
+[йи]  _hyphen_ IndefinitePronRoots[g1]                  # Elective
+[йи]  _hyphen_ IndefinitePronRoots[g1] (_hyphen_ [аθ])? # Negative
+[фук] _hyphen_ IndefinitePronRoots[g2] (_hyphen_ [аθ])? # Universal
 
 
 ##################

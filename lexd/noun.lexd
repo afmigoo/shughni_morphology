@@ -6,10 +6,10 @@
 # dat/loc,   int,   psc/fut, add
 # adpos      todo   nounclitics
 PATTERNS
-GlobCliticsPrep? (NounPrepos _hyphen_morph_)? NounNumberBase NounDeriv? (_morph_hyphen_ NounAdpos)? (_morph_hyphen_ Adv)? GlobClitics?
+GlobCliticsPrep (NounPrepos _hyphen_morph_)? NounNumberBase NounDeriv? (_morph_hyphen_ NounAdpos)? (_morph_hyphen_ Adv)? GlobClitics
 
 PATTERN NounBase
-LexiconNoun                 [<n>:]
+LexiconNoun     [<n>:]
 LexiconVerbNpst [<v>:] _morph_hyphen_ [<agn>:иҷ]
 
 PATTERN NounNumberBase
@@ -17,12 +17,12 @@ NounBase[sg]                                        NounNum[sg]
 NounBase[pl_all]                    _morph_hyphen_  NounNum[pl_all]        
 NounBase[pl_in-laws]                _morph_hyphen_  NounNum[pl_in-laws]    
 NounBase[pl_cousins]                _morph_hyphen_  NounNum[pl_cousins]    
-NounBase[pl_sisters]                _morph_hyphen_  NounNum[pl_sisters]    
-NounBase[pl_timesOfDay]             _morph_         NounNum[pl_timesOfDay] 
-NounBase[pl_timesOfYear]            _morph_hyphen_  NounNum[pl_timesOfYear]
+NounBase[pl_sisters]                _morph_hyphen_  NounNum[pl_sisters]   
+LexiconNounPlRegular[pl_all] [<n>:]                 NounNum[sg]            
 LexiconNounPlRegular[pl_all] [<n>:] _morph_hyphen_  NounNum[pl_all]        
 LexiconNounPlIrregular       [<n><pl>:]
 LexiconAdv                   [<n>:]
+LexiconAdv                   [<n>:] _morph_hyphen_  NounNum[pl_all]        
 
 PATTERN NounDeriv
 (_morph_hyphen_ NounDerivLexicon)+

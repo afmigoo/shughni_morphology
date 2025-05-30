@@ -5,10 +5,21 @@
 # Patterns
 PATTERN GlobClitics
 #IntensiveClitic? (PronClitics|FutureClitic)? AdditiveClitic?
-(PronClitics|FutureClitic|AdditiveClitic|IntensiveClitic|ConjClitics|PrtClitics|SuperessiveClitic|CaseClitic|AllPostClitics)+
+(AnyClitic > AnyClitic > AnyClitic)?
+
+PATTERN AnyClitic
+PronClitics
+FutureClitic
+AdditiveClitic
+IntensiveClitic
+ConjClitics
+PrtClitics
+SuperessiveClitic
+CaseClitic
+AllPostClitics
 
 PATTERN GlobCliticsPrep
-AllPrepClitics
+AllPrepClitics?
 
 # позволять всем клитикам выражаться с и без дефиса
 PATTERN PronClitics

@@ -3,12 +3,13 @@
 ################
 
 PATTERNS
-GlobCliticsPrep? NumBase GlobClitics?
+GlobCliticsPrep NumBase GlobClitics
 
 PATTERN NumBase
-ShugniNums                  [<num>:]   (_morph_hyphen_ OrdinalNum)?
-ShugniNumsTen CliticAnd?    [<num>:]   (_morph_hyphen_ OrdinalNum)?
-BorrowedTadjikNums          [<num>:]   (_morph_hyphen_ OrdinalNum)?
+ShugniNums         [<num>:]                         (_morph_hyphen_ OrdinalNum)?
+ShugniNumsTenPower [<num>:] (_hyphen_ [:ак])?       (_morph_hyphen_ OrdinalNum)? (_hyphen_morph_ CliticAnd)?  
+BorrowedTadjikNums [<num>:]                         (_morph_hyphen_ OrdinalNum)?
+BorrowedRussianNum [<num>:]                         (_morph_hyphen_ OrdinalNum)?
 
 LEXICON ShugniNums
 йӣw         # 1
@@ -27,10 +28,12 @@ wах̌т        # 8
 LEXICON ShugniNumsTen
 δӣс         # 10 (ðīs)
 
-LEXICON CliticAnd
--ат
+PATTERN ShugniNumsTenPower
+ShugniNumsTen > (_hyphen_ ShugniNumsTen) > (_hyphen_ ShugniNumsTen) > (_hyphen_ ShugniNumsTen) > (_hyphen_ ShugniNumsTen)
 
-# Про вставку йота см clitics.lexd
+LEXICON CliticAnd
+<and>:ат
+
 LEXICON OrdinalNum
 <ord>:{Й}ум
 <ord>:м
@@ -59,8 +62,12 @@ LEXICON BorrowedTadjikNums
 аждā        # 18
             # 19
 бӣст        # 20
+бӣсту       # 20
 сад         # 100
 азор        # 1000
 милйу̊н      # 1mil
 милйāрд     # 1bil
+
+LEXICON BorrowedRussianNum
+нол         # 0
 

@@ -1,5 +1,5 @@
 PATTERNS
-GlobCliticsPrep? LexiconPrt [<prt>:] GlobClitics?
+GlobCliticsPrep LexiconPrt [<prt>:] GlobClitics
 
 PATTERN PrtClitics
 _morph_hyphen_ DocPrtClitics

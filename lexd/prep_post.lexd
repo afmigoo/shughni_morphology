@@ -3,7 +3,7 @@
 #############################
 
 PATTERNS
-GlobCliticsPrep? PrepBase GlobClitics?
+GlobCliticsPrep PrepBase GlobClitics
 
 PATTERN PrepBase
 LexiconPrep|Preposition     [<prep>:]

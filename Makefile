@@ -1,14 +1,14 @@
-.DEFAULT_GOAL := analyze_stem_word_cyr.hfst
+.DEFAULT_GOAL := all
 SHELL=/bin/bash -o pipefail
 
-ALL_HFST := sgh_gen_stem_morph_cyr.hfst sgh_gen_stem_word_cyr.hfst
-ALL_HFST += sgh_gen_rulem_morph_cyr.hfst sgh_gen_rulem_word_cyr.hfst
-ALL_HFST += sgh_analyze_stem_morph_cyr.hfst sgh_analyze_stem_word_cyr.hfst
-ALL_HFST += sgh_analyze_rulem_morph_cyr.hfst sgh_analyze_rulem_word_cyr.hfst
-ALL_HFST += sgh_gen_stem_morph_lat.hfst sgh_gen_stem_word_lat.hfst
-ALL_HFST += sgh_gen_rulem_morph_lat.hfst sgh_gen_rulem_word_lat.hfst
-ALL_HFST += sgh_analyze_stem_morph_lat.hfst sgh_analyze_stem_word_lat.hfst
-ALL_HFST += sgh_analyze_rulem_morph_lat.hfst sgh_analyze_rulem_word_lat.hfst
+ALL_HFST := sgh_gen_stem_segm_cyr.hfst sgh_gen_stem_word_cyr.hfst
+ALL_HFST += sgh_gen_rulem_segm_cyr.hfst sgh_gen_rulem_word_cyr.hfst
+ALL_HFST += sgh_analyze_stem_segm_cyr.hfst sgh_analyze_stem_word_cyr.hfst
+ALL_HFST += sgh_analyze_rulem_segm_cyr.hfst sgh_analyze_rulem_word_cyr.hfst
+ALL_HFST += sgh_gen_stem_segm_lat.hfst sgh_gen_stem_word_lat.hfst
+ALL_HFST += sgh_gen_rulem_segm_lat.hfst sgh_gen_rulem_word_lat.hfst
+ALL_HFST += sgh_analyze_stem_segm_lat.hfst sgh_analyze_stem_word_lat.hfst
+ALL_HFST += sgh_analyze_rulem_segm_lat.hfst sgh_analyze_rulem_word_lat.hfst
 
 ALL_HFSTOL := $(patsubst %.hfst,%.hfstol,$(ALL_HFST))
 
@@ -17,7 +17,7 @@ TRANSLIT_OPTIMIZED := translit/cyr2lat.hfstol translit/lat2cyr.hfstol
 ################
 # Main targets #
 ################
-all: all_hfst all_hfstol test
+all: all_hfstol
 all_hfst: $(ALL_HFST)
 	rm -f sgh_base_rulem.hfst sgh_base_stem.hfst sgh_rulemma.lexd
 all_hfstol: all_hfst $(ALL_HFSTOL) $(TRANSLIT_OPTIMIZED)
@@ -35,11 +35,11 @@ clean:
 # wискӯн<n>><loc>:wискӯн>-анд
 sgh_base_stem.hfst: sgh.lexd twol/all.hfst
 	lexd $< | hfst-txt2fst | hfst-compose-intersect twol/all.hfst -o $@
-## cyrillic morph-separated transducers
+## cyrillic segmented (morph-separated) transducers
 # wискӯн<n>><loc>:wискӯн>анд
-sgh_gen_stem_morph_cyr.hfst: sgh_base_stem.hfst twol/bar.hfst
+sgh_gen_stem_segm_cyr.hfst: sgh_base_stem.hfst twol/bar.hfst
 	hfst-compose-intersect $^ | hfst-minimize -o $@
-## cyrillic transducers with no morpheme borders
+## cyrillic transducers with no segmentation
 # wискӯн<n>><loc>:wискӯнанд or wискӯн<n>><loc>:wискӯн-анд
 sgh_gen_stem_word_cyr.hfst: sgh_base_stem.hfst twol/sep.hfst
 	hfst-compose-intersect $^ | hfst-minimize -o $@
@@ -49,7 +49,7 @@ sgh_gen_stem_word_cyr.hfst: sgh_base_stem.hfst twol/sep.hfst
 sgh_base_rulem.hfst: translate/rulem2sgh.hfst sgh_base_stem.hfst
 	hfst-compose $^ -o $@
 # вилы<n>><loc>:wискӯн>анд
-sgh_gen_rulem_morph_cyr.hfst: sgh_base_rulem.hfst twol/bar.hfst
+sgh_gen_rulem_segm_cyr.hfst: sgh_base_rulem.hfst twol/bar.hfst
 	hfst-compose-intersect $^ | hfst-minimize -o $@
 # вилы<n>><loc>:wискӯнанд or вилы<n>><loc>:wискӯн-анд
 sgh_gen_rulem_word_cyr.hfst: sgh_base_rulem.hfst twol/sep.hfst

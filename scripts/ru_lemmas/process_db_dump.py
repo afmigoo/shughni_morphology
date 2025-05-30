@@ -227,7 +227,7 @@ def generate_lexicons():
                     f.write(lexd_str(line[2], line[1]))
             f.write('\n\n')
 
-    print(sum(1 for x in word_lengths if x[0] <= 5) / len(word_lengths))
+    print(sum(1 for x in word_lengths if x[0] <= 4) / len(word_lengths))
     print(f'[Chars] Mean: {mean(x[0] for x in char_lengths):.3f}; median: {median(x[0] for x in char_lengths)} min: {min(char_lengths)} max: {max(char_lengths)}')
     print(f'[Words] Mean: {mean(x[0] for x in word_lengths):.3f}; median: {median(x[0] for x in word_lengths)} min: {min(word_lengths)} max: {max(word_lengths)}')
     #plt.hist([x[0] for x in lemma_lengths], bins=100)

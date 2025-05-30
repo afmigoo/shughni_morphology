@@ -3,7 +3,7 @@
 #############
 
 PATTERNS
-GlobCliticsPrep? (VerbNegation _morph_)? VerbBases GlobClitics?
+GlobCliticsPrep VerbNegation VerbBases GlobClitics
 
 PATTERN VerbBases
 NPastVerbBase
@@ -29,7 +29,7 @@ LexiconVerbNpst2plSh                    [<v><prs><2pl>:]                        
 LexiconVerbNpst3sgSh                    [<v><prs><3sg>:]                            # Карамшоев и БД
 LexiconVerbNpst3plSh                    [<v><prs><3pl>:]                            # Карамшоев и БД
 LexiconVerbNpstF                        [<v><prs><f>:]                              # Карамшоев и БД
-LexiconVerbNpstF3sg                     [<v><prs><f><2sg>:]                         # Карамшоев и БД
+LexiconVerbNpstF3sg                     [<v><prs><f><3sg>:]                         # Карамшоев и БД
 
 ### Past ###
 PATTERN PastVerbBase
@@ -46,8 +46,7 @@ PATTERN ImperVerbBase
 
 ### Perfect ###
 PATTERN PerfVerbBase
-PerfVerbBaseMasc    (_morph_hyphen_ VerbPluQuamPerf)?
-PerfVerbBaseOther   (_morph_hyphen_ VerbPluQuamPerf)?
+PerfVerbBaseMasc|PerfVerbBaseOther    (_morph_hyphen_ VerbPluQuamPerf)?
 
 PATTERN PerfVerbBaseMasc
 LexiconVerbPerfM            [<v><prf><m>:]
@@ -87,7 +86,7 @@ LEXICON ToBeParadigm
 LEXICON PresSuffixes
 <1sg>:{Й}ум
 <2sg>:{Й}и
-<3sg>:{ДТ}
+<3sg>:{vДТ}
 <1pl>:{Й}āм 
 <1pl>:{Й}ам     # internal glosses doc
 <2pl>:{Й}ет
@@ -97,7 +96,7 @@ LEXICON PurpSuff
 <purp>:оw
 
 PATTERN VerbNegation
-VERBNEG _hyphen_
+(VERBNEG _hyphen_morph_)?
 
 # Parker 8.2.2
 LEXICON VERBNEG 
